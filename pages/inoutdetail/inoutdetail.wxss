@@ -1,0 +1,8 @@
+.van-tabbar-item--active .van-tabbar-item__text {
+  color: #E3A33D;
+}
+
+.van-tabbar--fixed {
+  background-image: linear-gradient(0deg, #F6F6F6 0%, rgba(246, 246, 246, 0) 100%);
+  box-shadow: 0 -13px 27px 0 rgba(0, 0, 0, 0.05);
+}

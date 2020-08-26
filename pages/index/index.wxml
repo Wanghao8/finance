@@ -1,0 +1,77 @@
+<!-- index.wxml -->
+<view class="container">
+    <view class="top-box" style="background:url('../../assets/images/Home page background.png')">
+        <view class="top-avatar-box flexr0c">
+            <image src="../../assets/images/user.png" />
+            <view class="comname">渑池交易中心</view>
+            <view class="username">张三</view>
+        </view>
+        <view class="flexc0c center">
+            <view class="top-title">账户余额（元）</view>
+            <view class="top-subtitle">（不含入账中）</view>
+            <view class="money-num">20456615.12</view>
+            <view class="top-time">数据更新时间 2020-08-22 09:12:22</view>
+        </view>
+    </view>
+    <view class="count-tabel flexr0c">
+        <view class="flexr0c count-tabel-item">
+            <view class="tabel-item">今日收入</view>
+            <view class="in-num">+1258000</view>
+        </view>
+        <view class="split-line"></view>
+        <view class="flexr0c count-tabel-item">
+            <view class="tabel-item">今日支出</view>
+            <view class="out-num">-58000</view>
+        </view>
+    </view>
+    <view class="list-box">
+        <view class="list-item-box flexr0c">
+            <view class="list-item-left">
+                <view class="flexr0c">
+                    <view class="list-item-title">企业名称</view>
+                    <view class="list-item-content">渑池矿产品销售占</view>
+                </view>
+                <view class="flexr0c">
+                    <view class="list-item-title">地区</view>
+                    <view class="list-item-content">三门峡</view>
+                </view>
+                <view class="flexr0c">
+                    <view class="list-item-title">交易类型</view>
+                    <image class="../../assets/images/Alipay-small.png" src=""></image>
+                    <image class="../../assets/images/zhuanzhanghuikuan-Samll.png" src=""></image>
+                    <image class="../../assets/images/WeChat-Samll.png" src=""></image>
+                    <view class="list-item-content">微信</view>
+                </view>
+                <view class="flexr0c">
+                    <view class="list-item-title">交易时间</view>
+                    <view class="list-item-content">2020/08/03 14:23:34</view>
+                </view>
+                <view class="flexr0c">
+                    <view class="list-item-title">到账时间</view>
+                    <view class="list-item-content">2020/08/03 14:23:34</view>
+                </view>
+            </view>
+            <view class="list-item-right flexr0c">
+                <view class="list-item-num">+1258000</view>
+                <image src="../../assets/images/The arrow.png" />
+            </view>
+        </view>
+    </view>
+    <van-tabbar active="{{ active }}" bind:change="onChange">
+        <van-tabbar-item info="2">
+            <image slot="icon" src="{{ icon.index }}" mode="aspectFit" style="width: 20px; height: 20px;" />
+            <image slot="icon-active" src="{{ icon.indexactive }}" mode="aspectFit" style="width: 20px; height: 20px;" />
+            首页
+        </van-tabbar-item>
+        <van-tabbar-item>
+            <image slot="icon" src="{{ icon.inout }}" mode="aspectFit" style="width: 20px; height: 20px;" />
+            <image slot="icon-active" src="{{ icon.inoutactive }}" mode="aspectFit" style="width: 20px; height: 20px;" />
+            收支明细
+        </van-tabbar-item>
+        <van-tabbar-item>
+            <image slot="icon" src="{{ icon.set }}" mode="aspectFit" style="width: 20px; height: 20px;" />
+            <image slot="icon-active" src="{{ icon.setactive }}" mode="aspectFit" style="width: 20px; height: 20px;" />
+            设置
+        </van-tabbar-item>
+    </van-tabbar>
+</view>

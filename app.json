@@ -1,0 +1,40 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/index/indexdetail/indexdetail",
+        "pages/inoutdetail/inoutdetail",
+        "pages/login/login",
+        "pages/logout/logout",
+        "pages/setting/setting"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "custom": true,
+        "color": "#BBBBBB",
+        "selectedColor": "#E3A33D",
+        "backgroundColor": "#FAFAFA",
+        "list": [{
+                "pagePath": "pages/index/index",
+                "text": "首页"
+            },
+            {
+                "pagePath": "pages/inoutdetail/inoutdetail",
+                "text": "收支明细"
+            },
+            {
+                "pagePath": "pages/setting/setting",
+                "text": "设置"
+            }
+        ]
+    },
+    "usingComponents": {
+        "van-tabbar": "@vant/weapp/tabbar/index",
+        "van-tabbar-item": "@vant/weapp/tabbar-item/index"
+    },
+    "sitemapLocation": "sitemap.json"
+}
