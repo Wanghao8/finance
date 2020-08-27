@@ -1,5 +1,51 @@
 <view class="container">
-    <van-tabbar active="{{ active }}" bind:change="onChange">
+    <van-nav-bar title="收支明细">
+        <image class="filter" src="../../assets/images/screening.png" bindtap="filter" slot="left"></image>
+    </van-nav-bar>
+    <view class="top-select flexr0c">
+        <view class="top-select-item-box flexrcc" bind:tap="selectIO" data-type="1">
+            <view class="top-select-item select-active">收支明细</view>
+        </view>
+        <view class="top-select-item-box flexrcc" bind:tap="selectIO" data-type="2">
+            <view class="top-select-item">分析</view>
+        </view>
+    </view>
+    <view class="middle-box flexr0c">
+        <view class="income-box flexrcc">
+            <view class="middle-label">收入</view>
+            <view class="income-num">+50000.00</view>
+        </view>
+        <view class="split-line"></view>
+        <view class="outcome-box flexrcc">
+            <view class="middle-label">支出</view>
+            <view class="outcome-num">-20000.00</view>
+        </view>
+    </view>
+    <scroll-view class="" scroll-x="false" scroll-y="true" upper-threshold="50" lower-threshold="50" scroll-top="0" scroll-left="0" scroll-into-view="" scroll-with-animation="false" enable-back-to-top="false" bindscrolltoupper="" bindscrolltolower="" bindscroll="" style="height:890rpx">
+        <view class="list-box">
+            <view class="list-item flexrbc" wx:for="{{list}}" wx:key="index">
+                <view class="check-type" hidden="{{0}}">未审核</view>
+                <view class="list-item-left flexr">
+                    <image class="paytype" src="../../assets/images/WeChat.png" hidden="{{paytype!=1}}"></image>
+                    <image class="paytype" src="../../assets/images/Alipay.png" hidden="{{paytype!=2}}"></image>
+                    <image class="paytype" src="../../assets/images/zhuanzhanghuikuan.png" hidden="{{paytype!=3}}"></image>
+                    <view class="list-item-content-box">
+                        <view class="list-item-title">渑池豪瑞矿产品购销站</view>
+                        <view class="list-item-time">2020-08-22 14:23:34</view>
+                        <view class="list-item-address">支付宝|三门峡</view>
+                    </view>
+                </view>
+                <view class="list-item-right">
+                    <view class="flexr0c">
+                        <view class="{{inout==1?'list-item-num':'list-item-num'}}">+1258000</view>
+                        <image src="../../assets/images/The arrow.png" />
+                    </view>
+                    <view class="in-type">入账中</view>
+                </view>
+            </view>
+        </view>
+    </scroll-view>
+    <van-tabbar active="{{ active }}" bind:change="changeTab">
         <van-tabbar-item>
             <image slot="icon" src="{{ icon.index }}" mode="aspectFit" style="width: 20px; height: 20px;" />
             <image slot="icon-active" src="{{ icon.indexactive }}" mode="aspectFit" style="width: 20px; height: 20px;" />
@@ -17,3 +63,63 @@
         </van-tabbar-item>
     </van-tabbar>
 </view>
+<van-popup show="{{ show }}" position="right" custom-style="width: 76%;" bind:close="closeDraw">
+    <view class="drawer">
+        <view class="drawer-top-box">
+            <view class="drawer-top">
+                <view class="drawer-top-label">企业名称</view>
+                <input type="text" placeholder="请输入您要查找的企业名称" placeholder-class="input-placeholder" />
+                <view class="drawer-top-label">交易单号</view>
+                <input type="text" placeholder="请输入您要查找的交易单号" placeholder-class="input-placeholder" />
+                <view class="drawer-top-label">地区</view>
+                <input type="text" placeholder="请输入您要查找的地区" placeholder-class="input-placeholder" />
+            </view>
+        </view>
+        <view class="money-box">
+            <view class="money-label">选择金额</view>
+            <view class="btn-box flexrbc">
+                <view class="btn-active">小于1万</view>
+                <view class="btn">1万-3万</view>
+                <view class="btn">3万-5万</view>
+                <view class="btn">5万-10万</view>
+                <view class="btn">大于10万</view>
+                <view class="btn">不限制</view>
+            </view>
+            <view class="input-box flexrbc">
+                <input type="text" name="" id=""></input>
+                <view class="to-line"></view>
+                <input type="text"></input>
+            </view>
+        </view>
+        <view class="paytype-box">
+            <view class="paytype-label">交易类型</view>
+            <view class="flexr0c">
+                <van-checkbox checked-color="#F2AD3C" value="{{ cardChecked }}" shape="square" bind:change="changeCheckbox" data-type="card">
+                    POS刷卡
+                </van-checkbox>
+                <van-checkbox checked-color="#F2AD3C" value="{{ aliChecked }}" shape="square" bind:change="changeCheckbox" data-type="alipay">
+                    POS支付宝
+                </van-checkbox>
+            </view>
+            <view class="flexr0c">
+                <van-checkbox checked-color="#F2AD3C" value="{{ WechatChecked }}" shape="square" bind:change="changeCheckbox" data-type="wechat">
+                    POS微信
+                </van-checkbox>
+                <van-checkbox checked-color="#F2AD3C" value="{{ bankChecked }}" shape="square" bind:change="changeCheckbox" data-type="bank">
+                    网银转账
+                </van-checkbox>
+            </view>
+            <van-checkbox checked-color="#F2AD3C" value="{{ outChecked }}" shape="square" bind:change="changeCheckbox" data-type="out">
+                支出
+            </van-checkbox>
+        </view>
+        <view class="bottom-btn-box flexr0c">
+            <view class="bottom-btn-cancel" bind:tap="cancelBtn">
+                取消
+            </view>
+            <view class="bottom-btn-comfirm" bind:tap="comfirmBtn">
+                确定
+            </view>
+        </view>
+    </view>
+</van-popup>

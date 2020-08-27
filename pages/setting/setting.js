@@ -15,7 +15,7 @@ Page({
             setactive: '../../assets/images/settings-2.png',
         },
     },
-    onChange(event) {
+    changeTab(event) {
         switch (event.detail) {
             case 0:
                 wx.switchTab({

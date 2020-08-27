@@ -1,0 +1,198 @@
+.van-nav-bar {
+  background-color: #E3A33D !important;
+  height: 100rpx;
+  width: 100vw;
+}
+
+.van-nav-bar__title {
+  font-family: PingFangSC-Regular !important;
+  font-size: 18px !important;
+  color: #FFFFFF !important;
+  letter-spacing: 0 !important;
+}
+
+.van-nav-bar__text {
+  font-family: PingFangSC-Medium !important;
+  font-size: 14px !important;
+  color: #FFFFFF !important;
+  letter-spacing: 0 !important;
+}
+
+.van-hairline--bottom:after {
+  border: none !important;
+}
+
+.van-icon-arrow-left {
+  color: #fff !important;
+  font-size: 40rpx !important;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-color: #f2f2f2;
+  position: relative;
+}
+
+.container .top-box {
+  background-color: #fff;
+  height: 220rpx;
+}
+
+.container .top-box .top-content-box {
+  width: 710rpx;
+  margin: 34rpx 0 0 40rpx;
+}
+
+.container .top-box .top-content-box .top-title-box image {
+  width: 34rpx;
+  height: 34rpx;
+  margin-right: 12rpx;
+}
+
+.container .top-box .top-content-box .top-title-box .top-title {
+  font-family: PingFangSC-Regular;
+  font-size: 25rpx;
+  color: #222222;
+  letter-spacing: 0;
+}
+
+.container .top-box .top-content-box .money-num {
+  font-family: PingFangSC-Semibold;
+  font-size: 62rpx;
+  color: #E3A33D;
+  letter-spacing: 0;
+}
+
+.container .top-box .top-content-box .overage {
+  font-family: PingFangSC-Regular;
+  font-size: 20rpx;
+  color: #BBBBBB;
+  letter-spacing: 0;
+  margin-top: 20rpx;
+}
+
+.container .top-box .top-content-box .overage .overage-label {
+  margin-right: 8rpx;
+}
+
+.container .middle-box {
+  background-color: #fff;
+  width: 716rpx;
+  margin: 17rpx;
+  margin-bottom: 0;
+  box-shadow: 0 20rpx 20rpx 0 rgba(0, 0, 0, 0.05);
+  border-radius: 6rpx;
+}
+
+.container .middle-box .middle-content-box {
+  width: 672rpx;
+  margin: 20rpx 22rpx;
+}
+
+.container .middle-box .middle-content-box .middle-label {
+  font-family: PingFangSC-Regular;
+  font-size: 25rpx;
+  color: #A0A0A0;
+  letter-spacing: 0;
+  line-height: 40rpx;
+  margin-right: 25rpx;
+}
+
+.container .middle-box .middle-content-box .middle-content {
+  font-family: PingFangSC-Medium;
+  font-size: 25rpx;
+  color: #4A4A4A;
+  letter-spacing: 0;
+  line-height: 40rpx;
+}
+
+.container .list-box {
+  background-color: #fafafa;
+  width: 716rpx;
+  margin-left: 17rpx;
+}
+
+.container .list-box .list-content-box {
+  width: 634rpx;
+  margin: 40rpx;
+  position: relative;
+}
+
+.container .list-box .list-content-box .list-label {
+  font-family: PingFangSC-Regular;
+  font-size: 20rpx;
+  color: #BBBBBB;
+  letter-spacing: 0;
+}
+
+.container .list-box .list-content-box .list-content {
+  font-family: PingFangSC-Medium;
+  font-size: 25rpx;
+  color: #4A4A4A;
+  letter-spacing: 0;
+}
+
+.container .list-box .list-content-box .split-line {
+  width: 634rpx;
+  height: 2rpx;
+  background-color: #ddd;
+  margin: 12rpx 0 22rpx 0;
+}
+
+.container .list-box .list-content-box .stamp-container {
+  position: absolute;
+  right: 16rpx;
+  bottom: -26rpx;
+  transform: rotate(-30deg);
+}
+
+.container .list-box .list-content-box .stamp-container .stamp {
+  width: 326rpx;
+  height: 326rpx;
+  position: relative;
+}
+
+.container .list-box .list-content-box .stamp-container .stamp .stamp-box {
+  width: 240rpx;
+  height: 160rpx;
+  color: #D0021B;
+  position: absolute;
+  top: 60rpx;
+  left: 46rpx;
+}
+
+.container .list-box .list-content-box .stamp-container .stamp .stamp-box .checked {
+  font-size: 50rpx;
+  font-weight: bold;
+}
+
+.container .list-box .list-content-box .stamp-container .stamp .stamp-box .stamp-label {
+  font-size: 22rpx;
+  width: 120rpx;
+  font-weight: bold;
+}
+
+.container .list-box .list-content-box .stamp-container .stamp .stamp-box .checkperson {
+  letter-spacing: 8rpx;
+}
+
+.container .list-box .list-content-box .stamp-container .stamp .stamp-box .stamp-content {
+  font-size: 22rpx;
+  font-weight: bold;
+}
+
+.container .button {
+  width: 100%;
+  height: 84rpx;
+  background-image: linear-gradient(0deg, #D36221 0%, #F2AD3C 100%, #F7E7AC 100%);
+  color: #fff;
+  text-align: center;
+  line-height: 84rpx;
+  position: fixed;
+  bottom: 0;
+  font-size: 34rpx;
+  font-family: PingFangSC-Regular;
+  color: #FFFFFF;
+  letter-spacing: 0;
+}

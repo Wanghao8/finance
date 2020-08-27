@@ -13,8 +13,9 @@ Page({
             set: '../../assets/images/settings.png',
             setactive: '../../assets/images/settings-2.png',
         },
+        paytype: 1, //支付方式
     },
-    onChange(event) {
+    changeTab(event) {
         switch (event.detail) {
             case 0:
                 wx.switchTab({

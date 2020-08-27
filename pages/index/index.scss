@@ -4,20 +4,28 @@
 
 .van-tabbar--fixed {
     background-image: linear-gradient(0deg, #F6F6F6 0%, rgba(246, 246, 246, 0.00) 100%);
-    box-shadow: 0 -13px 27px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 -13rpx 27rpx 0 rgba(0, 0, 0, 0.05);
 }
 
 .container {
+    height: 100vh;
+    // height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
     .top-box {
         width: 100%;
         height: 306rpx;
         image {
             width: 25rpx;
             height: 25rpx;
+            margin: 28rpx 10rpx 28rpx 28rpx;
         }
         .comname {
             font-size: 20rpx;
             color: #FFFFFF;
+            margin-right: 10rpx;
         }
         .username {
             font-size: 20rpx;
@@ -56,7 +64,7 @@
         width: 716rpx;
         height: 110rpx;
         background-color: #fff;
-        box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.05);
+        box-shadow: 0 20rpx 20rpx 0 rgba(0, 0, 0, 0.05);
         .count-tabel-item {
             width: 49%;
             .tabel-item {
@@ -86,12 +94,78 @@
         }
     }
     .list-box {
-        width: 716rpx;
+        width: 676rpx;
         .list-item-box {
             width: 100%;
             background: #FFFFFF;
-            box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.05);
-            border-radius: 8px;
+            box-shadow: 0 5rpx 15rpx 0 rgba(0, 0, 0, 0.05);
+            border-radius: 6rpx;
+            margin: 18rpx 0 0 -20rpx;
+            padding: 20rpx;
+            position: relative;
+            .check-type {
+                width: 84rpx;
+                height: 30rpx;
+                background-color: #DC863A;
+                color: #fff;
+                font-size: 20rpx;
+                text-align: center;
+                position: absolute;
+                right: 0;
+                top: 12rpx;
+            }
+            .list-item-left {
+                line-height: 40rpx;
+                .list-item-title {
+                    font-family: PingFangSC-Regular;
+                    font-size: 25rpx;
+                    color: #A0A0A0;
+                    letter-spacing: 0;
+                    width: 100rpx;
+                    margin-right: 25rpx;
+                }
+                .list-item-content {
+                    font-family: PingFangSC-Medium;
+                    font-size: 25rpx;
+                    color: #4A4A4A;
+                    letter-spacing: 0;
+                }
+                image {
+                    width: 28rpx;
+                    height: 28rpx;
+                    margin-right: 8rpx;
+                }
+            }
+            .list-item-right {
+                .list-item-num {
+                    font-family: PingFangSC-Semibold;
+                    font-size: 34rpx;
+                    color: #E3A33D;
+                    letter-spacing: 0;
+                    margin-right: 16rpx;
+                    font-weight: 500;
+                }
+                .list-item-num2 {
+                    font-family: PingFangSC-Semibold;
+                    font-size: 34rpx;
+                    color: #206DE7;
+                    letter-spacing: 0;
+                    margin-right: 16rpx;
+                    font-weight: 500;
+                }
+                image {
+                    width: 20rpx;
+                    height: 32rpx;
+                }
+                .in-type {
+                    font-family: PingFangSC-Regular;
+                    font-size: 16rpx;
+                    color: #00B6AD;
+                    letter-spacing: 0;
+                    text-align: right;
+                    margin-right: 36rpx;
+                }
+            }
         }
     }
 }

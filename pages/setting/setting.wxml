@@ -1,5 +1,5 @@
 <view class="container">
-    <van-tabbar active="{{ active }}" bind:change="onChange">
+    <van-tabbar active="{{ active }}" bind:change="changeTab">
         <van-tabbar-item>
             <image slot="icon" src="{{ icon.index }}" mode="aspectFit" style="width: 20px; height: 20px;" />
             <image slot="icon-active" src="{{ icon.indexactive }}" mode="aspectFit" style="width: 20px; height: 20px;" />

@@ -4,7 +4,15 @@
 
 .van-tabbar--fixed {
   background-image: linear-gradient(0deg, #F6F6F6 0%, rgba(246, 246, 246, 0) 100%);
-  box-shadow: 0 -13px 27px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 -13rpx 27rpx 0 rgba(0, 0, 0, 0.05);
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
 }
 
 .container .top-box {
@@ -15,11 +23,13 @@
 .container .top-box image {
   width: 25rpx;
   height: 25rpx;
+  margin: 28rpx 10rpx 28rpx 28rpx;
 }
 
 .container .top-box .comname {
   font-size: 20rpx;
   color: #FFFFFF;
+  margin-right: 10rpx;
 }
 
 .container .top-box .username {
@@ -64,7 +74,7 @@
   width: 716rpx;
   height: 110rpx;
   background-color: #fff;
-  box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 20rpx 20rpx 0 rgba(0, 0, 0, 0.05);
 }
 
 .container .count-tabel .count-tabel-item {
@@ -100,12 +110,85 @@
 }
 
 .container .list-box {
-  width: 716rpx;
+  width: 676rpx;
 }
 
 .container .list-box .list-item-box {
   width: 100%;
   background: #FFFFFF;
-  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.05);
-  border-radius: 8px;
+  box-shadow: 0 5rpx 15rpx 0 rgba(0, 0, 0, 0.05);
+  border-radius: 6rpx;
+  margin: 18rpx 0 0 -20rpx;
+  padding: 20rpx;
+  position: relative;
+}
+
+.container .list-box .list-item-box .check-type {
+  width: 84rpx;
+  height: 30rpx;
+  background-color: #DC863A;
+  color: #fff;
+  font-size: 20rpx;
+  text-align: center;
+  position: absolute;
+  right: 0;
+  top: 12rpx;
+}
+
+.container .list-box .list-item-box .list-item-left {
+  line-height: 40rpx;
+}
+
+.container .list-box .list-item-box .list-item-left .list-item-title {
+  font-family: PingFangSC-Regular;
+  font-size: 25rpx;
+  color: #A0A0A0;
+  letter-spacing: 0;
+  width: 100rpx;
+  margin-right: 25rpx;
+}
+
+.container .list-box .list-item-box .list-item-left .list-item-content {
+  font-family: PingFangSC-Medium;
+  font-size: 25rpx;
+  color: #4A4A4A;
+  letter-spacing: 0;
+}
+
+.container .list-box .list-item-box .list-item-left image {
+  width: 28rpx;
+  height: 28rpx;
+  margin-right: 8rpx;
+}
+
+.container .list-box .list-item-box .list-item-right .list-item-num {
+  font-family: PingFangSC-Semibold;
+  font-size: 34rpx;
+  color: #E3A33D;
+  letter-spacing: 0;
+  margin-right: 16rpx;
+  font-weight: 500;
+}
+
+.container .list-box .list-item-box .list-item-right .list-item-num2 {
+  font-family: PingFangSC-Semibold;
+  font-size: 34rpx;
+  color: #206DE7;
+  letter-spacing: 0;
+  margin-right: 16rpx;
+  font-weight: 500;
+}
+
+.container .list-box .list-item-box .list-item-right image {
+  width: 20rpx;
+  height: 32rpx;
+}
+
+.container .list-box .list-item-box .list-item-right .in-type {
+  font-family: PingFangSC-Regular;
+  font-size: 16rpx;
+  color: #00B6AD;
+  letter-spacing: 0;
+  text-align: right;
+  margin-right: 36rpx;
 }

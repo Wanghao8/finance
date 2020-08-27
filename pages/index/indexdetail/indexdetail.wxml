@@ -1,2 +1,71 @@
-<!--pages/index/indexdetail/indexdetail.wxml-->
-<text>pages/index/indexdetail/indexdetail.wxml</text>
+<view class="container">
+    <van-nav-bar title="资金明细" left-arrow bind:click-left="onClickLeft" />
+    <view class="top-box">
+        <view class="top-content-box">
+            <view class="top-title-box flexr0c">
+                <image hidden="{{paytype!=1}}" class="" src="../../../assets/images/Alipay-small.png"></image>
+                <image hidden="{{paytype!=2}}" class="" src="../../../assets/images/zhuanzhanghuikuan-Samll.png"></image>
+                <image hidden="{{paytype!=3}}" class="" src="../../../assets/images/WeChat-Samll.png"></image>
+                <view class="top-title">收到金额（元）</view>
+            </view>
+            <view class="money-num">105000.00</view>
+            <view class="overage flexr0c">
+                <view class="overage-label">交易后余额</view>
+                <view class="overage-num">20080405.45</view>
+            </view>
+        </view>
+    </view>
+    <view class="middle-box">
+        <view class="middle-content-box">
+            <view class="flexr0c">
+                <view class="middle-label">企业名称</view>
+                <view class="middle-content">渑池豪瑞矿产品销售站</view>
+            </view>
+            <view class="flexr0c">
+                <view class="middle-label">交易类型</view>
+                <view class="middle-content">网银转账</view>
+            </view>
+        </view>
+    </view>
+    <view class="list-box">
+        <view class="list-content-box">
+            <view class="list-label">地区</view>
+            <view class="list-content">三门峡</view>
+            <view class="split-line"></view>
+            <view class="list-label">交易时间</view>
+            <view class="list-content">2020/07/03 14:23:34</view>
+            <view class="split-line"></view>
+            <view class="list-label">到账时间</view>
+            <view class="list-content">2020/07/05 14:23:34</view>
+            <view class="split-line"></view>
+            <view class="list-label">对方账户</view>
+            <view class="list-content">54778599493847672</view>
+            <view class="split-line"></view>
+            <view class="list-label">对方银行</view>
+            <view class="list-content">中国建设银行金水路支行</view>
+            <view class="split-line"></view>
+            <view class="stamp-container" hidden="{{0}}">
+                <view class="stamp" style="background:url('../../../assets/images/The approved.png');background-size:326rpx">
+                    <view class="stamp-box flexc0c">
+                        <view class="checked">已审核</view>
+                        <view class="">
+                            <view class="flexr0c">
+                                <view class="stamp-label checkperson">审核人：</view>
+                                <view class="stamp-content">张三</view>
+                            </view>
+                            <view class="flexr0c">
+                                <view class="stamp-label">审核日期：</view>
+                                <view class="stamp-content">2020/08/24</view>
+                            </view>
+                            <view class="flexr0c">
+                                <view class="stamp-label">审核时间：</view>
+                                <view class="stamp-content">09:36:42</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="button">审核确认</view>
+</view>

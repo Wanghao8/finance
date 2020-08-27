@@ -1,8 +1,8 @@
 {
-    "pages": [
+    "pages": ["pages/inoutdetail/inoutdetail",
         "pages/index/index",
         "pages/index/indexdetail/indexdetail",
-        "pages/inoutdetail/inoutdetail",
+
         "pages/login/login",
         "pages/logout/logout",
         "pages/setting/setting"
@@ -11,7 +11,8 @@
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#fff",
         "navigationBarTitleText": "",
-        "navigationBarTextStyle": "black"
+        "navigationBarTextStyle": "black",
+        "navigationStyle": "custom"
     },
     "tabBar": {
         "custom": true,

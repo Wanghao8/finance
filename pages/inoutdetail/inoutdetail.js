@@ -14,8 +14,79 @@ Page({
             set: '../../assets/images/settings.png',
             setactive: '../../assets/images/settings-2.png',
         },
+        show: true, //抽屉显示隐藏
+        IO: 1, //收支详情跟分析切换
+        paytype: 1, //转账方式
+        inout: 1, //支出还是收入
+        cardChecked: false,
+        aliChecked: false,
+        WechatChecked: false,
+        bankChecked: false,
+        outChecked: false,
+        list: [
+            { index: 1 },
+            { index: 1 },
+            { index: 1 },
+            { index: 1 },
+            { index: 1 },
+            { index: 1 },
+            { index: 1 },
+            { index: 1 },
+        ]
     },
-    onChange(event) {
+    filter() {
+        this.setData({
+            show: true
+        })
+    },
+    closeDraw() {
+        this.setData({
+            show: false
+        })
+    },
+    cancelBtn() {
+        this.setData({
+            show: false
+        })
+    },
+    comfirmBtn() {
+        this.setData({
+            show: false
+        })
+    },
+    changeCheckbox(e) {
+        switch (e.currentTarget.dataset.type) {
+            case 'card':
+                this.setData({
+                    cardChecked: !this.data.cardChecked
+                })
+                break;
+            case 'alipay':
+                this.setData({
+                    aliChecked: !this.data.aliChecked
+                })
+                break;
+            case 'wechat':
+                this.setData({
+                    WechatChecked: !this.data.WechatChecked
+                })
+                break;
+            case 'bank':
+                this.setData({
+                    bankChecked: !this.data.bankChecked
+                })
+                break;
+            case 'out':
+                this.setData({
+                    outChecked: !this.data.outChecked
+                })
+                break;
+
+            default:
+                break;
+        }
+    },
+    changeTab(event) {
         switch (event.detail) {
             case 0:
                 wx.switchTab({
@@ -35,6 +106,17 @@ Page({
 
             default:
                 break;
+        }
+    },
+    selectIO(e) {
+        if (e.currentTarget.dataset.type == 1) {
+            this.setData({
+                IO: 1
+            })
+        } else {
+            this.setData({
+                IO: 2
+            })
         }
     },
     /**
