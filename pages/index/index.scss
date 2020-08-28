@@ -17,6 +17,7 @@
     .top-box {
         width: 100%;
         height: 306rpx;
+        overflow: auto;
         image {
             width: 25rpx;
             height: 25rpx;
@@ -93,77 +94,82 @@
             background: rgba(187, 187, 187, 0.66);
         }
     }
-    .list-box {
-        width: 676rpx;
-        .list-item-box {
-            width: 100%;
-            background: #FFFFFF;
-            box-shadow: 0 5rpx 15rpx 0 rgba(0, 0, 0, 0.05);
-            border-radius: 6rpx;
-            margin: 18rpx 0 0 -20rpx;
-            padding: 20rpx;
-            position: relative;
-            .check-type {
-                width: 84rpx;
-                height: 30rpx;
-                background-color: #DC863A;
-                color: #fff;
-                font-size: 20rpx;
-                text-align: center;
-                position: absolute;
-                right: 0;
-                top: 12rpx;
-            }
-            .list-item-left {
-                line-height: 40rpx;
-                .list-item-title {
-                    font-family: PingFangSC-Regular;
-                    font-size: 25rpx;
-                    color: #A0A0A0;
-                    letter-spacing: 0;
-                    width: 100rpx;
-                    margin-right: 25rpx;
+    .list-container {
+        margin-top: 18rpx;
+        height: 800rpx;
+        .list-box {
+            width: 676rpx;
+            margin-left: 18rpx;
+            .list-item-box {
+                width: 100%;
+                background: #FFFFFF;
+                box-shadow: 0 5rpx 15rpx 0 rgba(0, 0, 0, 0.05);
+                border-radius: 6rpx;
+                padding: 20rpx;
+                position: relative;
+                margin-bottom: 16rpx;
+                .check-type {
+                    width: 84rpx;
+                    height: 30rpx;
+                    background-color: #DC863A;
+                    color: #fff;
+                    font-size: 20rpx;
+                    text-align: center;
+                    position: absolute;
+                    right: 0;
+                    top: 12rpx;
                 }
-                .list-item-content {
-                    font-family: PingFangSC-Medium;
-                    font-size: 25rpx;
-                    color: #4A4A4A;
-                    letter-spacing: 0;
+                .list-item-left {
+                    line-height: 40rpx;
+                    .list-item-title {
+                        font-family: PingFangSC-Regular;
+                        font-size: 25rpx;
+                        color: #A0A0A0;
+                        letter-spacing: 0;
+                        width: 100rpx;
+                        margin-right: 25rpx;
+                    }
+                    .list-item-content {
+                        font-family: PingFangSC-Medium;
+                        font-size: 25rpx;
+                        color: #4A4A4A;
+                        letter-spacing: 0;
+                    }
+                    image {
+                        width: 28rpx;
+                        height: 28rpx;
+                        margin-right: 8rpx;
+                    }
                 }
-                image {
-                    width: 28rpx;
-                    height: 28rpx;
-                    margin-right: 8rpx;
-                }
-            }
-            .list-item-right {
-                .list-item-num {
-                    font-family: PingFangSC-Semibold;
-                    font-size: 34rpx;
-                    color: #E3A33D;
-                    letter-spacing: 0;
-                    margin-right: 16rpx;
-                    font-weight: 500;
-                }
-                .list-item-num2 {
-                    font-family: PingFangSC-Semibold;
-                    font-size: 34rpx;
-                    color: #206DE7;
-                    letter-spacing: 0;
-                    margin-right: 16rpx;
-                    font-weight: 500;
-                }
-                image {
-                    width: 20rpx;
-                    height: 32rpx;
-                }
-                .in-type {
-                    font-family: PingFangSC-Regular;
-                    font-size: 16rpx;
-                    color: #00B6AD;
-                    letter-spacing: 0;
-                    text-align: right;
-                    margin-right: 36rpx;
+                .list-item-right {
+                    .list-item-num {
+                        font-family: PingFangSC-Semibold;
+                        font-size: 34rpx;
+                        color: #E3A33D;
+                        letter-spacing: 0;
+                        margin-right: 16rpx;
+                        font-weight: 500;
+                    }
+                    .list-item-num2 {
+                        font-family: PingFangSC-Semibold;
+                        font-size: 34rpx;
+                        color: #206DE7;
+                        letter-spacing: 0;
+                        margin-right: 16rpx;
+                        font-weight: 500;
+                    }
+                    image {
+                        width: 20rpx;
+                        height: 32rpx;
+                    }
+                    .in-type {
+                        font-family: PingFangSC-Regular;
+                        font-size: 16rpx;
+                        color: #00B6AD;
+                        letter-spacing: 0;
+                        text-align: right;
+                        margin-right: 36rpx;
+                    }
                 }
             }
         }

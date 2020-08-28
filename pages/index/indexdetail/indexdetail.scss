@@ -35,6 +35,7 @@
     .top-box {
         background-color: #fff;
         height: 220rpx;
+        overflow: auto;
         .top-content-box {
             width: 710rpx;
             margin: 34rpx 0 0 40rpx;
@@ -70,12 +71,13 @@
         }
     }
     .middle-box {
-        background-color: #fff;
+        background: #fff;
         width: 716rpx;
         margin: 17rpx;
         margin-bottom: 0;
         box-shadow: 0 20rpx 20rpx 0 rgba(0, 0, 0, 0.05);
         border-radius: 6rpx;
+        overflow: auto;
         .middle-content-box {
             width: 672rpx;
             margin: 20rpx 22rpx;
@@ -100,6 +102,7 @@
         background-color: #fafafa;
         width: 716rpx;
         margin-left: 17rpx;
+        overflow: auto;
         .list-content-box {
             width: 634rpx;
             margin: 40rpx;

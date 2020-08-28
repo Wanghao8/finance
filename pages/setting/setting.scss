@@ -6,3 +6,63 @@
     background-image: linear-gradient(0deg, #F6F6F6 0%, rgba(246, 246, 246, 0.00) 100%);
     box-shadow: 0 -13px 27px 0 rgba(0, 0, 0, 0.05);
 }
+
+.van-nav-bar {
+    background-color: #E3A33D !important;
+    height: 100rpx;
+    width: 100vw;
+}
+
+.van-nav-bar__title {
+    font-family: PingFangSC-Regular !important;
+    font-size: 18px !important;
+    color: #FFFFFF !important;
+    letter-spacing: 0 !important;
+}
+
+.van-nav-bar__text {
+    font-family: PingFangSC-Medium !important;
+    font-size: 14px !important;
+    color: #FFFFFF !important;
+    letter-spacing: 0 !important;
+}
+
+.van-hairline--bottom:after {
+    border: none !important;
+}
+
+.van-icon-arrow-left {
+    color: #fff!important;
+    font-size: 40rpx!important;
+}
+
+.container {
+    background-color: #fff;
+    .list-box {
+        width: 712rpx;
+        overflow: auto;
+        .list-item {
+            padding: 34rpx 0;
+            border-bottom: 2rpx solid #ddd;
+            .label {
+                font-family: PingFangSC-Regular;
+                font-size: 25rpx;
+                color: #4A4A4A;
+                letter-spacing: 0;
+            }
+            .list-item-right {
+                .size {
+                    font-family: PingFangSC-Regular;
+                    font-size: 25rpx;
+                    color: #CDCDCD;
+                    letter-spacing: 0;
+                }
+                image {
+                    width: 20rpx;
+                    height: 30rpx;
+                    margin-left: 12rpx;
+                }
+            }
+        }
+    }
+}

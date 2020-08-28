@@ -67,5 +67,5 @@
             </view>
         </view>
     </view>
-    <view class="button">审核确认</view>
+    <view bindtap="checkComfirm" class="button">审核确认</view>
 </view>

@@ -37,6 +37,7 @@
 .container .top-box {
   background-color: #fff;
   height: 220rpx;
+  overflow: auto;
 }
 
 .container .top-box .top-content-box {
@@ -77,12 +78,13 @@
 }
 
 .container .middle-box {
-  background-color: #fff;
+  background: #fff;
   width: 716rpx;
   margin: 17rpx;
   margin-bottom: 0;
   box-shadow: 0 20rpx 20rpx 0 rgba(0, 0, 0, 0.05);
   border-radius: 6rpx;
+  overflow: auto;
 }
 
 .container .middle-box .middle-content-box {
@@ -111,6 +113,7 @@
   background-color: #fafafa;
   width: 716rpx;
   margin-left: 17rpx;
+  overflow: auto;
 }
 
 .container .list-box .list-content-box {

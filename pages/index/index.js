@@ -14,6 +14,30 @@ Page({
             setactive: '../../assets/images/settings-2.png',
         },
         paytype: 1, //支付方式
+        list: [{
+                index: 1
+            },
+            {
+                index: 1
+            },
+            {
+                index: 1
+            },
+            {
+                index: 1
+            },
+            {
+                index: 1
+            },
+            {
+                index: 1
+            },
+        ],
+    },
+    toDetail() {
+        wx.navigateTo({
+            url: './indexdetail/indexdetail',
+        })
     },
     changeTab(event) {
         switch (event.detail) {
@@ -37,7 +61,7 @@ Page({
                 break;
         }
     },
-    onLoad: function() {
+    onLoad: function () {
 
     },
 })

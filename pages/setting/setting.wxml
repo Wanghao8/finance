@@ -1,19 +1,44 @@
-<view class="container">
-    <van-tabbar active="{{ active }}" bind:change="changeTab">
-        <van-tabbar-item>
-            <image slot="icon" src="{{ icon.index }}" mode="aspectFit" style="width: 20px; height: 20px;" />
-            <image slot="icon-active" src="{{ icon.indexactive }}" mode="aspectFit" style="width: 20px; height: 20px;" />
-            首页
-        </van-tabbar-item>
-        <van-tabbar-item>
-            <image slot="icon" src="{{ icon.inout }}" mode="aspectFit" style="width: 20px; height: 20px;" />
-            <image slot="icon-active" src="{{ icon.inoutactive }}" mode="aspectFit" style="width: 20px; height: 20px;" />
-            收支明细
-        </van-tabbar-item>
-        <van-tabbar-item>
-            <image slot="icon" src="{{ icon.set }}" mode="aspectFit" style="width: 20px; height: 20px;" />
-            <image slot="icon-active" src="{{ icon.setactive }}" mode="aspectFit" style="width: 20px; height: 20px;" />
-            设置
-        </van-tabbar-item>
-    </van-tabbar>
+<view class="container flexc0c">
+	<van-nav-bar title="设置"></van-nav-bar>
+	<view class="list-box">
+		<view class="list-item flexrbc" bindtap="changePass">
+			<view class="label">密码修改</view>
+			<view class="list-item-right flexr0c">
+				<view class="size"></view>
+				<image src="../../assets/images/The arrow.png" alt="" />
+			</view>
+		</view>
+		<view class="list-item flexrbc" bindtap="clearStorage">
+			<view class="label">清除缓存</view>
+			<view class="list-item-right flexr0c">
+				<view class="size">{{size}}K</view>
+				<image src="../../assets/images/The arrow.png" alt="" />
+			</view>
+		</view>
+		<view class="list-item flexrbc" bindtap="logOut">
+			<view class="label">退出登录</view>
+			<view class="list-item-right flexr0c">
+				<view class="size"></view>
+				<image src="../../assets/images/The arrow.png" alt="" />
+			</view>
+		</view>
+	</view>
+	
+	<van-tabbar active="{{ active }}" bind:change="changeTab">
+		<van-tabbar-item>
+			<image slot="icon" src="{{ icon.index }}" mode="aspectFit" style="width: 20px; height: 20px;" />
+			<image slot="icon-active" src="{{ icon.indexactive }}" mode="aspectFit" style="width: 20px; height: 20px;" />
+			首页
+		</van-tabbar-item>
+		<van-tabbar-item>
+			<image slot="icon" src="{{ icon.inout }}" mode="aspectFit" style="width: 20px; height: 20px;" />
+			<image slot="icon-active" src="{{ icon.inoutactive }}" mode="aspectFit" style="width: 20px; height: 20px;" />
+			收支明细
+		</van-tabbar-item>
+		<van-tabbar-item>
+			<image slot="icon" src="{{ icon.set }}" mode="aspectFit" style="width: 20px; height: 20px;" />
+			<image slot="icon-active" src="{{ icon.setactive }}" mode="aspectFit" style="width: 20px; height: 20px;" />
+			设置
+		</van-tabbar-item>
+	</van-tabbar>
 </view>

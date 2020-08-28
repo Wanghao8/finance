@@ -1,2 +1,28 @@
-<!--pages/login/login.wxml-->
-<text>pages/login/login.wxml</text>
+<view class="container flexc0c" style="background:url('../../assets/images/Login page background.png') no-repeat;background-size:100vw 80vh">
+    <van-nav-bar title="登录" />
+    <view class="title-box flexc0c">
+        <view class="title">欢迎使用</view>
+        <view class="title">中资云财务管理端</view>
+    </view>
+    <view class="form-box flexc0c">
+        <view class="flexr0c username-box">
+            <view class="label">用户名</view>
+            <input type="text" bindinput="userName" class="username" placeholder="请输入您的用户名" placeholder-class="input-placeholder" name="" id="" />
+        </view>
+        <view class="flexr0c password-box">
+            <view class="label">密码</view>
+            <input password bindinput="passWord" class="password" placeholder="请输入您的密码" placeholder-class="input-placeholder" name="" id="" />
+        </view>
+        <view bind:tap="login" class="login-btn">登录</view>
+    </view>
+    <view class="bottom-info">
+        <view class="flexrbc">
+            <view class="info">河南非煤矿山管理办公室</view>
+            <view class="info2">监制</view>
+        </view>
+        <view class="flexrbc">
+            <view class="info">中资互联网科技有限公司</view>
+            <view class="info3">技术支持</view>
+        </view>
+    </view>
+</view>

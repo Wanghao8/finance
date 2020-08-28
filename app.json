@@ -1,11 +1,14 @@
 {
     "pages": ["pages/inoutdetail/inoutdetail",
+
         "pages/index/index",
         "pages/index/indexdetail/indexdetail",
 
         "pages/login/login",
-        "pages/logout/logout",
-        "pages/setting/setting"
+        "pages/setting/setting",
+        "pages/setting/editpassword/editpassword",
+        "pages/logout/logout"
+
     ],
     "window": {
         "backgroundTextStyle": "light",

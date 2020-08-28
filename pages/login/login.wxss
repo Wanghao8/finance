@@ -1,1 +1,130 @@
-/* pages/login/login.wxss */
+.van-nav-bar {
+  background-color: #E3A33D !important;
+  height: 100rpx;
+  width: 100vw;
+}
+
+.van-nav-bar__title {
+  font-family: PingFangSC-Regular !important;
+  font-size: 18px !important;
+  color: #FFFFFF !important;
+  letter-spacing: 0 !important;
+}
+
+.van-nav-bar__text {
+  font-family: PingFangSC-Medium !important;
+  font-size: 14px !important;
+  color: #FFFFFF !important;
+  letter-spacing: 0 !important;
+}
+
+.van-hairline--bottom:after {
+  border: none !important;
+}
+
+.van-icon-arrow-left {
+  color: #fff !important;
+  font-size: 40rpx !important;
+}
+
+.container {
+  height: 100vh;
+  background-color: #FAFAFA;
+}
+
+.container .title-box {
+  margin: 74rpx 0 40rpx 0;
+}
+
+.container .title-box .title {
+  font-family: PingFangHK-Semibold;
+  font-size: 34rpx;
+  color: #E3A33D;
+  letter-spacing: 0;
+  text-align: center;
+  font-weight: bold;
+}
+
+.container .form-box {
+  width: 714rpx;
+  height: 518rpx;
+  background: #FFFFFF;
+  box-shadow: 0 6rpx 21rpx 0 rgba(27, 27, 78, 0.1);
+  border-radius: 6rpx;
+}
+
+.container .form-box .username-box {
+  margin-top: 70rpx;
+  line-height: 30rpx;
+}
+
+.container .form-box .password-box {
+  line-height: 30rpx;
+  margin-bottom: 70rpx;
+}
+
+.container .form-box .label {
+  width: 88rpx;
+  height: 42rpx;
+  font-family: PingFangHK-Regular;
+  font-size: 28rpx;
+  color: #4A4A4A;
+  letter-spacing: 0;
+  text-align: justify;
+  padding: 0 30rpx 0 0;
+}
+
+.container .form-box .label:after {
+  display: inline-block;
+  width: 100%;
+  content: '';
+}
+
+.container .form-box input {
+  width: 484rpx;
+  padding: 16rpx;
+  border-bottom: 2rpx solid #D4DBE3;
+  font-family: PingFangHK-Regular;
+  font-size: 30rpx;
+  color: #4A4A4A;
+  letter-spacing: 0;
+}
+
+.container .form-box .input-placeholder {
+  font-family: PingFangHK-Regular;
+  font-size: 30rpx;
+  color: #BBBBBB;
+  letter-spacing: 0;
+}
+
+.container .form-box .login-btn {
+  opacity: 0.3;
+  background-image: linear-gradient(0deg, #D36221 0%, #F2AD3C 100%, #F7E7AC 100%);
+  border-radius: 6rpx;
+  text-align: center;
+  font-family: PingFangSC-Regular;
+  font-size: 34rpx;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  width: 642rpx;
+  height: 84rpx;
+  line-height: 84rpx;
+}
+
+.container .bottom-info {
+  font-family: PingFangHK-Regular;
+  font-size: 20rpx;
+  color: #4A4A4A;
+  letter-spacing: 0;
+  text-align: center;
+  position: absolute;
+  bottom: 40rpx;
+}
+
+.container .bottom-info .info2 {
+  margin-left: 3em;
+}
+
+.container .bottom-info .info3 {
+  margin-left: 1em;
+}
