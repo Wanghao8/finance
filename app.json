@@ -1,13 +1,12 @@
 {
-    "pages": ["pages/inoutdetail/inoutdetail",
+    "pages": [
 
         "pages/index/index",
         "pages/index/indexdetail/indexdetail",
-
+        "pages/inoutdetail/inoutdetail",
         "pages/login/login",
         "pages/setting/setting",
-        "pages/setting/editpassword/editpassword",
-        "pages/logout/logout"
+        "pages/setting/editpassword/editpassword"
 
     ],
     "window": {

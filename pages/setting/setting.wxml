@@ -23,7 +23,14 @@
 			</view>
 		</view>
 	</view>
-	
+	<van-action-sheet
+  show="{{ show }}"
+  actions="{{ actions }}"
+  cancel-text="取消" bind:close="onClose"
+  bind:select="onSelect"
+  bind:cancel="onClose"
+></van-action-sheet>
+	<!-- tabbar部分 -->
 	<van-tabbar active="{{ active }}" bind:change="changeTab">
 		<van-tabbar-item>
 			<image slot="icon" src="{{ icon.index }}" mode="aspectFit" style="width: 20px; height: 20px;" />

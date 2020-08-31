@@ -101,10 +101,12 @@
     .list-box {
         background-color: #fafafa;
         width: 716rpx;
+        height: 600rpx;
         margin-left: 17rpx;
         overflow: auto;
+        overflow-x: hidden;
         .list-content-box {
-            width: 634rpx;
+            width: 636rpx;
             margin: 40rpx;
             position: relative;
             .list-label {

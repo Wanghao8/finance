@@ -1,4 +1,6 @@
 // pages/inoutdetail/inoutdetail.js
+var req = require('../../utils/requestCommon.js');
+var app = getApp()
 import * as echarts from '../../ec-canvas/echarts';
 let chartBar1;
 let chartBar2;
@@ -117,22 +119,66 @@ let baroption1 = {
         // data: ['08', '07']
         data: []
     },
-    series: {
-        name: '车次',
-        type: 'bar',
-        // zlevel: 1,
-        label: {
-            show: true,
-            position: 'top'
+    series: [{
+            name: '入金',
+            type: 'bar',
+            // zlevel: 1,
+            label: {
+                show: true,
+                position: 'top'
+            },
+            barWidth: 10,
+            itemStyle: {
+                barBorderRadius: 5,
+                color: {
+                    x: 0,
+                    y: 0,
+                    x2: 0,
+                    y2: 1,
+                    colorStops: [{
+                        offset: 1,
+                        color: "#C9E4FF"  // 0% 处的颜色
+                    }, {
+                        offset: 0,
+                        color: "#2083E6"  // 100% 处的颜色
+                    }]
+                },
+            },
+            data: [],
         },
-        barWidth: 10,
-        itemStyle: {
-            barBorderRadius: 5,
-            color: 'rgba(49,99,232,1)'
+        {
+            name: '出金',
+            type: 'bar',
+            // zlevel: 1,
+            label: {
+                show: true,
+                position: 'top'
+            },
+            barWidth: 10,
+            itemStyle: {
+                barBorderRadius: 5,
+                color: {
+                    x: 0,
+                    y: 0,
+                    x2: 0,
+                    y2: 1,
+                    colorStops: [{
+                            offset: 1,
+                            color: "#D36221"  // 0% 处的颜色
+                        },
+                        {
+                            offset: 0.5,
+                            color: "#F2AD3C "  // 50% 处的颜色
+                        }, {
+                            offset: 0,
+                            color: "#F7E7AC "  // 100% 处的颜色
+                        }
+                    ]
+                },
+            },
+            data: [],
         },
-        // data: [2, 1],
-        data: [],
-    }
+    ]
 }
 let baroption2 = {
     grid: {
@@ -185,24 +231,23 @@ let baroption2 = {
     }
 }
 let pieoption = {
-    tooltip: {
-        show: false,
-        trigger: 'none',
-    },
-    color: ["#3163E8", "rgba(49,99,232,0.60)", "rgba(49,99,232,0.40)", "rgba(49,99,232,0.20)"],
+    color: ["#EEA444", "#8B572A", "#FFF000", "#F5C366", "#F86B4F"],
     series: {
         // label: {
         //   normal: {
         //     fontSize: 12
         //   }
         // },
-        startAngle: 120,
+        // startAngle: 120,
         grid: {
             top: '10%',
             bottom: '0',
             left: '',
             right: '',
             height: '90%'
+        },
+        legend: {
+
         },
         label: {
             formatter: '{b} {d}%',
@@ -257,10 +302,10 @@ Page({
                     height: height,
                     devicePixelRatio: dpr // new
                 });
-                canvas.setChart(chartBar1);
+                canvas.setChart(chartBar2);
 
-                chartBar1.setOption(baroption2, true)
-                return chartBar1;
+                chartBar2.setOption(baroption2, true)
+                return chartBar2;
             }
         },
         ecpie: {
@@ -287,7 +332,7 @@ Page({
             setactive: '../../assets/images/settings-2.png',
         },
         show: false, //抽屉显示隐藏
-        IO: 2, //收支详情跟分析切换
+        IO: 1, //收支详情跟分析切换
         paytype: 1, //转账方式
         inout: 1, //支出还是收入
         cardChecked: false, //复选框
@@ -295,6 +340,8 @@ Page({
         WechatChecked: false,
         bankChecked: false,
         outChecked: false, //复选框
+        thisyear: 2020,
+        thismonth: 8,
         list: [{
                 index: 1
             },
@@ -320,12 +367,73 @@ Page({
                 index: 1
             },
         ],
+        table: [
+            { add: '渑池县', in: '+47580', out: '-7580' },
+            { add: '渑池县', in: '+47580', out: '-7580' },
+            { add: '渑池县', in: '+47580', out: '-7580' },
+            { add: '渑池县', in: '+47580', out: '-7580' },
+        ],
         radio: 0, //单选
-        companyname: '',
+        companyname: '', //抽屉的五个input
         dealId: '',
         location: '',
         minMoney: '',
         maxMoney: '',
+        needfold: true, //需方列表展开收起
+        inoutBtn: 'in' //入金出金按钮
+    },
+    //前一年点击事件
+    previous() {
+        this.setData({
+            thisyear: this.data.thisyear - 1
+        })
+        this.getYearData()
+    },
+    //后一年点击事件
+    next() {
+        this.setData({
+            thisyear: this.data.thisyear + 1
+        })
+        this.getYearData()
+    },
+    //切换入金排名
+    income() {
+        this.setData({
+            inoutBtn: 'in'
+        })
+    },
+    //切换出金排名
+    outcome() {
+        this.setData({
+            inoutBtn: 'out'
+        })
+    },
+    //展开收起折叠
+    fold: function(e) {
+        switch (e.currentTarget.dataset.type) {
+            case 'needfold':
+                this.setData({
+                    needfold: true
+                })
+                break;
+            case 'needunfold':
+                this.setData({
+                    needfold: false
+                })
+                break;
+            case 'desfold':
+                this.setData({
+                    destinationfold: true
+                })
+                break;
+            case 'desunfold':
+                this.setData({
+                    destinationfold: false
+                })
+                break;
+            default:
+                break;
+        }
     },
     // 单选
     radio(e) {
@@ -504,11 +612,124 @@ Page({
             })
         }
     },
+    //获取列表筛选列表
+    getListData() {
+        let that = this
+        const data = {
+            modeCode: 'i0GQ9ObadE8JmVQTTJqmfgkRbNWkrqD6', //功能码
+            sessionId: wx.getStorageSync('sessionId'),
+            pageIndex: 1,
+            pageSize: 10,
+            startTime: '2020-08-01',
+            endTime: '2020-08-30',
+            // enterpriseName: '',
+            // startMoney: 0,
+            // endMoney: 0,
+            // tradeType: '',
+            // tradeNo: '',
+            // orgId: '',
+        }
+        console.log(data);
+        req.requestAll(data).then(res => {
+            if (res.data.code == 1) {
+                let resdata = res.data.data
+
+                that.setData({
+
+                })
+            } else {
+                console.log(res);
+                wx.showToast({
+                    title: res.data.msg,
+                    icon: 'none',
+                    duration: 1500,
+                    mask: false,
+                });
+                that.isLoged(res.data.msg)
+            }
+        })
+    },
+    //接口部分(月度收支)
+    getYearData() {
+        let that = this
+        const data = {
+            modeCode: 'qnGKRjjo79qTHMByDQ7st94TwECpm6jV', //功能码
+            sessionId: wx.getStorageSync('sessionId'),
+            year: that.data.thisyear,
+        }
+        console.log(data);
+        req.requestAll(data).then(res => {
+            if (res.data.code == 1) {
+                let resdata = res.data.data
+
+                that.setData({
+
+                })
+            } else {
+                console.log(res);
+                wx.showToast({
+                    title: res.data.msg,
+                    icon: 'none',
+                    duration: 1500,
+                    mask: false,
+                });
+                that.isLoged(res.data.msg)
+            }
+        })
+    },
+    //接口部分(日收入统计)
+    getMonthData() {
+        let that = this
+        const data = {
+            modeCode: '0WsGhaT6USz7lr0geWILuXvpm4GGjBb1', //功能码
+            sessionId: wx.getStorageSync('sessionId'),
+            year: that.data.thisyear,
+            month: that.data.thismonth
+        }
+        console.log(data);
+        req.requestAll(data).then(res => {
+            if (res.data.code == 1) {
+                let resdata = res.data.data
+
+                that.setData({
+
+                })
+            } else {
+                console.log(res);
+                wx.showToast({
+                    title: res.data.msg,
+                    icon: 'none',
+                    duration: 1500,
+                    mask: false,
+                });
+                that.isLoged(res.data.msg)
+            }
+        })
+    },
+
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-
+        let that = this
+        let date = new Date()
+        console.log(date.getFullYear());
+        this.setData({
+            thisyear: date.getFullYear(),
+            thismonth: date.getMonth() + 1
+        })
+        wx.getSystemInfo({
+            success: function(res) {
+                console.log(res.model)
+                console.log(res.statusBarHeight)
+                console.log(res.screenHeight)
+                console.log(res.windowHeight)
+                that.setData({
+                    hair: res.statusBarHeight,
+                    screenHeight: res.screenHeight
+                })
+            }
+        })
     },
 
     /**
