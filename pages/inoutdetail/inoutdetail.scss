@@ -335,14 +335,42 @@
                 }
             }
             .chartbar2-container {
-                height: 500rpx;
-                width: 680rpx;
+                height: 100%;
+                width: 654rpx;
                 border: 1px solid #000;
                 margin-top: 20rpx;
+                .city-name {
+                    font-family: PingFangSC-Regular;
+                    font-size: 20rpx;
+                    color: #AEAEAE;
+                    letter-spacing: 0;
+                }
+                .outcome-line-item {
+                    background-image: linear-gradient(180deg, #C9E4FF 0%, #2083E6 97%);
+                    border-radius: 11rpx 11rpx 0 0;
+                    height: 16rpx;
+                }
+                .income-line-item {
+                    background-image: linear-gradient(0deg, #D36221 0%, #F2AD3C 100%, #F7E7AC 100%);
+                    border-radius: 11rpx 11rpx 0 0;
+                    height: 16rpx;
+                }
+                .income-item-num {
+                    font-family: PingFangSC-Regular;
+                    font-size: 20rpx;
+                    color: #E3A33D;
+                    letter-spacing: 0;
+                }
+                .outcome-item-num {
+                    font-family: PingFangSC-Regular;
+                    font-size: 20rpx;
+                    color: #206DE7;
+                    letter-spacing: 0;
+                }
             }
             .chartbar2-table {
                 width: 640rpx;
-                height: 100%;
+                // height: 100%;
                 border: 1px solid #E3A33D;
                 margin: 22rpx 0;
                 .table-title {
@@ -418,7 +446,7 @@
                 width: 694rpx;
                 height: 416rpx;
                 border: 1px solid #000;
-                margin: 20rpx 0;
+                margin: 20rpx 0 20rpx 10rpx;
             }
         }
         .chartpie-box {
@@ -449,7 +477,7 @@
                 width: 694rpx;
                 height: 556rpx;
                 border: 1px solid #000;
-                margin: 20rpx 0;
+                margin: 20rpx 0 20rpx 10rpx;
             }
         }
         // 排名部分

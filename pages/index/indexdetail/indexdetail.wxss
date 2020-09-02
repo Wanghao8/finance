@@ -153,8 +153,8 @@
 }
 
 .container .list-box .list-content-box .stamp-container .stamp {
-  width: 326rpx;
-  height: 326rpx;
+  width: 340rpx;
+  height: 340rpx;
   position: relative;
 }
 
@@ -164,7 +164,7 @@
   color: #D0021B;
   position: absolute;
   top: 60rpx;
-  left: 46rpx;
+  left: 52rpx;
 }
 
 .container .list-box .list-content-box .stamp-container .stamp .stamp-box .checked {

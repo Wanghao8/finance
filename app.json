@@ -1,9 +1,9 @@
 {
-    "pages": [
+    "pages": ["pages/inoutdetail/inoutdetail",
 
         "pages/index/index",
         "pages/index/indexdetail/indexdetail",
-        "pages/inoutdetail/inoutdetail",
+
         "pages/login/login",
         "pages/setting/setting",
         "pages/setting/editpassword/editpassword"

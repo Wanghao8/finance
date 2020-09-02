@@ -34,9 +34,11 @@ Page({
             },
         ],
     },
-    toDetail() {
+    toDetail(e) {
+        console.log(e);
+        let id = e.currentTarget.dataset.id
         wx.navigateTo({
-            url: './indexdetail/indexdetail',
+            url: './indexdetail/indexdetail?id=' + id,
         })
     },
     changeTab(event) {
@@ -127,9 +129,9 @@ Page({
         req.requestAll(data).then(res => {
             if (res.data.code == 1) {
                 let resdata = res.data.data
-
+                console.log(resdata);
                 that.setData({
-
+                    list: resdata.list
                 })
             } else {
                 console.log(res);

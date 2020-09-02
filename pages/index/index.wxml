@@ -26,31 +26,33 @@
     </view>
     <scroll-view class="list-container" scroll-x="false" scroll-y="true" upper-threshold="50" lower-threshold="50" style="height:{{(screenHeight-287)*2}}rpx">
         <view class="list-box">
-            <view class="list-item-box flexrbc" bind:tap="toDetail" wx:for="{{list}}" wx:key="index">
-                <view class="check-type" hidden="{{0}}">未审核</view>
+            <view class="list-item-box flexrbc" bind:tap="toDetail" wx:for="{{list}}" wx:key="index" data-id="{{item.id}}">
+                <view class="check-type" hidden="{{item.checkState==1}}">未审核</view>
                 <view class="list-item-left">
                     <view class="flexr0c">
                         <view class="list-item-title">企业名称</view>
-                        <view class="list-item-content">渑池矿产品销售占</view>
+                        <view class="list-item-content">{{item.enterpriseName}}</view>
                     </view>
                     <view class="flexr0c">
                         <view class="list-item-title">地区</view>
-                        <view class="list-item-content">三门峡</view>
+                        <view class="list-item-content">{{item.orgName?item.orgName:'-'}}</view>
                     </view>
                     <view class="flexr0c">
                         <view class="list-item-title">交易类型</view>
-                        <image hidden="{{paytype!=1}}" class="" src="../../assets/images/Alipay-small.png"></image>
-                        <image hidden="{{paytype!=2}}" class="" src="../../assets/images/zhuanzhanghuikuan-Samll.png"></image>
-                        <image hidden="{{paytype!=3}}" class="" src="../../assets/images/WeChat-Samll.png"></image>
-                        <view class="list-item-content">微信</view>
+                        <image hidden="{{item.tradeType!=4}}" class="" src="../../assets/images/Alipay-small.png"></image>
+                        <image hidden="{{item.tradeType!=1}}" class="" src="../../assets/images/zhuanzhanghuikuan-Samll.png"></image>
+                        <image hidden="{{item.tradeType!=3}}" class="" src="../../assets/images/WeChat-Samll.png"></image>
+                        <view hidden="{{item.tradeType!=3}}" class="list-item-content">微信</view>
+                        <view hidden="{{item.tradeType!=3}}" class="list-item-content">支付宝</view>
+                        <view hidden="{{item.tradeType!=3}}" class="list-item-content">网银转账</view>
                     </view>
                     <view class="flexr0c">
                         <view class="list-item-title">交易时间</view>
-                        <view class="list-item-content">2020/08/03 14:23:34</view>
+                        <view class="list-item-content">{{item.eventTime}}</view>
                     </view>
-                    <view class="flexr0c" wx:if="{{1}}">
+                    <view class="flexr0c" hidden="{{item.ckeckTime==0}}">
                         <view class="list-item-title">到账时间</view>
-                        <view class="list-item-content">2020/08/03 14:23:34</view>
+                        <view class="list-item-content">{{item.checkTime}}</view>
                     </view>
                 </view>
                 <view class="list-item-right">
@@ -58,7 +60,7 @@
                         <view class="{{'list-item-num'}}">+1258000</view>
                         <image src="../../assets/images/The arrow.png" />
                     </view>
-                    <view class="in-type">入账中</view>
+                    <view hidden="{{item.checkState==1}}" class="in-type">入账中</view>
                 </view>
             </view>
         </view>

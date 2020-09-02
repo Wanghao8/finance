@@ -17,7 +17,7 @@
     .top-box {
         width: 100%;
         // height: 306rpx;
-        overflow: auto;
+        // overflow: auto;
         image {
             width: 25rpx;
             height: 25rpx;
@@ -68,6 +68,7 @@
         box-shadow: 0 20rpx 20rpx 0 rgba(0, 0, 0, 0.05);
         .count-tabel-item {
             width: 49%;
+            padding: 26rpx 0;
             .tabel-item {
                 font-family: PingFangSC-Regular;
                 font-size: 22rpx;

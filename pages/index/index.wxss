@@ -17,7 +17,6 @@
 
 .container .top-box {
   width: 100%;
-  overflow: auto;
 }
 
 .container .top-box image {
@@ -79,6 +78,7 @@
 
 .container .count-tabel .count-tabel-item {
   width: 49%;
+  padding: 26rpx 0;
 }
 
 .container .count-tabel .count-tabel-item .tabel-item {

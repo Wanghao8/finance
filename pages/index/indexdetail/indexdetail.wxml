@@ -45,20 +45,20 @@
             <view class="list-content">中国建设银行金水路支行</view>
             <view class="split-line"></view>
             <view class="stamp-container" hidden="{{0}}">
-                <view class="stamp" style="background:url('../../../assets/images/The approved.png');background-size:326rpx">
+                <view class="stamp" style="background:url('../../../assets/images/The approved.png');background-size:340rpx">
                     <view class="stamp-box flexc0c">
                         <view class="checked">已审核</view>
                         <view class="">
                             <view class="flexr0c">
-                                <view class="stamp-label checkperson">审核人：</view>
+                                <view class="stamp-label checkperson">审核人:</view>
                                 <view class="stamp-content">张三</view>
                             </view>
                             <view class="flexr0c">
-                                <view class="stamp-label">审核日期：</view>
+                                <view class="stamp-label">审核日期:</view>
                                 <view class="stamp-content">2020/08/24</view>
                             </view>
                             <view class="flexr0c">
-                                <view class="stamp-label">审核时间：</view>
+                                <view class="stamp-label">审核时间:</view>
                                 <view class="stamp-content">09:36:42</view>
                             </view>
                         </view>

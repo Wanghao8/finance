@@ -3,16 +3,22 @@ var req = require('../../utils/requestCommon.js');
 var app = getApp()
 import * as echarts from '../../ec-canvas/echarts';
 let chartBar1;
-let chartBar2;
 let chartLine;
 let chartPie;
 let lineoption = {
-    grid: {
-        top: '10%',
-        bottom: '15%',
-        right: '5%',
-        left: '10%'
-    },
+    // grid: {
+    //     top: '10%',
+    //     bottom: '15%',
+    //     right: '5%',
+    //     left: '10%'
+    // },
+
+    // grid: {
+    //     top: '10%',
+    //     bottom: '15%',
+    //     right: '5%',
+    //     left: '10%'
+    // },
     xAxis: {
         type: 'category',
         boundaryGap: false,
@@ -21,6 +27,7 @@ let lineoption = {
             show: true,
         },
         splitNumber: 6,
+
         // data: ['14', '08'],
         data: [],
         axisLine: {
@@ -44,6 +51,7 @@ let lineoption = {
                 type: 'dashed'
             }
         },
+
     },
     series: {
         name: 'A',
@@ -57,32 +65,28 @@ let lineoption = {
         },
         lineStyle: {
             normal: {
-                color: 'rgba(49,99,232,1)',
+                color: '#D8A537 ',
             },
         },
-        // areaStyle: {
-        //   normal: {
-        //     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-        //         offset: 0,
-        //         color: 'rgba(49,99,232,0.5)'
-        //       },
-        //       {
-        //         offset: 1,
-        //         color: 'rgba(49,99,232,0)'
-        //       }
-        //     ], false),
-        //     shadowColor: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-        //         offset: 0,
-        //         color: 'rgba(49,99,232,0.8)'
-        //       },
-        //       {
-        //         offset: 1,
-        //         color: 'rgba(49,99,232,0)'
-        //       }
-        //     ], false),
-        //     shadowBlur: 20
-        //   }
-        // },
+        // 渐变
+        areaStyle: {
+            normal: {
+                color: {
+                    x: 0,
+                    y: 0,
+                    x2: 0,
+                    y2: 1,
+                    colorStops: [{
+                        offset: 0,
+                        color: "rgba(227,163,61,0.50) " // 0% 处的颜色
+                    }, {
+                        offset: 1,
+                        color: "rgba(227,163,61,0.00)" // 100% 处的颜色
+                    }],
+                    globalCoord: false // 缺省为 false
+                }
+            }
+        },
         data: []
     }
 }
@@ -117,17 +121,16 @@ let baroption1 = {
             show: false
         },
         // data: ['08', '07']
-        data: []
+        data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     },
     series: [{
             name: '入金',
             type: 'bar',
-            // zlevel: 1,
-            label: {
-                show: true,
-                position: 'top'
-            },
-            barWidth: 10,
+            // label: {
+            //     show: true,
+            //     position: 'top'
+            // },
+            barWidth: 8,
             itemStyle: {
                 barBorderRadius: 5,
                 color: {
@@ -136,25 +139,24 @@ let baroption1 = {
                     x2: 0,
                     y2: 1,
                     colorStops: [{
-                        offset: 1,
-                        color: "#C9E4FF"  // 0% 处的颜色
+                        offset: 0.5,
+                        color: "#98C7F7"  // 0% 处的颜色
                     }, {
-                        offset: 0,
+                        offset: 1,
                         color: "#2083E6"  // 100% 处的颜色
                     }]
                 },
             },
-            data: [],
+            data: [200, 300, 150, 700, 400, ],
         },
         {
             name: '出金',
             type: 'bar',
-            // zlevel: 1,
-            label: {
-                show: true,
-                position: 'top'
-            },
-            barWidth: 10,
+            // label: {
+            //     show: true,
+            //     position: 'top'
+            // },
+            barWidth: 8,
             itemStyle: {
                 barBorderRadius: 5,
                 color: {
@@ -170,65 +172,16 @@ let baroption1 = {
                             offset: 0.5,
                             color: "#F2AD3C "  // 50% 处的颜色
                         }, {
-                            offset: 0,
+                            offset: 1,
                             color: "#F7E7AC "  // 100% 处的颜色
                         }
                     ]
                 },
             },
-            data: [],
+            barGap: '-5%',
+            data: [450, 300, 200, 500, 550, ],
         },
     ]
-}
-let baroption2 = {
-    grid: {
-        top: '12%',
-        bottom: '12%',
-        right: '5%',
-        left: '10%'
-    },
-    yAxis: [{
-        axisLine: {
-            show: false
-        },
-        axisTick: {
-            show: false
-        },
-        splitLine: {
-            show: false
-        },
-    }],
-    xAxis: {
-        type: 'category',
-        // inverse: true,
-        axisLine: {
-            show: false
-        },
-        axisTick: {
-            show: false
-        },
-        splitLine: {
-            show: false
-        },
-        // data: ['08', '07']
-        data: []
-    },
-    series: {
-        name: '车次',
-        type: 'bar',
-        // zlevel: 1,
-        label: {
-            show: true,
-            position: 'top'
-        },
-        barWidth: 10,
-        itemStyle: {
-            barBorderRadius: 5,
-            color: 'rgba(49,99,232,1)'
-        },
-        // data: [2, 1],
-        data: [],
-    }
 }
 let pieoption = {
     color: ["#EEA444", "#8B572A", "#FFF000", "#F5C366", "#F86B4F"],
@@ -295,19 +248,6 @@ Page({
                 return chartBar1;
             }
         },
-        ecbar2: {
-            onInit: function(canvas, width, height, dpr) {
-                chartBar2 = echarts.init(canvas, null, {
-                    width: width,
-                    height: height,
-                    devicePixelRatio: dpr // new
-                });
-                canvas.setChart(chartBar2);
-
-                chartBar2.setOption(baroption2, true)
-                return chartBar2;
-            }
-        },
         ecpie: {
             onInit: function(canvas, width, height, dpr) {
                 chartPie = echarts.init(canvas, null, {
@@ -332,7 +272,7 @@ Page({
             setactive: '../../assets/images/settings-2.png',
         },
         show: false, //抽屉显示隐藏
-        IO: 1, //收支详情跟分析切换
+        IO: 2, //收支详情跟分析切换
         paytype: 1, //转账方式
         inout: 1, //支出还是收入
         cardChecked: false, //复选框
@@ -343,6 +283,12 @@ Page({
         thisyear: 2020,
         thismonth: 8,
         list: [{
+                index: 1
+            },
+            {
+                index: 1
+            },
+            {
                 index: 1
             },
             {
@@ -395,6 +341,12 @@ Page({
             thisyear: this.data.thisyear + 1
         })
         this.getYearData()
+    },
+    //点击柱状图切换月份数据
+    changeMonth() {
+        chartBar1.on('click', function(params) {
+            console.log(params);
+        });
     },
     //切换入金排名
     income() {
@@ -612,6 +564,16 @@ Page({
             })
         }
     },
+    // 是否登陆过，若在别的地方登陆，跳转登录页
+    isLoged: function(msg) {
+        if (msg.indexOf('你') != -1) {
+            let timeout1 = setTimeout(function() {
+                wx.navigateTo({
+                    url: '../login/login',
+                })
+            }, 2000)
+        }
+    },
     //获取列表筛选列表
     getListData() {
         let that = this
@@ -781,5 +743,6 @@ Page({
      */
     onShareAppMessage: function() {
 
-    }
+    },
+
 })

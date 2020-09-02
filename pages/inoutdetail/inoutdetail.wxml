@@ -23,14 +23,14 @@
                 <view class="outcome-num">-20000.00</view>
             </view>
         </view>
-        <scroll-view class="" scroll-x="false" scroll-y="true" upper-threshold="50" lower-threshold="50"  style="height:{{(screenHeight-hair-200)*2}}rpx">
+        <scroll-view class="" scroll-x="false" scroll-y="true" upper-threshold="50" lower-threshold="50" style="height:{{(screenHeight-hair-200)*2}}rpx">
             <view class="list-box">
                 <view class="list-item flexrbc" wx:for="{{list}}" wx:key="index">
-                    <view class="check-type" hidden="{{0}}">未审核</view>
+                    <view class="check-type" hidden="{{item.checkState==1}}">未审核</view>
                     <view class="list-item-left flexr">
-                        <image class="paytype" src="../../assets/images/WeChat.png" hidden="{{paytype!=1}}"></image>
-                        <image class="paytype" src="../../assets/images/Alipay.png" hidden="{{paytype!=2}}"></image>
-                        <image class="paytype" src="../../assets/images/zhuanzhanghuikuan.png" hidden="{{paytype!=3}}"></image>
+                        <image class="paytype" src="../../assets/images/WeChat.png" hidden="{{item.tradeType!=4}}"></image>
+                        <image class="paytype" src="../../assets/images/Alipay.png" hidden="{{item.tradeType!=3}}"></image>
+                        <image class="paytype" src="../../assets/images/zhuanzhanghuikuan.png" hidden="{{item.tradeType!=1}}"></image>
                         <view class="list-item-content-box">
                             <view class="list-item-title">渑池豪瑞矿产品购销站</view>
                             <view class="list-item-time">2020-08-22 14:23:34</view>
@@ -64,7 +64,7 @@
                 <view class="label-sub">单位（万元）</view>
             </view>
             <view class="chartbar1-box-item">
-                <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ecbar1 }}"></ec-canvas>
+                <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ecbar1 }}" bind:tap="changeMonth" force-use-old-canvas="true"></ec-canvas>
             </view>
         </view>
         <view class="chartbar2-box flexc0c">
@@ -97,7 +97,18 @@
                 </view>
             </view>
             <view class="chartbar2-container">
-                <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ecbar2 }}"></ec-canvas>
+                <view class="" wx:for="{{rankList}}" wx:key="index">
+                    <view class="city-name">市县名称</view>
+                    <view class="flexrbc">
+                        <!-- <view class="income-line-item" style="width:{{item*502/rankList[0]}}rpx"></view> -->
+                        <view class="income-line-item"></view>
+                        <view class="income-item-num"></view>
+                    </view>
+                    <view class="flexrbc">
+                        <view class="outcome-line-item"></view>
+                        <view class="outcome-item-num"></view>
+                    </view>
+                </view>
             </view>
             <view class="chartbar2-table">
                 <view class="table-title flexr0c">
@@ -125,7 +136,7 @@
                 <view class="label-sub">单位（万元）</view>
             </view>
             <view class="chartline-container">
-                <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ecline}}"></ec-canvas>
+                <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ecline}}" force-use-old-canvas="true"></ec-canvas>
             </view>
         </view>
         <view class="chartpie-box">
@@ -134,7 +145,7 @@
                 <view class="label-title">交易类型占比</view>
             </view>
             <view class="chartpie-container">
-                <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ecpie }}"></ec-canvas>
+                <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ecpie }}" force-use-old-canvas="true"></ec-canvas>
             </view>
         </view>
         <view class="rankcompany">
