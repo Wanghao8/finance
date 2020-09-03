@@ -47,5 +47,20 @@ App({
     addComma(num) {
         var c = (num.toString().indexOf('.') !== -1) ? num.toLocaleString() : num.toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,');
         return c;
-    }
+    },
+    // 格式化日期时间
+    formatTime(time) {
+        function padNum(params) {
+            return params.toString().padStart(2, 0)
+        }
+        let date = new Date(time)
+        let year = date.getFullYear()
+        let month = padNum(date.getMonth() + 1)
+        let day = padNum(date.getDate())
+        let hour = padNum(date.getHours())
+        let minute = padNum(date.getMinutes())
+        let second = padNum(date.getSeconds())
+        return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second
+    },
+
 })

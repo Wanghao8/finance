@@ -3,25 +3,25 @@
     <view class="top-box" style="background:url('../../assets/images/Home page background.png');background-size:750rpx {{326+hair*2}}rpx;height:{{306+hair*2}}rpx">
         <view class="top-avatar-box flexr0c" style="margin-top:{{hair*2}}rpx">
             <image src="../../assets/images/user.png" />
-            <view class="comname">渑池交易中心</view>
-            <view class="username">张三</view>
+            <view class="comname">{{orgName}}</view>
+            <view class="username">{{userName}}</view>
         </view>
         <view class="flexc0c center">
             <view class="top-title">账户余额（元）</view>
             <view class="top-subtitle">（不含入账中）</view>
-            <view class="money-num">20456615.12</view>
-            <view class="top-time">数据更新时间 2020-08-22 09:12:22</view>
+            <view class="money-num">{{leave}}</view>
+            <view class="top-time">数据更新时间 {{now}}</view>
         </view>
     </view>
     <view class="count-tabel flexr0c">
         <view class="flexr0c count-tabel-item">
             <view class="tabel-item">今日收入</view>
-            <view class="in-num">+1258000</view>
+            <view class="in-num">+{{incomeMoney}}</view>
         </view>
         <view class="split-line"></view>
         <view class="flexr0c count-tabel-item">
             <view class="tabel-item">今日支出</view>
-            <view class="out-num">-58000</view>
+            <view class="out-num">-{{outcomeMoney}}</view>
         </view>
     </view>
     <scroll-view class="list-container" scroll-x="false" scroll-y="true" upper-threshold="50" lower-threshold="50" style="height:{{(screenHeight-287)*2}}rpx">
@@ -43,30 +43,40 @@
                         <image hidden="{{item.tradeType!=1}}" class="" src="../../assets/images/zhuanzhanghuikuan-Samll.png"></image>
                         <image hidden="{{item.tradeType!=3}}" class="" src="../../assets/images/WeChat-Samll.png"></image>
                         <view hidden="{{item.tradeType!=3}}" class="list-item-content">微信</view>
-                        <view hidden="{{item.tradeType!=3}}" class="list-item-content">支付宝</view>
-                        <view hidden="{{item.tradeType!=3}}" class="list-item-content">网银转账</view>
+                        <view hidden="{{item.tradeType!=4}}" class="list-item-content">支付宝</view>
+                        <view hidden="{{item.tradeType!=1}}" class="list-item-content">网银转账</view>
                     </view>
                     <view class="flexr0c">
                         <view class="list-item-title">交易时间</view>
-                        <view class="list-item-content">{{item.eventTime}}</view>
+                        <view class="list-item-content">
+                            {{item.eventTime.year}}/{{item.eventTime.monthValue}}/{{item.eventTime.dayOfMonth}} {{item.eventTime.hour}}:{{item.eventTime.minute}}:{{item.eventTime.second}}
+                        </view>
                     </view>
-                    <view class="flexr0c" hidden="{{item.ckeckTime==0}}">
+                    <!-- <view class="flexr0c" hidden="{{!item.checkTime.year}}">
                         <view class="list-item-title">到账时间</view>
-                        <view class="list-item-content">{{item.checkTime}}</view>
-                    </view>
+                        <view class="list-item-content">{{item.checkTime.year}}/{{item.checkTime.monthValue}}/{{item.checkTime.dayOfMonth}} {{item.checkTime.hour}}:{{item.checkTime.minute}}:{{item.checkTime.second}}</view>
+                    </view> -->
                 </view>
                 <view class="list-item-right">
                     <view class="flexr0c">
-                        <view class="{{'list-item-num'}}">+1258000</view>
+                        <view class="{{item.sign==1?'list-item-num':'list-item-num2'}}">
+                            <text hidden="{{item.sign!=1}}">+</text>
+                            <text hidden="{{item.sign!=2}}">-</text>
+                            {{item.money}}
+                        </view>
                         <image src="../../assets/images/The arrow.png" />
                     </view>
                     <view hidden="{{item.checkState==1}}" class="in-type">入账中</view>
                 </view>
             </view>
         </view>
+        <view hidden="{{list.length!=0}}" class="empty flexccc">
+            <image class="empty-img" src="../../assets/images/no-data.png" mode="aspectFit|aspectFill|widthFix"></image>
+            <view class="no-data">暂无数据</view>
+        </view>
     </scroll-view>
     <van-tabbar active="{{ active }}" bind:change="changeTab">
-        <van-tabbar-item info="2">
+        <van-tabbar-item info="{{numoflist!=0?numoflist:''}}">
             <image slot="icon" src="{{ icon.index }}" mode="aspectFit" style="width: 20px; height: 20px;" />
             <image slot="icon-active" src="{{ icon.indexactive }}" mode="aspectFit" style="width: 20px; height: 20px;" />
             首页

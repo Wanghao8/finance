@@ -6,12 +6,15 @@
                 <image hidden="{{paytype!=1}}" class="" src="../../../assets/images/Alipay-small.png"></image>
                 <image hidden="{{paytype!=2}}" class="" src="../../../assets/images/zhuanzhanghuikuan-Samll.png"></image>
                 <image hidden="{{paytype!=3}}" class="" src="../../../assets/images/WeChat-Samll.png"></image>
-                <view class="top-title">收到金额（元）</view>
+                <view class="top-title">
+                    <text hidden="">收到</text>
+                    金额（元）
+                </view>
             </view>
-            <view class="money-num">105000.00</view>
+            <view class="money-num">{{money}}</view>
             <view class="overage flexr0c">
                 <view class="overage-label">交易后余额</view>
-                <view class="overage-num">20080405.45</view>
+                <view class="overage-num">{{newMoney}}</view>
             </view>
         </view>
     </view>
@@ -19,47 +22,54 @@
         <view class="middle-content-box">
             <view class="flexr0c">
                 <view class="middle-label">企业名称</view>
-                <view class="middle-content">渑池豪瑞矿产品销售站</view>
+                <view class="middle-content">{{companyName}}</view>
             </view>
             <view class="flexr0c">
-                <view class="middle-label">交易类型</view>
-                <view class="middle-content">网银转账</view>
+                <view class="middle-label" hidden="{{checkState!=0}}">交易类型</view>
+                <view class="middle-label" hidden="{{checkState!=1}}">缴款方式</view>
+                <view class="middle-content" hidden="{{tradeType!=1}}">网银转账</view>
+                <view class="middle-content" hidden="{{tradeType!=2}}">支出</view>
+                <view class="middle-content" hidden="{{tradeType!=3}}">POS-微信</view>
+                <view class="middle-content" hidden="{{tradeType!=4}}">POS-支付宝</view>
+                <view class="middle-content" hidden="{{tradeType!=5}}">POS-刷卡</view>
             </view>
         </view>
     </view>
     <view class="list-box">
         <view class="list-content-box">
-            <view class="list-label">地区</view>
-            <view class="list-content">三门峡</view>
-            <view class="split-line"></view>
+            <view class="" hidden="{{checkState!=0}}">
+                <view class="list-label">地区</view>
+                <view class="list-content">{{location}}</view>
+                <view class="split-line"></view>
+            </view>
             <view class="list-label">交易时间</view>
-            <view class="list-content">2020/07/03 14:23:34</view>
+            <view class="list-content">{{eventTime}}</view>
             <view class="split-line"></view>
-            <view class="list-label">到账时间</view>
+            <!-- <view class="list-label">到账时间</view>
             <view class="list-content">2020/07/05 14:23:34</view>
-            <view class="split-line"></view>
+            <view class="split-line"></view> -->
             <view class="list-label">对方账户</view>
-            <view class="list-content">54778599493847672</view>
+            <view class="list-content">{{toAccount}}</view>
             <view class="split-line"></view>
             <view class="list-label">对方银行</view>
-            <view class="list-content">中国建设银行金水路支行</view>
+            <view class="list-content">{{toName}}</view>
             <view class="split-line"></view>
-            <view class="stamp-container" hidden="{{0}}">
+            <view class="stamp-container" hidden="{{checkState!=1}}">
                 <view class="stamp" style="background:url('../../../assets/images/The approved.png');background-size:340rpx">
                     <view class="stamp-box flexc0c">
                         <view class="checked">已审核</view>
                         <view class="">
                             <view class="flexr0c">
                                 <view class="stamp-label checkperson">审核人:</view>
-                                <view class="stamp-content">张三</view>
+                                <view class="stamp-content">{{checkUserName}}</view>
                             </view>
                             <view class="flexr0c">
                                 <view class="stamp-label">审核日期:</view>
-                                <view class="stamp-content">2020/08/24</view>
+                                <view class="stamp-content">{{ckeckDate}}</view>
                             </view>
                             <view class="flexr0c">
                                 <view class="stamp-label">审核时间:</view>
-                                <view class="stamp-content">09:36:42</view>
+                                <view class="stamp-content">{{checktime}}</view>
                             </view>
                         </view>
                     </view>
@@ -67,5 +77,5 @@
             </view>
         </view>
     </view>
-    <view bindtap="checkComfirm" class="button">审核确认</view>
+    <view bindtap="checkComfirm" class="button" hidden="{{checkState!=='0'}}">审核确认</view>
 </view>

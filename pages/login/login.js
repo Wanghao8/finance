@@ -50,7 +50,7 @@ Page({
                     wx.setStorageSync('fileUri', res.data.data.fileUri)
                     wx.setStorageSync('orgName', res.data.data.orgName)
                     wx.setStorageSync('orgType', res.data.data.orgType)
-                    // return
+                        // return
                     setTimeout(function() {
                         wx.switchTab({
                             url: '../../pages/index/index',

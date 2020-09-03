@@ -21,12 +21,16 @@ Page({
             { name: '退出登录', color: '#4A4A4A' },
         ],
     },
+    //选择关闭弹出层
     onClose() {
         this.setData({ show: false });
     },
-
-    onSelect(event) {
-        console.log(event.detail);
+    //选择弹出层的退出登录
+    onSelect(e) {
+        console.log(e.detail);
+        wx.removeStorageSync('sessionId')
+        app.is_login()
+        
     },
     //修改密码
     changePass() {

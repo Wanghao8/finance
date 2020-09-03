@@ -148,7 +148,7 @@
 .container .list-box .list-content-box .stamp-container {
   position: absolute;
   right: 16rpx;
-  bottom: -26rpx;
+  bottom: -110rpx;
   transform: rotate(-30deg);
 }
 

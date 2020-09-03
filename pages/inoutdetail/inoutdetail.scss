@@ -81,6 +81,7 @@
                 font-size: 34rpx;
                 color: #E3A33D;
                 letter-spacing: 0;
+                font-weight: bold;
             }
         }
         .outcome-box {
@@ -90,6 +91,7 @@
                 font-size: 34rpx;
                 color: #206DE7;
                 letter-spacing: 0;
+                font-weight: bold;
             }
         }
         .middle-label {
@@ -100,11 +102,27 @@
             margin-right: 24rpx;
         }
     }
+    .empty {
+        width: 100%;
+        height: 100%;
+        background: rgba(228, 228, 228, 0.6);
+        .empty-img {
+            width: 236rpx;
+            height: 154rpx;
+        }
+        .no-data {
+            font-family: PingFangSC-Regular;
+            font-size: 30rpx;
+            color: #9B9B9B;
+            letter-spacing: 0;
+        }
+    }
     .list-box {
         background-color: #fafafa;
         .list-item {
             width: 714rpx;
             padding-left: 18rpx;
+            padding-right: 18rpx;
             padding-top: 24rpx;
             border-bottom: 2rpx solid #ddd;
             position: relative;
@@ -239,7 +257,7 @@
                 }
             }
             .chartbar1-box-item {
-                width: 100%;
+                width: 716rpx;
                 height: 342rpx;
                 border: 2rpx solid #000;
             }
