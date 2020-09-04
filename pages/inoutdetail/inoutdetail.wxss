@@ -43,14 +43,14 @@
 
 .container .top-select {
   background-color: #fff;
-  height: 112rpx;
+  height: 56px;
   width: 100%;
   box-shadow: 0 24rpx 24rpx 0 rgba(0, 0, 0, 0.05);
 }
 
 .container .top-select .top-select-item-box {
   flex: 1;
-  height: 112rpx;
+  height: 56px;
 }
 
 .container .top-select .top-select-item-box .top-select-item {
@@ -59,7 +59,7 @@
   color: #BBBBBB;
   letter-spacing: 0;
   text-align: center;
-  line-height: 102rpx;
+  line-height: 52px;
   width: 275rpx;
   border-bottom: 8rpx solid #fff;
 }
@@ -71,7 +71,7 @@
 
 .container .middle-box {
   background: rgba(228, 228, 228, 0.6);
-  height: 100rpx;
+  height: 50px;
   width: 100%;
 }
 
