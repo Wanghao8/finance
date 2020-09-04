@@ -194,11 +194,16 @@ Page({
             success: function(res) {
                 console.log(res.model)
                 console.log(res.statusBarHeight)
-                console.log(res.screenHeight)
+                console.log(res.windowWidth)
                 console.log(res.windowHeight)
+                var clientHeight = res.windowHeight,
+                    clientWidth = res.windowWidth,
+                    rpxR = 360 / clientWidth;
+                // rpxR < 1 ? rpxR = 1 : rpxR
                 that.setData({
                     hair: res.statusBarHeight,
-                    screenHeight: res.screenHeight
+                    screenHeight: res.screenHeight,
+                    rpxR: rpxR
                 })
             }
         })
@@ -224,6 +229,7 @@ Page({
      */
     onShow: function() {
         let that = this
+
         app.is_login()
         this.getOverage()
         this.getListData()

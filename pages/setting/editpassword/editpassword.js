@@ -31,12 +31,81 @@ Page({
             comfirmpass: e.detail.value
         })
     },
-    comfirm() {
-        if (!this.data.oldpass) {
+    //修改密码
+    comfirm: function() {
+        let that = this
+        if (!that.data.oldpass) {
             wx.showToast({
-                title: '请输入密码',
-                icon: 'none'
+                title: '请输入原密码',
+                icon: 'none',
             })
+        } else if (!that.data.newpass && !that.data.confirmpass) {
+            wx.showToast({
+                title: '请输入新密码',
+                icon: 'none',
+            })
+        } else if (that.data.newpass.length < 6) {
+            wx.showToast({
+                title: '密码不少于6位',
+                icon: 'none',
+            })
+        } else if (that.data.newpass.length > 16) {
+            wx.showToast({
+                title: '密码不超过16位',
+                icon: 'none',
+            })
+        } else if (that.data.newpass !== that.data.comfirmpass) {
+            wx.showToast({
+                title: '两次密码输入不一致',
+                icon: 'none',
+            })
+        } else {
+            that.debounce(that.editPassword(), 5000)
+        }
+    },
+    editPassword: function() {
+        let that = this
+        const data = {
+            sessionId: wx.getStorageSync('sessionId'),
+            modeCode: "TR7ZOEjbnqrG6z8OtVdSVkXzRJBiY9X9",
+            oldPassWord: that.data.oldpass,
+            newPassWord: that.data.comfirmpass,
+        }
+
+        req.requestAll(data).then(res => {
+            if (res.data.code == 1) {
+                wx.showToast({
+                    title: "修改成功",
+                    icon: 'none',
+                })
+                wx.removeStorageSync('sessionId')
+                    //登录成功后跳转页面延时
+                setTimeout(function() {
+                    wx.navigateTo({
+                        // url: '../../pages/login/login?changePass=1',
+                        url: '../../login/login?changePass=1',
+                    })
+                }, 2000)
+            } else {
+                wx.showToast({
+                    title: res.data.msg,
+                    icon: 'none',
+                })
+            }
+        })
+    },
+    debounce: function(func, wait) {
+        let timer;
+        return function() {
+            let context = this; // 这边的 this 指向谁?
+            let args = arguments; // arguments中存着e
+            if (timer) clearTimeout(timer);
+            let callNow = !timer;
+            timer = setTimeout(() => {
+                timer = null;
+            }, wait)
+
+            if (callNow) func.apply(context, args);
         }
     },
     /**

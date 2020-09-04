@@ -43,6 +43,7 @@
     }
     .top-select {
         background-color: #fff;
+        // height: 112rpx;
         height: 112rpx;
         width: 100%;
         box-shadow: 0 24rpx 24rpx 0 rgba(0, 0, 0, 0.05);
@@ -259,13 +260,13 @@
             .chartbar1-box-item {
                 width: 716rpx;
                 height: 342rpx;
-                border: 2rpx solid #000;
+                // border: 2rpx solid #000;
             }
         }
         .chartbar2-box {
             width: 716rpx;
             // height: 912rpx;
-            height: 100%;
+            // height: 100%;
             background: #fff;
             box-shadow: 0 5rpx 15rpx 0 rgba(0, 0, 0, 0.05);
             border-radius: 6rpx;
@@ -355,7 +356,7 @@
             .chartbar2-container {
                 height: 100%;
                 width: 654rpx;
-                border: 1px solid #000;
+                // border: 1px solid #000;
                 margin-top: 20rpx;
                 .city-name {
                     font-family: PingFangSC-Regular;
@@ -463,7 +464,7 @@
             .chartline-container {
                 width: 694rpx;
                 height: 416rpx;
-                border: 1px solid #000;
+                // border: 1px solid #000;
                 margin: 20rpx 0 20rpx 10rpx;
             }
         }
@@ -494,7 +495,7 @@
             .chartpie-container {
                 width: 694rpx;
                 height: 556rpx;
-                border: 1px solid #000;
+                // border: 1px solid #000;
                 margin: 20rpx 0 20rpx 10rpx;
             }
         }
@@ -747,4 +748,78 @@
             text-align: center;
         }
     }
+}
+
+.rank-tabel {
+    margin: 0 0 0 20rpx;
+    margin-left: 20rpx;
+}
+
+.rank-title {
+    font-family: PingFangSC-Regular;
+    font-size: 12px;
+    color: #4A4A4A;
+    letter-spacing: 0;
+    line-height: 50rpx;
+}
+
+.progress-bar {
+    width: 560rpx;
+    /* height: 30rpx; */
+    background: #F4F7FE;
+    border-radius: 16px;
+}
+
+.pro-iphonex {
+    height: 28rpx;
+}
+
+.pro-iphone {
+    height: 30rpx;
+}
+
+.pro-an {
+    height: 32rpx;
+}
+
+.progress {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAPCAYAAADd/14OAAAAZklEQVQoU2P8vkpL7t+fn3MZGRkt/v//f4KJhT2ZM+zaIwY0wPh1mfJuBgYGFyTxPdxRd10xFH5brvLz////bDAJRkbGX1yRd9ixmfgfXZA76i7jqEJQCIACnMrBQ0rMEBfXxKYeAPEZVhCpkd3VAAAAAElFTkSuQmCC);
+    /* height: 30rpx; */
+    background-color: #E3A33D;
+    color: #E3A33D;
+}
+
+.progress-dun {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAPCAYAAADd/14OAAAAZklEQVQoU2P8vkpL7t+fn3MZGRkt/v//f4KJhT2ZM+zaIwY0wPh1mfJuBgYGFyTxPdxRd10xFH5brvLz////bDAJRkbGX1yRd9ixmfgfXZA76i7jqEJQCIACnMrBQ0rMEBfXxKYeAPEZVhCpkd3VAAAAAElFTkSuQmCC);
+    /* height: 30rpx; */
+}
+
+.progress-num {
+    font-family: PingFangSC-Medium;
+    font-size: 12px;
+    color: #4A4A4A;
+    letter-spacing: 0;
+    margin-left: 20rpx;
+}
+
+.unfold,
+.fold {
+    width: 100%;
+    padding-top: 20rpx;
+    padding-bottom: 20rpx;
+}
+
+.unfold-title,
+.fold-title {
+    font-family: PingFangSC-Regular;
+    font-size: 12px;
+    color: #B6B7BE;
+    letter-spacing: 0;
+}
+
+.unfold image,
+.fold image {
+    width: 32rpx;
+    height: 20rpx;
+    margin-left: 10rpx;
 }

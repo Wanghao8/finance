@@ -5,6 +5,11 @@
 }
 
 
+/* page {
+    overflow-y: hidden;
+} */
+
+
 /* flex布局 */
 
 .flexr {

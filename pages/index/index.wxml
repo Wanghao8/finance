@@ -1,6 +1,6 @@
 <!-- index.wxml -->
-<view class="container">
-    <view class="top-box" style="background:url('../../assets/images/Home page background.png');background-size:750rpx {{326+hair*2}}rpx;height:{{306+hair*2}}rpx">
+<view class="container" style="height:{{screenHeight}}px">
+    <view class="top-box" style="background:url('../../assets/images/Home page background.png');background-size:750rpx {{306+hair*2}}rpx;height:{{306+hair*2}}rpx">
         <view class="top-avatar-box flexr0c" style="margin-top:{{hair*2}}rpx">
             <image src="../../assets/images/user.png" />
             <view class="comname">{{orgName}}</view>
@@ -24,7 +24,7 @@
             <view class="out-num">-{{outcomeMoney}}</view>
         </view>
     </view>
-    <scroll-view class="list-container" scroll-x="false" scroll-y="true" upper-threshold="50" lower-threshold="50" style="height:{{(screenHeight-287)*2}}rpx">
+    <scroll-view class="list-container" scroll-x="false" scroll-y="true" upper-threshold="50" lower-threshold="50" style="height:{{(screenHeight-202/rpxR-50)*2}}rpx">
         <view class="list-box">
             <view class="list-item-box flexrbc" bind:tap="toDetail" wx:for="{{list}}" wx:key="index" data-id="{{item.id}}">
                 <view class="check-type" hidden="{{item.checkState==1}}">未审核</view>

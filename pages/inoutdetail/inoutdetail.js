@@ -6,12 +6,13 @@ var chartBar1;
 var chartLine;
 var chartPie;
 var lineoption = {
-    // grid: {
-    //     top: '10%',
-    //     bottom: '15%',
-    //     right: '5%',
-    //     left: '10%'
-    // },
+    grid: {
+        top: '10%',
+        bottom: '16%',
+        right: '5%',
+        left: '15%',
+        height: '80%'
+    },
     xAxis: {
         type: 'category',
         boundaryGap: false,
@@ -20,8 +21,6 @@ var lineoption = {
             show: true,
         },
         splitNumber: 6,
-
-        // data: ['14', '08'],
         data: [],
         axisLine: {
             show: false
@@ -88,7 +87,7 @@ var baroption = {
         top: '12%',
         bottom: '12%',
         right: '5%',
-        left: '12%'
+        left: '14%'
     },
     xAxis: {
         type: 'category',
@@ -180,13 +179,22 @@ var baroption = {
 }
 var pieoption = {
     color: ["#EEA444", "#8B572A", "#FFF000", "#F5C366", "#F86B4F"],
-    series: {
-        // label: {
-        //   normal: {
-        //     fontSize: 12
-        //   }
+    legend: {
+        orient: 'vertical',
+        right: 10,
+        itemWidth: 16,
+        itemHeight: 8,
+        borderRadius: 2,
+        itemGap: 5,
+        bottom: 10,
+        // textStyle: {
+        //     color: "#4A4A4A",
+        //     fontSize: 10
         // },
-        // startAngle: 120,
+        // data: [],
+    },
+    series: {
+
         grid: {
             top: '10%',
             bottom: '0',
@@ -194,9 +202,7 @@ var pieoption = {
             right: '',
             height: '90%'
         },
-        legend: {
 
-        },
         label: {
             formatter: '{b} {d}%',
             show: true,
@@ -204,9 +210,13 @@ var pieoption = {
             fontStyle: 'normal',
             fontSize: 8
         },
+        labelLine: {
+            length: 1,
+            length2: 10
+        },
         type: 'pie',
         center: ['50%', '52%'],
-        radius: [45, 60],
+        radius: [60, 75],
         data: []
     }
 }
@@ -243,7 +253,6 @@ Page({
                 return chartBar1;
             }
         },
-
         ecpie: {
             onInit: function(canvas, width, height, dpr) {
                 chartPie = echarts.init(canvas, null, {
@@ -268,7 +277,7 @@ Page({
             setactive: '../../assets/images/settings-2.png',
         },
         show: false, //抽屉显示隐藏
-        IO: 2, //收支详情跟分析切换
+        IO: 1, //收支详情跟分析切换
         paytype: 1, //转账方式
         inout: 1, //支出还是收入
         cardChecked: false, //复选框
@@ -278,8 +287,9 @@ Page({
         outChecked: false, //复选框
         thisyear: 2020,
         thismonth: 8,
+        needfold: true,
         list: [],
-        table: [{
+        tabel: [{
                 add: '渑池县',
                 in: '+47580',
                 out: '-7580'
@@ -356,12 +366,14 @@ Page({
         this.setData({
             inoutBtn: 'in'
         })
+        this.initLine()
     },
     //切换出金排名
     outcome() {
         this.setData({
             inoutBtn: 'out'
         })
+        this.initLine2()
     },
     //展开收起折叠
     fold: function(e) {
@@ -376,16 +388,7 @@ Page({
                     needfold: false
                 })
                 break;
-            case 'desfold':
-                this.setData({
-                    destinationfold: true
-                })
-                break;
-            case 'desunfold':
-                this.setData({
-                    destinationfold: false
-                })
-                break;
+
             default:
                 break;
         }
@@ -398,27 +401,36 @@ Page({
         switch (index) {
             case '0':
                 this.setData({
-                    radio: 0
+                    radio: 0,
+                    startMoney: 0,
+                    endMoney: 10000
                 })
                 break;
             case '1':
                 this.setData({
-                    radio: 1
+                    radio: 1,
+                    startMoney: 10000,
+                    endMoney: 30000
                 })
                 break;
             case '2':
                 this.setData({
-                    radio: 2
+                    radio: 2,
+                    startMoney: 30000,
+                    endMoney: 50000
                 })
                 break;
             case '3':
                 this.setData({
-                    radio: 3
+                    radio: 3,
+                    startMoney: 50000,
+                    endMoney: 100000
                 })
                 break;
             case '4':
                 this.setData({
-                    radio: 4
+                    radio: 4,
+                    startMoney: 100000,
                 })
                 break;
             case '5':
@@ -586,6 +598,7 @@ Page({
                 endMonth: end,
             })
             this.getOverage(start, end)
+            this.getMonthData(this.data.thismonth)
         }
     },
     // 是否登陆过，若在别的地方登陆，跳转登录页
@@ -606,15 +619,21 @@ Page({
         chartBar1.setOption(baroption, true)
     },
     //初始化饼图
-    initPie(pieList) {
-        pieoption.xAxis.data = pieList.type
-        pieoption.series.data = pieList.money
+    initPie() {
+        pieoption.series.data = this.data.pieList
+            // pieoption.legend.data = this.data.piex
         chartPie.setOption(pieoption, true)
     },
     //初始化折线图
-    initLine(linex, liney) {
-        lineoption.xAxis.data = linex
-        lineoption.series.data = liney
+    initLine() {
+        lineoption.xAxis.data = this.data.linex
+        lineoption.series.data = this.data.linein
+        chartLine.setOption(lineoption, true)
+    },
+    //初始化折线图
+    initLine2() {
+        lineoption.xAxis.data = this.data.linex
+        lineoption.series.data = this.data.lineout
         chartLine.setOption(lineoption, true)
     },
     //格式化当天日期
@@ -651,22 +670,32 @@ Page({
         let start = that.getNowFormatDate('last')
         let end = that.getNowFormatDate('now')
         let data = {
-            modeCode: 'i0GQ9ObadE8JmVQTTJqmfgkRbNWkrqD6', //功能码
-            sessionId: wx.getStorageSync('sessionId'),
-            pageIndex: 1,
-            pageSize: 100,
-            startTime: start,
-            endTime: end,
-            // enterpriseName: that.data.companyname,
-            // startMoney: that.data.minMoney,
-            // endMoney: that.data.maxMoney,
-            // tradeType: type,
-            // tradeNo: that.data.tradeNo,
-            // orgId: that.data.location,
-        }
+                modeCode: 'i0GQ9ObadE8JmVQTTJqmfgkRbNWkrqD6', //功能码
+                sessionId: wx.getStorageSync('sessionId'),
+                pageIndex: 1,
+                pageSize: 100,
+                startTime: start,
+                endTime: end,
+                // enterpriseName: that.data.companyname,
+                // startMoney: that.data.minMoney,
+                // endMoney: that.data.maxMoney,
+                // tradeType: type,
+                // tradeNo: that.data.tradeNo,
+                // orgId: that.data.location,
+            }
+            // that.data.minMoney != '' ? data.startMoney = that.data.minMoney : data.startMoney
+            // that.data.maxMoney != '' ? data.endMoney = that.data.maxMoney : data.endMoney
+        if (that.data.minMoney != '') {
+            data.startMoney = that.data.minMoney
+        } else if (that.data.startMoney) {
+            data.startMoney = that.data.startMoney
+        } else {}
+        if (that.data.maxMoney != '') {
+            data.endMoney = that.data.minMoney
+        } else if (that.data.endMoney) {
+            data.endMoney = that.data.endMoney
+        } else {}
         that.data.companyname != '' ? data.enterpriseName = data.companyname : that.data.enterpriseName
-        that.data.minMoney != '' ? data.startMoney = that.data.minMoney : data.startMoney
-        that.data.maxMoney != '' ? data.endMoney = that.data.maxMoney : data.endMoney
         that.data.tradeNo != '' ? data.tradeNo = that.data.tradeNo : data.tradeNo
         that.data.location != '' ? data.orgId = that.data.location : data.orgId
         type ? data.tradeType = type : data.tradeType
@@ -806,6 +835,7 @@ Page({
     getMonthData(month) {
         let that = this
         month = parseInt(month)
+        let auth = wx.getStorageSync('authority')
         const data = {
             modeCode: '0WsGhaT6USz7lr0geWILuXvpm4GGjBb1', //功能码
             sessionId: wx.getStorageSync('sessionId'),
@@ -817,32 +847,50 @@ Page({
             if (res.data.code == 1) {
                 let resdata = res.data.data
                 let linex = []
-                let liney = []
+                let piex = []
+                let linein = []
+                let lineout = []
                 let lineList = resdata.dateList
                 lineList.forEach((item) => {
                     linex.push(item.dateStr.toString())
-                    liney.push(item.money)
+                    linein.push(item.income)
+                    lineout.push(item.outcome)
                 })
                 let pieList = resdata.tradeTypeList
                 pieList.forEach((item) => {
-                    item.tradeType == 1 ? item.type = '网银转账' : item.tradeType
-                    item.tradeType == 2 ? item.type = '支出' : item.tradeType
-                    item.tradeType == 3 ? item.type = 'POS-微信' : item.tradeType
-                    item.tradeType == 4 ? item.type = 'POS-支付宝' : item.tradeType
-                    item.tradeType == 5 ? item.type = 'POS-刷卡' : item.tradeType
+                    item.tradeType == 1 ? item.name = '网银转账' : item.tradeType
+                    item.tradeType == 2 ? item.name = '支出' : item.tradeType
+                    item.tradeType == 3 ? item.name = 'POS微信' : item.tradeType
+                    item.tradeType == 4 ? item.name = 'POS支付宝' : item.tradeType
+                    item.tradeType == 5 ? item.name = 'POS刷卡' : item.tradeType
+                    item.value = item.money
+                    piex.push(item.name)
                 })
                 let rank = resdata.rankList
                     //这一步需要对数组排序
+                function compare(property) {
+                    return function(a, b) {
+                        var value1 = a[property];
+                        var value2 = b[property];
+                        return value2 - value1;
+                    }
+                }
+                rank.sort(compare('money'))
                 let rankmax = rank[0].money
+
                 that.setData({
-                        pieList: pieList,
-                        linex: linex,
-                        liney: liney,
-                        rankmax: rankmax,
-                        rank: rank
-                    })
-                    // that.initLine(linex, liney)
-                    // that.initPie(pieList)
+                    pieList: pieList,
+                    piex: piex,
+                    linex: linex,
+                    linein: linein,
+                    lineout: lineout,
+                    rankmax: rankmax,
+                    rank: rank,
+                    rankshort: rank.slice(0, 4)
+
+                })
+                that.initLine()
+                that.initPie()
             } else {
                 console.log(res);
                 wx.showToast({
@@ -855,31 +903,84 @@ Page({
             }
         })
     },
+    //接口部分(地区出入金排行)
+    getLocationRank(type) {
+        type.toString()
+        let that = this
+        const data = {
+            modeCode: 'pJave8351rnQqIav2YCYbAgH8CnssBTx', //功能码
+            sessionId: wx.getStorageSync('sessionId'),
+            orderBy: type,
+            startTime: start,
+            endTime: end,
+        }
 
+        console.log(data);
+        req.requestAll(data).then(res => {
+            if (res.data.code == 1) {
+                let resdata = res.data.data
+                let list = resdata.list
+                    //这一步需要对数组排序
+                function compare(property) {
+                    return function(a, b) {
+                        var value1 = a[property];
+                        var value2 = b[property];
+                        return value2 - value1;
+                    }
+                }
+                list.sort(compare('income'))
+                that.setData({
+                    tabel: list
+                })
+            } else {
+                console.log(res);
+                wx.showToast({
+                    title: res.data.msg,
+                    icon: 'none',
+                    duration: 1500,
+                    mask: false,
+                });
+                that.isLoged(res.data.msg)
+            }
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
         let that = this
-        let date = new Date()
-        console.log(date.getFullYear());
-        this.setData({
-            thisyear: date.getFullYear(),
-            thismonth: date.getMonth() + 1,
-            thisday: date.getDate()
-        })
         wx.getSystemInfo({
             success: function(res) {
                 console.log(res.model)
                 console.log(res.statusBarHeight)
                 console.log(res.screenHeight)
                 console.log(res.windowHeight)
+                console.log(res.windowWidth)
+                if (res.model.indexOf('iPhone XR') != -1) {
+                    that.setData({
+                        brand: 'iphonex'
+                    })
+                } else if (res.model.indexOf('iPhone') != -1) {
+                    that.setData({
+                        brand: 'iphone'
+                    })
+                } else {
+                    that.setData({
+                        brand: 'an'
+                    })
+                }
+                var clientHeight = res.windowHeight,
+                    clientWidth = res.windowWidth,
+                    rpxR = 360 / clientWidth;
+                rpxR < 1 ? rpxR = 1 : rpxR
                 that.setData({
                     hair: res.statusBarHeight,
-                    screenHeight: res.screenHeight
+                    screenHeight: res.windowHeight,
+                    rpxR: rpxR
                 })
             }
         })
+
     },
 
     /**
@@ -894,9 +995,23 @@ Page({
      */
     onShow: function() {
         let that = this
-            // this.setData({
-            //     IO: 1
-            // })
+        let date = new Date()
+        this.setData({
+            thisyear: date.getFullYear(),
+            thismonth: date.getMonth() + 1,
+            thisday: date.getDate(),
+            IO: 1
+        })
+        let auth = wx.getStorageSync('authority')
+        if (auth == 1) {
+            that.setData({
+                cityRank: true
+            })
+        } else {
+            that.setData({
+                cityRank: false
+            })
+        }
         this.getListData()
         if (this.data.IO == 1) {
             let start = that.getNowFormatDate('last')
