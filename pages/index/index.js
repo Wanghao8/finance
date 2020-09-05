@@ -19,8 +19,9 @@ Page({
     toDetail(e) {
         console.log(e);
         let id = e.currentTarget.dataset.id
+        let sign = e.currentTarget.dataset.sign
         wx.navigateTo({
-            url: './indexdetail/indexdetail?id=' + id,
+            url: './indexdetail/indexdetail?id=' + id + '&sign=' + sign,
         })
     },
     changeTab(event) {
@@ -94,8 +95,8 @@ Page({
                 console.log(leave);
                 that.setData({
                     leave: leave,
-                    incomeMoney: resdata.income,
-                    outcomeMoney: resdata.outcome,
+                    incomeMoney: resdata.income.toFixed(2),
+                    outcomeMoney: resdata.outcome.toFixed(2),
                 })
             } else {
                 console.log(res);
@@ -109,18 +110,42 @@ Page({
             }
         })
     },
+    //格式化当天日期
+    getNowFormatDate(params) {
+        let date
+        if (params == 'now') {
+            date = new Date();
+        } else {
+            date = new Date(new Date().getTime() - 2592000000)
+        }
+        var seperator1 = "-";
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = "0" + strDate;
+        }
+        var currentdate = year + seperator1 + month + seperator1 + strDate;
+        return currentdate;
+    },
     //接口部分(分页列表)
+
     getListData() {
         let that = this
-        console.log(that.data.today);
-
+        let start = that.getNowFormatDate('last')
+        let end = that.getNowFormatDate('now')
         const data = {
             modeCode: 'i0GQ9ObadE8JmVQTTJqmfgkRbNWkrqD6', //功能码
             sessionId: wx.getStorageSync('sessionId'),
             pageIndex: 1,
             pageSize: 30,
-            startTime: that.data.today,
-            endTime: that.data.today,
+            startTime: start,
+            endTime: end,
+            // startTime: that.data.today,
+            // endTime: that.data.today,
         }
         console.log(data);
         req.requestAll(data).then(res => {
@@ -229,7 +254,10 @@ Page({
      */
     onShow: function() {
         let that = this
-
+        this.setData({
+            orgName: wx.getStorageSync('orgName'),
+            userName: wx.getStorageSync('userName'),
+        })
         app.is_login()
         this.getOverage()
         this.getListData()

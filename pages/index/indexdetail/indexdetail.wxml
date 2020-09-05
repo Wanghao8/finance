@@ -3,12 +3,15 @@
     <view class="top-box">
         <view class="top-content-box">
             <view class="top-title-box flexr0c">
-                <image hidden="{{paytype!=1}}" class="" src="../../../assets/images/Alipay-small.png"></image>
-                <image hidden="{{paytype!=2}}" class="" src="../../../assets/images/zhuanzhanghuikuan-Samll.png"></image>
-                <image hidden="{{paytype!=3}}" class="" src="../../../assets/images/WeChat-Samll.png"></image>
+                <image hidden="{{tradeType!=1}}" class="" src="../../../assets/images/zhuanzhanghuikuan-Samll.png"></image>
+                <image hidden="{{tradeType!=2}}" class="" src="../../../assets/images/out-small.png"></image>
+                <image hidden="{{tradeType!=3}}" class="" src="../../../assets/images/WeChat-Samll.png"></image>
+                <image hidden="{{tradeType!=4}}" class="" src="../../../assets/images/Alipay-small.png"></image>
+                <image hidden="{{tradeType!=5}}" class="" src="../../../assets/images/card-small.png"></image>
                 <view class="top-title">
-                    <text hidden="">收到</text>
-                    金额（元）
+                    <text hidden="{{sign!=1}}">收到</text>
+                    <text hidden="{{sign!=2}}">支出</text>
+                    <text>金额（元）</text>
                 </view>
             </view>
             <view class="money-num">{{money}}</view>
@@ -37,7 +40,8 @@
     </view>
     <view class="list-box">
         <view class="list-content-box">
-            <view class="" hidden="{{checkState!=0}}">
+            <!-- <view class="" hidden="{{checkState!=0}}"> -->
+            <view class="">
                 <view class="list-label">地区</view>
                 <view class="list-content">{{location}}</view>
                 <view class="split-line"></view>
@@ -54,8 +58,11 @@
             <view class="list-label">对方银行</view>
             <view class="list-content">{{toName}}</view>
             <view class="split-line"></view>
+            <view class="list-label">交易单号</view>
+            <view class="list-content">{{tradeNo}}</view>
+            <view class="split-line"></view>
             <view class="stamp-container" hidden="{{checkState!=1}}">
-                <view class="stamp" style="background:url('../../../assets/images/The approved.png');background-size:340rpx">
+                <view class="stamp" style="background:url('http://192.168.2.227:8004/wechat-finance/image/approved.png');background-size:340rpx">
                     <view class="stamp-box flexc0c">
                         <view class="checked">已审核</view>
                         <view class="">

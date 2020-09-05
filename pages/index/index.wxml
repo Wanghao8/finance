@@ -1,6 +1,6 @@
 <!-- index.wxml -->
 <view class="container" style="height:{{screenHeight}}px">
-    <view class="top-box" style="background:url('../../assets/images/Home page background.png');background-size:750rpx {{166+hair}}px;height:{{166+hair}}px">
+    <view class="top-box" style="background:url('http://192.168.2.227:8004/wechat-finance/image/Home.png');background-size:750rpx {{166+hair}}px;height:{{166+hair}}px">
         <view class="top-avatar-box flexr0c" style="margin-top:{{hair}}px">
             <image src="../../assets/images/user.png" />
             <view class="comname">{{orgName}}</view>
@@ -26,7 +26,7 @@
     </view>
     <scroll-view class="list-container" scroll-x="false" scroll-y="true" upper-threshold="50" lower-threshold="50" style="height:{{(screenHeight-hair-166-55-50-9)}}px">
         <view class="list-box">
-            <view class="list-item-box flexrbc" bind:tap="toDetail" wx:for="{{list}}" wx:key="index" data-id="{{item.id}}">
+            <view class="list-item-box flexrbc" bind:tap="toDetail" wx:for="{{list}}" wx:key="index" data-id="{{item.id}}" data-sign="{{item.sign}}">
                 <view class="check-type" hidden="{{item.checkState==1}}">未审核</view>
                 <view class="list-item-left">
                     <view class="flexr0c">
@@ -42,9 +42,13 @@
                         <image hidden="{{item.tradeType!=4}}" class="" src="../../assets/images/Alipay-small.png"></image>
                         <image hidden="{{item.tradeType!=1}}" class="" src="../../assets/images/zhuanzhanghuikuan-Samll.png"></image>
                         <image hidden="{{item.tradeType!=3}}" class="" src="../../assets/images/WeChat-Samll.png"></image>
+                        <image hidden="{{item.tradeType!=2}}" class="" src="../../assets/images/out-small.png"></image>
+                        <image hidden="{{item.tradeType!=5}}" class="" src="../../assets/images/card-small.png"></image>
                         <view hidden="{{item.tradeType!=3}}" class="list-item-content">微信</view>
                         <view hidden="{{item.tradeType!=4}}" class="list-item-content">支付宝</view>
                         <view hidden="{{item.tradeType!=1}}" class="list-item-content">网银转账</view>
+                        <view hidden="{{item.tradeType!=2}}" class="list-item-content">支出</view>
+                        <view hidden="{{item.tradeType!=5}}" class="list-item-content">刷卡</view>
                     </view>
                     <view class="flexr0c">
                         <view class="list-item-title">交易时间</view>
@@ -64,7 +68,7 @@
                             <text hidden="{{item.sign!=2}}">-</text>
                             {{item.money}}
                         </view>
-                        <image src="../../assets/images/The arrow.png" />
+                        <image src="../../assets/images/rightarrow.png" />
                     </view>
                     <view hidden="{{item.checkState==1}}" class="in-type">入账中</view>
                 </view>

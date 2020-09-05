@@ -64,10 +64,11 @@ Page({
                 that.setData({
                     companyName: resdata.enterpriseName,
                     money: app.addComma(resdata.money),
-                    newMoney: resdata.newMoney,
+                    newMoney: resdata.newMoney.toFixed(2),
                     tradeType: resdata.tradeType,
                     location: resdata.orgName,
                     eventTime: dealTime,
+                    tradeNo: resdata.tradeNo,
                     ckeckDate: ckeckDate,
                     checktime: checktime,
                     toAccount: resdata.toAcnt,
@@ -127,7 +128,8 @@ Page({
      */
     onLoad: function(options) {
         this.setData({
-            id: options.id
+            id: options.id,
+            sign: options.sign
         })
     },
 

@@ -98,6 +98,18 @@
             height: 84rpx;
             line-height: 84rpx;
         }
+        .login-btn-active {
+            background-image: linear-gradient(0deg, #D36221 0%, #F2AD3C 100%, #F7E7AC 100%);
+            border-radius: 6rpx;
+            text-align: center;
+            font-family: PingFangSC-Regular;
+            font-size: 34rpx;
+            color: #FFFFFF;
+            letter-spacing: 0;
+            width: 642rpx;
+            height: 84rpx;
+            line-height: 84rpx;
+        }
     }
     .bottom-info {
         font-family: PingFangHK-Regular;

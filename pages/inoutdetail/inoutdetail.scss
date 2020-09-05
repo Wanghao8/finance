@@ -334,7 +334,7 @@
                     }
                 }
                 .inout-btn {
-                    width: 140rpx;
+                    width: 138rpx;
                     height: 32rpx;
                     border: 1px solid #E3A33D;
                     margin: 24rpx 32rpx 0 0;
@@ -369,12 +369,12 @@
                 }
                 .outcome-line-item {
                     background-image: linear-gradient(180deg, #C9E4FF 0%, #2083E6 97%);
-                    border-radius: 11rpx 11rpx 0 0;
+                    border-radius: 8rpx 8rpx 0 0;
                     height: 16rpx;
                 }
                 .income-line-item {
                     background-image: linear-gradient(0deg, #D36221 0%, #F2AD3C 100%, #F7E7AC 100%);
-                    border-radius: 11rpx 11rpx 0 0;
+                    border-radius: 8rpx 8rpx 0 0;
                     height: 16rpx;
                 }
                 .income-item-num {
@@ -574,8 +574,8 @@
         }
         .progress-num {
             font-family: PingFangSC-Medium;
-            font-size: 12px;
-            color: #3163E8;
+            font-size: 20rpx;
+            color: #4A4A4A;
             letter-spacing: 0;
             margin-left: 20rpx;
         }
@@ -630,6 +630,30 @@
                 font-family: PingFangSC-Regular;
                 font-size: 25rpx;
                 letter-spacing: 0;
+            }
+            .location-box-select {
+                background: rgba(238, 238, 238, 0.5);
+                border-radius: 6rpx;
+                margin: 8rpx 0 20rpx 0;
+                width: 484rpx;
+                height: 70rpx;
+                line-height: 70rpx;
+                font-family: PingFangSC-Regular;
+                font-size: 25rpx;
+                letter-spacing: 0;
+            }
+            .location-box {
+                background: rgba(238, 238, 238, 0.5);
+                border-radius: 6rpx;
+                margin: 8rpx 0 20rpx 0;
+                width: 484rpx;
+                height: 70rpx;
+                line-height: 70rpx;
+                font-family: PingFangSC-Regular;
+                font-size: 25rpx;
+                letter-spacing: 0;
+                color: #BBBBBB;
+                margin-left: 0.3em;
             }
             .input-placeholder {
                 font-family: PingFangSC-Regular;
@@ -771,58 +795,4 @@
     /* height: 30rpx; */
     background: #F4F7FE;
     border-radius: 16px;
-}
-
-.pro-iphonex {
-    height: 28rpx;
-}
-
-.pro-iphone {
-    height: 30rpx;
-}
-
-.pro-an {
-    height: 32rpx;
-}
-
-.progress {
-    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAPCAYAAADd/14OAAAAZklEQVQoU2P8vkpL7t+fn3MZGRkt/v//f4KJhT2ZM+zaIwY0wPh1mfJuBgYGFyTxPdxRd10xFH5brvLz////bDAJRkbGX1yRd9ixmfgfXZA76i7jqEJQCIACnMrBQ0rMEBfXxKYeAPEZVhCpkd3VAAAAAElFTkSuQmCC);
-    /* height: 30rpx; */
-    background-color: #E3A33D;
-    color: #E3A33D;
-}
-
-.progress-dun {
-    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAPCAYAAADd/14OAAAAZklEQVQoU2P8vkpL7t+fn3MZGRkt/v//f4KJhT2ZM+zaIwY0wPh1mfJuBgYGFyTxPdxRd10xFH5brvLz////bDAJRkbGX1yRd9ixmfgfXZA76i7jqEJQCIACnMrBQ0rMEBfXxKYeAPEZVhCpkd3VAAAAAElFTkSuQmCC);
-    /* height: 30rpx; */
-}
-
-.progress-num {
-    font-family: PingFangSC-Medium;
-    font-size: 12px;
-    color: #4A4A4A;
-    letter-spacing: 0;
-    margin-left: 20rpx;
-}
-
-.unfold,
-.fold {
-    width: 100%;
-    padding-top: 20rpx;
-    padding-bottom: 20rpx;
-}
-
-.unfold-title,
-.fold-title {
-    font-family: PingFangSC-Regular;
-    font-size: 12px;
-    color: #B6B7BE;
-    letter-spacing: 0;
-}
-
-.unfold image,
-.fold image {
-    width: 32rpx;
-    height: 20rpx;
-    margin-left: 10rpx;
 }

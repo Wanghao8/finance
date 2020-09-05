@@ -79,7 +79,18 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-
+        let that = this
+        let interval = setInterval(() => {
+            if (that.data.username && that.data.password) {
+                that.setData({
+                    inputpass: true
+                })
+            } else {
+                that.setData({
+                    inputpass: false
+                })
+            }
+        }, 100);
     },
 
     /**
