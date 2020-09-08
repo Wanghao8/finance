@@ -55,7 +55,7 @@
 
 .container .top-select .top-select-item-box .top-select-item {
   font-family: PingFangSC-Medium;
-  font-size: 25rpx;
+  font-size: 28rpx;
   color: #BBBBBB;
   letter-spacing: 0;
   text-align: center;
@@ -107,7 +107,7 @@
 
 .container .middle-box .middle-label {
   font-family: PingFangSC-Medium;
-  font-size: 20rpx;
+  font-size: 24rpx;
   color: #BBBBBB;
   letter-spacing: 0;
   margin-right: 24rpx;
@@ -212,6 +212,16 @@
   margin-right: 36rpx;
 }
 
+.container .nomore {
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  letter-spacing: 0;
+  color: #AEAEAE;
+  margin: 20rpx 0;
+  width: 100%;
+  text-align: center;
+}
+
 .container .analysis-box {
   margin-bottom: 100rpx;
   overflow: auto;
@@ -237,10 +247,10 @@
 .container .analysis-box .chartbar1-box .chartbar1-top .previous,
 .container .analysis-box .chartbar1-box .chartbar1-top .next {
   font-family: PingFangSC-Semibold;
-  font-size: 20rpx;
+  font-size: 24rpx;
   color: #BBBBBB;
   letter-spacing: 0;
-  padding: 20rpx;
+  padding: 10rpx;
 }
 
 .container .analysis-box .chartbar1-box .chartbar1-top .previous {
@@ -253,11 +263,11 @@
 
 .container .analysis-box .chartbar1-box .chartbar1-top .thisyear {
   font-family: PingFangSC-Semibold;
-  font-size: 25rpx;
+  font-size: 28rpx;
   color: #E3A33D;
   letter-spacing: 0;
   font-weight: bold;
-  margin: 0 194rpx;
+  margin: 0 170rpx;
 }
 
 .container .analysis-box .chartbar1-box .chartbar1-title {
@@ -315,6 +325,12 @@
   text-align: center;
 }
 
+.container .analysis-box .chartbar2-box .chartbar2-top .chartbar2-title .split-line-long {
+  width: 56rpx;
+  height: 2rpx;
+  background-color: #E3A33D;
+}
+
 .container .analysis-box .chartbar2-box .chartbar2-top .inout-box {
   margin-bottom: 30rpx;
 }
@@ -350,7 +366,7 @@
 }
 
 .container .analysis-box .chartbar2-box .chartbar2-title {
-  width: 100%;
+  width: 716rpx;
 }
 
 .container .analysis-box .chartbar2-box .chartbar2-title .inout-label-box {
@@ -410,15 +426,17 @@
 }
 
 .container .analysis-box .chartbar2-box .chartbar2-container .outcome-line-item {
-  background-image: linear-gradient(180deg, #C9E4FF 0%, #2083E6 97%);
-  border-radius: 8rpx 8rpx 0 0;
+  background-image: linear-gradient(to left, #C9E4FF 0%, #2083E6 97%);
+  border-radius: 0 8rpx 8rpx 0;
   height: 16rpx;
+  max-width: 500rpx;
 }
 
 .container .analysis-box .chartbar2-box .chartbar2-container .income-line-item {
-  background-image: linear-gradient(0deg, #D36221 0%, #F2AD3C 100%, #F7E7AC 100%);
-  border-radius: 8rpx 8rpx 0 0;
+  background-image: linear-gradient(to right, #D36221 0%, #F2AD3C 100%, #F7E7AC 100%);
+  border-radius: 0 8rpx 8rpx 0;
   height: 16rpx;
+  max-width: 500rpx;
 }
 
 .container .analysis-box .chartbar2-box .chartbar2-container .income-item-num {
@@ -679,6 +697,7 @@
   width: 570rpx;
   height: 100vh;
   background-color: #fff;
+  overflow: hidden;
 }
 
 .drawer .drawer-top-box {
@@ -711,9 +730,32 @@
   font-family: PingFangSC-Regular;
   font-size: 25rpx;
   letter-spacing: 0;
+  padding-left: 10rpx;
 }
 
-.drawer .drawer-top-box .drawer-top .location-box-select {
+.drawer .drawer-top-box .drawer-top .location-container {
+  width: 210rpx;
+  margin: 8rpx 0 28rpx 0;
+}
+
+.drawer .drawer-top-box .drawer-top .location-container .downarrow {
+  width: 14rpx;
+  height: 8rpx;
+  margin: -48rpx;
+}
+
+.drawer .drawer-top-box .drawer-top .location-container .location-item {
+  width: 138rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  background-image: linear-gradient(180deg, rgba(252, 252, 252, 0.5) 0%, rgba(227, 227, 227, 0.5) 100%);
+  border: 1px solid rgba(151, 151, 151, 0.5);
+  border-radius: 8rpx;
+  border-radius: 8rpx;
+  padding-left: 70rpx;
+}
+
+.drawer .drawer-top-box .drawer-top .location-container .location-box-select {
   background: rgba(238, 238, 238, 0.5);
   border-radius: 6rpx;
   margin: 8rpx 0 20rpx 0;
@@ -725,7 +767,7 @@
   letter-spacing: 0;
 }
 
-.drawer .drawer-top-box .drawer-top .location-box {
+.drawer .drawer-top-box .drawer-top .location-container .location-box {
   background: rgba(238, 238, 238, 0.5);
   border-radius: 6rpx;
   margin: 8rpx 0 20rpx 0;
@@ -739,7 +781,7 @@
   margin-left: 0.3em;
 }
 
-.drawer .drawer-top-box .drawer-top .input-placeholder {
+.drawer .drawer-top-box .drawer-top .location-container .input-placeholder {
   font-family: PingFangSC-Regular;
   font-size: 25rpx;
   color: #BBBBBB;

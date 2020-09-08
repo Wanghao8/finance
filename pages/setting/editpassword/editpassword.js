@@ -10,6 +10,7 @@ Page({
         oldpass: '',
         newpass: '',
         comfirmpass: '',
+        timeout1: '',
     },
     onClickLeft() {
         wx.navigateBack({
@@ -80,7 +81,7 @@ Page({
                 })
                 wx.removeStorageSync('sessionId')
                     //登录成功后跳转页面延时
-                setTimeout(function() {
+                that.data.timeout1 = setTimeout(function() {
                     wx.navigateTo({
                         // url: '../../pages/login/login?changePass=1',
                         url: '../../login/login?changePass=1',
@@ -133,7 +134,7 @@ Page({
      * 生命周期函数--监听页面隐藏
      */
     onHide: function() {
-
+        clearTimeout(this.data.timeout1)
     },
 
     /**

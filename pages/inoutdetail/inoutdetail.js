@@ -19,6 +19,7 @@ var lineoption = {
         // inverse: true,
         axisLabel: {
             show: true,
+            color: "#AEAEAE"
         },
         splitNumber: 6,
         data: [],
@@ -34,6 +35,10 @@ var lineoption = {
         type: 'value',
         axisLine: {
             show: false
+        },
+        axisLabel: {
+            show: true,
+            color: "#AEAEAE"
         },
         axisTick: {
             show: false
@@ -101,6 +106,10 @@ var baroption = {
         splitLine: {
             show: false
         },
+        axisLabel: {
+            show: true,
+            color: "#AEAEAE"
+        },
         // data: []
         data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     },
@@ -113,6 +122,10 @@ var baroption = {
         },
         splitLine: {
             show: false
+        },
+        axisLabel: {
+            show: true,
+            color: "#AEAEAE"
         },
     },
     series: [{
@@ -299,7 +312,12 @@ Page({
         needfold: true, //需方列表展开收起
         inoutBtn: 'in', //入金出金按钮
         addIndex: 0, //picker的index
-        locationList: ['请选择地区', 'a', 'b']
+        locationList: ['a', 'b'],
+        timeout1: '',
+        timeout2: '',
+        timeout3: '',
+        timeout4: '',
+        timeout5: '',
     },
     //前一年点击事件
     previous() {
@@ -320,7 +338,6 @@ Page({
         let that = this
         chartBar1.off('click')
         chartBar1.on('click', function(params) {
-            console.log(params);
             let start, end, start1, end1
             if (params.name == that.data.thismonth) {
                 start = that.data.thisyear + '年' + params.name.padStart(2, 0) + '月' + '01日'
@@ -498,10 +515,11 @@ Page({
         this.setData({
             show: false
         })
-        this.getListData()
+
         let start = that.getNowFormatDate('last')
         let end = that.getNowFormatDate('now')
         this.getOverage(start, end)
+        this.getListData()
             // setTimeout(() => { this.initDraw() }, 1000)
     },
     //初始化抽屉里的数据
@@ -513,6 +531,8 @@ Page({
             minMoney: '',
             maxMoney: '',
             radio: 5,
+            startMoney: '',
+            endMoney: '',
             cardChecked: false,
             aliChecked: false,
             WechatChecked: false,
@@ -578,7 +598,6 @@ Page({
     },
     //点击进入详情页
     toDetail(e) {
-        console.log(e);
         let id = e.currentTarget.dataset.id
         let sign = e.currentTarget.dataset.sign
         wx.navigateTo({
@@ -612,7 +631,7 @@ Page({
             })
             let start2 = start + " 00:00:00"
             let end2 = end + " 00:00:00"
-            setTimeout(() => {
+            this.data.timeout1 = setTimeout(() => {
                 that.getYearData()
                 that.getMonthData(this.data.thismonth)
             }, 200)
@@ -623,7 +642,7 @@ Page({
     // 是否登陆过，若在别的地方登陆，跳转登录页
     isLoged: function(msg) {
         if (msg.indexOf('你') != -1) {
-            let timeout1 = setTimeout(function() {
+            this.data.timeout2 = setTimeout(function() {
                 wx.navigateTo({
                     url: '../login/login',
                 })
@@ -640,19 +659,12 @@ Page({
     //初始化饼图
     initPie() {
         pieoption.series.data = this.data.pieList
-            // pieoption.legend.data = this.data.piex
         chartPie.setOption(pieoption, true)
     },
     //初始化折线图
     initLine() {
         lineoption.xAxis.data = this.data.linex
         lineoption.series.data = this.data.linein
-        chartLine.setOption(lineoption, true)
-    },
-    //初始化折线图
-    initLine2() {
-        lineoption.xAxis.data = this.data.linex
-        lineoption.series.data = this.data.lineout
         chartLine.setOption(lineoption, true)
     },
     //格式化当天日期
@@ -714,11 +726,10 @@ Page({
         } else if (that.data.endMoney) {
             data.endMoney = that.data.endMoney
         } else {}
-        that.data.companyname != '' ? data.enterpriseName = data.companyname : that.data.enterpriseName
-        that.data.tradeNo != '' ? data.tradeNo = that.data.tradeNo : data.tradeNo
+        that.data.companyname != '' ? data.enterpriseName = that.data.companyname : that.data.enterpriseName
+        that.data.dealId != '' ? data.tradeNo = that.data.dealId : that.data.tradeNo
         that.data.addIndex != 0 ? data.orgId = that.data.locationList[that.data.addIndex] : data.orgId
         type ? data.tradeType = type : data.tradeType
-        console.log(data);
         req.requestAll(data).then(res => {
             if (res.data.code == 1) {
                 let resdata = res.data.data
@@ -789,14 +800,12 @@ Page({
         that.data.minMoney != '' ? data.startMoney = that.data.minMoney : that.data.startMoney
         that.data.maxMoney != '' ? data.endMoney = that.data.maxMoney : that.data.endMoney
         that.data.dealId != '' ? data.tradeNo = that.data.dealId : that.data.tradeNo
-        that.data.location != '' ? data.orgId = that.data.location : that.data.orgId
+        that.data.cityRank ? data.orgId = that.data.locationId[that.data.addIndex] : that.data.orgId
         type ? data.tradeType = type : that.data.tradeType
-        console.log(data);
         req.requestAll(data).then(res => {
             if (res.data.code == 1) {
                 let resdata = res.data.data
                 let leave = app.addComma(resdata.balance)
-                console.log(leave);
                 that.setData({
                     leave: leave,
                     incomeMoney: app.addComma(resdata.income.toFixed(2)),
@@ -825,7 +834,6 @@ Page({
         req.requestAll(data).then(res => {
             if (res.data.code == 1) {
                 let resdata = res.data.data
-                console.log(res);
                 var barx = []
                 var barin = []
                 var barout = []
@@ -863,12 +871,10 @@ Page({
             year: that.data.thisyear,
             month: month
         }
-        console.log(data);
         req.requestAll(data).then(res => {
             if (res.data.code == 1) {
                 let resdata = res.data.data
                 let linex = []
-                let piex = []
                 let linein = []
                 let lineout = []
                 let lineList = resdata.dateList
@@ -885,7 +891,6 @@ Page({
                     item.tradeType == 4 ? item.name = 'POS支付宝' : item.tradeType
                     item.tradeType == 5 ? item.name = 'POS刷卡' : item.tradeType
                     item.value = item.money
-                    piex.push(item.name)
                 })
                 let rank = resdata.rankList
                     //这一步需要对数组排序
@@ -903,7 +908,6 @@ Page({
                 }
                 that.setData({
                     pieList: pieList,
-                    piex: piex,
                     linex: linex,
                     linein: linein,
                     lineout: lineout,
@@ -912,8 +916,12 @@ Page({
                     rankshort: rank.slice(0, 4)
 
                 })
-                that.initLine()
-                that.initPie()
+
+                that.data.timeout3 = setTimeout(() => {
+                    that.initLine()
+                    that.initPie()
+                }, 1000);
+
             } else {
                 console.log(res);
                 wx.showToast({
@@ -937,7 +945,6 @@ Page({
             startTime: start,
             endTime: end,
         }
-        console.log(data);
         req.requestAll(data).then(res => {
             if (res.data.code == 1) {
                 let list = res.data.data
@@ -949,8 +956,6 @@ Page({
                         return value2 - value1;
                     }
                 }
-                // console.log(resdata);
-                // return
                 type == 1 ? list.sort(compare('income')) : list.sort(compare('outcome'))
                 that.setData({
                     tabel: list
@@ -967,6 +972,37 @@ Page({
             }
         })
     },
+    getLocation() {
+        let that = this
+        const data = {
+            modeCode: 'QP4KFcEKxMuYRRyY753vBUBbmqBBa6TD', //功能码
+            sessionId: wx.getStorageSync('sessionId'),
+        }
+        req.requestAll(data).then(res => {
+            if (res.data.code == 1) {
+                console.log(res.data, 'location');
+                var list = res.data.data
+                var addrList = []
+                var addNameList = []
+                list.forEach((item) => {
+                    addrList.push(item.id)
+                    addNameList.push(item.name)
+                })
+                that.setData({
+                    locationList: addNameList,
+                    locationId: addrList
+                })
+            } else {
+                console.log(res);
+                wx.showToast({
+                    title: res.data.msg,
+                    icon: 'none',
+                    duration: 1500,
+                    mask: false,
+                });
+            }
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */
@@ -974,11 +1010,11 @@ Page({
         let that = this
         wx.getSystemInfo({
             success: function(res) {
-                console.log(res.model)
-                console.log(res.statusBarHeight)
-                console.log(res.screenHeight)
-                console.log(res.windowHeight)
-                console.log(res.windowWidth)
+                // console.log(res.model)
+                // console.log(res.statusBarHeight)
+                // console.log(res.screenHeight)
+                // console.log(res.windowHeight)
+                // console.log(res.windowWidth)
                 if (res.model.indexOf('iPhone XR') != -1) {
                     that.setData({
                         brand: 'iphonex'
@@ -1026,7 +1062,8 @@ Page({
             scrolltop: 0
         })
         let auth = wx.getStorageSync('authority')
-        if (auth == 1) {
+            // if (auth == 1) {
+        if (auth == 8) {
             that.setData({
                 cityRank: true
             })
@@ -1044,11 +1081,12 @@ Page({
             let start = that.getNowFormatDate('now').slice(0, 8) + '01'
             let end = that.getNowFormatDate('now')
             this.getOverage(start, end)
-            setTimeout(() => {
+            this.data.timeout4 = setTimeout(() => {
                 that.getYearData()
                 that.getMonthData(9)
             }, 200);
         }
+        this.getLocation()
 
     },
 
@@ -1056,7 +1094,10 @@ Page({
      * 生命周期函数--监听页面隐藏
      */
     onHide: function() {
-
+        clearTimeout(this.data.timeout1)
+        clearTimeout(this.data.timeout2)
+        clearTimeout(this.data.timeout3)
+        clearTimeout(this.data.timeout4)
     },
 
     /**

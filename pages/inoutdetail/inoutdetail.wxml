@@ -54,6 +54,7 @@
                     </view>
                 </view>
             </view>
+            <view hidden="{{list.length==0}}" class="nomore">没有更多了~</view>
             <view hidden="{{list.length!=0}}" class="empty flexccc">
                 <image class="empty-img" src="../../assets/images/no-data.png" mode="aspectFit|aspectFill|widthFix"></image>
                 <view class="no-data">暂无数据</view>
@@ -79,7 +80,11 @@
         </view>
         <view class="chartbar2-box flexc0c">
             <view class="chartbar2-top flexc0c">
-                <view class="chartbar2-title">{{startMonth}}---{{endMonth}}</view>
+                <view class="chartbar2-title flexrcc">
+                    {{startMonth}}
+                    <view class="split-line-long"></view>
+                    {{endMonth}}
+                </view>
                 <view class="inout-box flexr0c">
                     <view class="income flexr0c">
                         <view class="income-label">收入</view>
@@ -92,7 +97,7 @@
                     </view>
                 </view>
             </view>
-            <view class="" hidden="{{!cityRank}}">
+            <view class="flexc0c" hidden="{{!cityRank}}">
                 <view class="chartbar2-title flexrb">
                     <view class="inout-label-box flexr0c">
                         <view class="label-line"></view>
@@ -112,19 +117,19 @@
                         <view class="city-name">{{item.name}}</view>
                         <view class="flexrbc" hidden="{{inoutBtn!='in'}}">
                             <view class="income-line-item" style="width:{{500*item.income/tabel[0].income}}rpx"></view>
-                            <view class="income-item-num">{{item.income}}</view>
+                            <view class="income-item-num">{{item.income}}元</view>
                         </view>
                         <view class="flexrbc" hidden="{{inoutBtn!='in'}}">
                             <view class="outcome-line-item" style="width:{{500*item.outcome/tabel[0].income}}rpx"></view>
-                            <view class="outcome-item-num">{{item.outcome}}</view>
+                            <view class="outcome-item-num">{{item.outcome}}元</view>
                         </view>
                         <view class="flexrbc" hidden="{{inoutBtn!='out'}}">
                             <view class="outcome-line-item" style="width:{{500*item.outcome/tabel[0].outcome}}rpx"></view>
-                            <view class="outcome-item-num">{{item.outcome}}</view>
+                            <view class="outcome-item-num">{{item.outcome}}元</view>
                         </view>
                         <view class="flexrbc" hidden="{{inoutBtn!='out'}}">
                             <view class="income-line-item" style="width:{{500*item.income/tabel[0].outcome}}rpx"></view>
-                            <view class="income-item-num">{{item.income}}</view>
+                            <view class="income-item-num">{{item.income}}元</view>
                         </view>
                     </view>
                 </view>
@@ -139,10 +144,10 @@
                             {{item.name}}
                         </view>
                         <view class="{{index%2==0?'table-backfff':'table-backyellow'}} table-income">
-                            {{item.income}}
+                            +{{item.income}}
                         </view>
                         <view class="{{index%2==0?'table-backfff':'table-backyellow'}}">
-                            {{item.outcome}}
+                            -{{item.outcome}}
                         </view>
                     </view>
                 </view>
@@ -167,7 +172,7 @@
                 <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ecpie }}"></ec-canvas>
             </view>
         </view>
-        <view class="rankcompany">
+        <view class="rankcompany" style="margin-bottom:{{hair}}px">
             <view class="chart-top-left flexr0c">
                 <view class="label-line"></view>
                 <view class="chart-top-left-title">企业缴纳排名（前十）</view>
@@ -215,7 +220,7 @@
 <!-- 抽屉弹出 -->
 <van-popup show="{{ show }}" position="right" custom-style="width: 76%;" bind:close="closeDraw">
     <view class="drawer">
-        <view class="drawer-top-box">
+        <view class="drawer-top-box" style="margin-top:{{hair}}px">
             <view class="drawer-top">
                 <view class="drawer-top-label">企业名称</view>
                 <input type="text" bindinput="changeComName" placeholder="请输入您要查找的企业名称" placeholder-class="input-placeholder" value="{{companyname}}" />
@@ -223,14 +228,17 @@
                 <input type="text" bindinput="changeDealId" placeholder="请输入您要查找的交易单号" placeholder-class="input-placeholder" value="{{dealId}}" />
                 <view class="drawer-top-label" hidden="{{!cityRank}}">地区</view>
                 <!-- <input type="text" bindinput="changeLocation" placeholder="请输入您要查找的地区" placeholder-class="input-placeholder" value="{{location}}" /> -->
-                <view class="" hidden="{{!cityRank}}">
+                <view class="location-container" hidden="{{!cityRank}}">
                     <picker bindchange="bindPickerChange" value="{{addIndex}}" range="{{locationList}}">
-                        <view class="{{addIndex==0?'location-box':'location-box-select'}}">
-                            {{locationList[addIndex]}}
+                        <view class="flexr0c">
+                            <view class="location-item">{{locationList[addIndex].name}}</view>
+                            <image class="downarrow" src="../../assets/images/downarrow.png"></image>
                         </view>
+                        <!-- <view class="{{addIndex==0?'location-box':'location-box-select'}}">
+                            {{locationList[addIndex]}}
+                        </view> -->
                     </picker>
                 </view>
-                <!-- <view class="location-box">{{}}</view> -->
             </view>
         </view>
         <view class="money-box">

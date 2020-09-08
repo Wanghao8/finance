@@ -53,7 +53,7 @@
             height: 56px;
             .top-select-item {
                 font-family: PingFangSC-Medium;
-                font-size: 25rpx;
+                font-size: 28rpx;
                 color: #BBBBBB;
                 letter-spacing: 0;
                 text-align: center;
@@ -100,7 +100,7 @@
         }
         .middle-label {
             font-family: PingFangSC-Medium;
-            font-size: 20rpx;
+            font-size: 24rpx;
             color: #BBBBBB;
             letter-spacing: 0;
             margin-right: 24rpx;
@@ -198,6 +198,15 @@
             }
         }
     }
+    .nomore {
+        font-family: PingFangSC-Regular;
+        font-size: 24rpx;
+        letter-spacing: 0;
+        color: #AEAEAE;
+        margin: 20rpx 0;
+        width: 100%;
+        text-align: center;
+    }
     .analysis-box {
         margin-bottom: 100rpx;
         overflow: auto;
@@ -217,10 +226,10 @@
                 .previous,
                 .next {
                     font-family: PingFangSC-Semibold;
-                    font-size: 20rpx;
+                    font-size: 24rpx;
                     color: #BBBBBB;
                     letter-spacing: 0;
-                    padding: 20rpx;
+                    padding: 10rpx;
                 }
                 .previous {
                     padding-left: 0;
@@ -230,11 +239,11 @@
                 }
                 .thisyear {
                     font-family: PingFangSC-Semibold;
-                    font-size: 25rpx;
+                    font-size: 28rpx;
                     color: #E3A33D;
                     letter-spacing: 0;
                     font-weight: bold;
-                    margin: 0 194rpx;
+                    margin: 0 170rpx;
                 }
             }
             .chartbar1-title {
@@ -285,6 +294,11 @@
                     letter-spacing: 0;
                     margin: 20rpx 0;
                     text-align: center;
+                    .split-line-long {
+                        width: 56rpx;
+                        height: 2rpx;
+                        background-color: #E3A33D;
+                    }
                 }
                 .inout-box {
                     margin-bottom: 30rpx;
@@ -317,7 +331,7 @@
                 }
             }
             .chartbar2-title {
-                width: 100%;
+                width: 716rpx;
                 .inout-label-box {
                     margin: 12rpx 0 0 0;
                     .label-line {
@@ -368,14 +382,16 @@
                     letter-spacing: 0;
                 }
                 .outcome-line-item {
-                    background-image: linear-gradient(180deg, #C9E4FF 0%, #2083E6 97%);
-                    border-radius: 8rpx 8rpx 0 0;
+                    background-image: linear-gradient(to left, #C9E4FF 0%, #2083E6 97%);
+                    border-radius: 0 8rpx 8rpx 0;
                     height: 16rpx;
+                    max-width: 500rpx;
                 }
                 .income-line-item {
-                    background-image: linear-gradient(0deg, #D36221 0%, #F2AD3C 100%, #F7E7AC 100%);
-                    border-radius: 8rpx 8rpx 0 0;
+                    background-image: linear-gradient(to right, #D36221 0%, #F2AD3C 100%, #F7E7AC 100%);
+                    border-radius: 0 8rpx 8rpx 0;
                     height: 16rpx;
+                    max-width: 500rpx;
                 }
                 .income-item-num {
                     font-family: PingFangSC-Regular;
@@ -605,6 +621,7 @@
     width: 570rpx;
     height: 100vh;
     background-color: #fff;
+    overflow: hidden;
     .drawer-top-box {
         height: 484rpx;
         width: 100%;
@@ -630,38 +647,59 @@
                 font-family: PingFangSC-Regular;
                 font-size: 25rpx;
                 letter-spacing: 0;
+                padding-left: 10rpx;
             }
-            .location-box-select {
-                background: rgba(238, 238, 238, 0.5);
-                border-radius: 6rpx;
-                margin: 8rpx 0 20rpx 0;
-                width: 484rpx;
-                height: 70rpx;
-                line-height: 70rpx;
-                font-family: PingFangSC-Regular;
-                font-size: 25rpx;
-                letter-spacing: 0;
-            }
-            .location-box {
-                background: rgba(238, 238, 238, 0.5);
-                border-radius: 6rpx;
-                margin: 8rpx 0 20rpx 0;
-                width: 484rpx;
-                height: 70rpx;
-                line-height: 70rpx;
-                font-family: PingFangSC-Regular;
-                font-size: 25rpx;
-                letter-spacing: 0;
-                color: #BBBBBB;
-                margin-left: 0.3em;
-            }
-            .input-placeholder {
-                font-family: PingFangSC-Regular;
-                font-size: 25rpx;
-                color: #BBBBBB;
-                letter-spacing: 0;
-                line-height: 70rpx;
-                margin-left: 0.3em;
+            .location-container {
+                width: 210rpx;
+                margin: 8rpx 0 28rpx 0;
+                .downarrow {
+                    width: 14rpx;
+                    height: 8rpx;
+                    margin: -48rpx;
+                }
+                .location-item {
+                    // opacity: 0.5;
+                    width: 138rpx;
+                    height: 70rpx;
+                    line-height: 70rpx;
+                    background-image: linear-gradient(180deg, rgba(252, 252, 252, 0.5) 0%, rgba(227, 227, 227, 0.5) 100%);
+                    border: 1px solid rgba(151, 151, 151, 0.5);
+                    border-radius: 8rpx;
+                    border-radius: 8rpx;
+                    padding-left: 70rpx;
+                }
+                .location-box-select {
+                    background: rgba(238, 238, 238, 0.5);
+                    border-radius: 6rpx;
+                    margin: 8rpx 0 20rpx 0;
+                    width: 484rpx;
+                    height: 70rpx;
+                    line-height: 70rpx;
+                    font-family: PingFangSC-Regular;
+                    font-size: 25rpx;
+                    letter-spacing: 0;
+                }
+                .location-box {
+                    background: rgba(238, 238, 238, 0.5);
+                    border-radius: 6rpx;
+                    margin: 8rpx 0 20rpx 0;
+                    width: 484rpx;
+                    height: 70rpx;
+                    line-height: 70rpx;
+                    font-family: PingFangSC-Regular;
+                    font-size: 25rpx;
+                    letter-spacing: 0;
+                    color: #BBBBBB;
+                    margin-left: 0.3em;
+                }
+                .input-placeholder {
+                    font-family: PingFangSC-Regular;
+                    font-size: 25rpx;
+                    color: #BBBBBB;
+                    letter-spacing: 0;
+                    line-height: 70rpx;
+                    margin-left: 0.3em;
+                }
             }
         }
     }

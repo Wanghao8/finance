@@ -52,7 +52,7 @@
 
 .container .list-box .list-item .label {
   font-family: PingFangSC-Regular;
-  font-size: 25rpx;
+  font-size: 28rpx;
   color: #4A4A4A;
   letter-spacing: 0;
 }

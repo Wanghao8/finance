@@ -61,11 +61,13 @@
 .container .form-box .password-box {
   line-height: 30rpx;
   margin-bottom: 70rpx;
+  margin-top: 10rpx;
 }
 
 .container .form-box .label {
   width: 88rpx;
-  height: 42rpx;
+  height: 80rpx;
+  line-height: 80rpx;
   font-family: PingFangHK-Regular;
   font-size: 28rpx;
   color: #4A4A4A;

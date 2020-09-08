@@ -38,6 +38,7 @@ App({
     },
     is_login: function() {
         if (!wx.getStorageSync('sessionId')) {
+            wx.hideLoading({})
             wx.navigateTo({
                 url: '/pages/login/login',
             })
@@ -62,5 +63,15 @@ App({
         let second = padNum(date.getSeconds())
         return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second
     },
+    //过万处理
+    tenThousand(params, fix) {
+        if (params >= 10000) {
+            return (params / 10000).toFixed(2) + '万'
+        } else if (fix) {
+            return params.toFixed(2)
+        } else {
+            return params
+        }
+    }
 
 })

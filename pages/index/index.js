@@ -15,9 +15,9 @@ Page({
         },
         paytype: 1, //支付方式
         list: [],
+        timeout1: ''
     },
     toDetail(e) {
-        console.log(e);
         let id = e.currentTarget.dataset.id
         let sign = e.currentTarget.dataset.sign
         wx.navigateTo({
@@ -49,7 +49,7 @@ Page({
     // 是否登陆过，若在别的地方登陆，跳转登录页
     isLoged: function(msg) {
         if (msg.indexOf('你') != -1) {
-            let timeout1 = setTimeout(function() {
+            this.data.timeout1 = setTimeout(function() {
                 wx.navigateTo({
                     url: '../login/login',
                 })
@@ -92,7 +92,6 @@ Page({
             if (res.data.code == 1) {
                 let resdata = res.data.data
                 let leave = app.addComma(resdata.balance)
-                console.log(leave);
                 that.setData({
                     leave: leave,
                     incomeMoney: resdata.income.toFixed(2),
@@ -134,6 +133,9 @@ Page({
     //接口部分(分页列表)
 
     getListData() {
+        wx.showLoading({
+            title: '加载中',
+        })
         let that = this
         let start = that.getNowFormatDate('last')
         let end = that.getNowFormatDate('now')
@@ -147,11 +149,10 @@ Page({
             // startTime: that.data.today,
             // endTime: that.data.today,
         }
-        console.log(data);
         req.requestAll(data).then(res => {
+            wx.hideLoading({})
             if (res.data.code == 1) {
                 let resdata = res.data.data
-                console.log(resdata);
                 let list = resdata.list
                 list.forEach((item) => {
                     item.eventTime.hour < 10 ? item.eventTime.hour = item.eventTime.hour.toString().padStart(2, 0) : item.eventTime.hour = item.eventTime.hour
@@ -171,7 +172,9 @@ Page({
                     list: list,
                     numoflist: resdata.notCheckCount
                 })
+                wx.hideLoading({})
             } else {
+                wx.hideLoading({})
                 console.log(res);
                 wx.showToast({
                     title: res.data.msg,
@@ -180,6 +183,7 @@ Page({
                     mask: false,
                 });
                 that.isLoged(res.data.msg)
+                wx.hideLoading({})
             }
         })
     },
@@ -190,7 +194,6 @@ Page({
             modeCode: 'BXVWsivLfbkFKN7YSeq88fzmTrY8pS6D', //功能码
             sessionId: wx.getStorageSync('sessionId'),
         }
-        console.log(data);
         req.requestAll(data).then(res => {
             if (res.data.code == 1) {
                 let resdata = res.data.data
@@ -207,6 +210,7 @@ Page({
                     mask: false,
                 });
                 that.isLoged(res.data.msg)
+
             }
         })
     },
@@ -215,15 +219,14 @@ Page({
      */
     onLoad: function(options) {
         let that = this
+        this.getOverage()
         wx.getSystemInfo({
             success: function(res) {
-                console.log(res.model)
-                console.log(res.statusBarHeight)
-                console.log(res.windowWidth)
-                console.log(res.windowHeight)
+                console.log(res.statusBarHeight);
                 var clientHeight = res.windowHeight,
                     clientWidth = res.windowWidth,
-                    rpxR = 360 / clientWidth;
+                    // rpxR = 360 / clientWidth;
+                    rpxR = clientWidth / 375;
                 // rpxR < 1 ? rpxR = 1 : rpxR
                 that.setData({
                     hair: res.statusBarHeight,
@@ -258,10 +261,10 @@ Page({
             orgName: wx.getStorageSync('orgName'),
             userName: wx.getStorageSync('userName'),
         })
-        app.is_login()
+
         this.getOverage()
         this.getListData()
-            // this.getDealType()
+        app.is_login()
 
     },
 
@@ -269,7 +272,7 @@ Page({
      * 生命周期函数--监听页面隐藏
      */
     onHide: function() {
-
+        clearTimeout(this.data.timeout1)
     },
 
     /**

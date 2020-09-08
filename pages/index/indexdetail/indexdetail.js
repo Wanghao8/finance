@@ -8,7 +8,9 @@ Page({
      */
     data: {
         paytype: 1, //支付方式
-        id: '' //交易ID
+        id: '', //交易ID
+        timeout1: '',
+        timeout2: '',
     },
     // 审核确认按钮点击事件
     checkComfirm() {
@@ -23,7 +25,7 @@ Page({
     // 是否登陆过，若在别的地方登陆，跳转登录页
     isLoged: function(msg) {
         if (msg.indexOf('你') != -1) {
-            let timeout1 = setTimeout(function() {
+            this.data.timeout1 = setTimeout(function() {
                 wx.navigateTo({
                     url: '../login/login',
                 })
@@ -32,13 +34,15 @@ Page({
     },
     //接口部分(获取明细)
     getDetail() {
+        wx.showLoading({
+            title: '加载中',
+        })
         let that = this
         const data = {
             modeCode: 'u2BwleJDhx9ehEp9hIqo3fkCWiExGYJ3', //功能码
             sessionId: wx.getStorageSync('sessionId'),
             id: that.data.id,
         }
-        console.log(data);
         req.requestAll(data).then(res => {
             if (res.data.code == 1) {
                 let resdata = res.data.data
@@ -75,9 +79,10 @@ Page({
                     toName: resdata.toName,
                     checkState: checkState,
                     checkUserName: resdata.checkUserName,
-
                 })
+                wx.hideLoading({})
             } else {
+                wx.hideLoading({})
                 console.log(res);
                 wx.showToast({
                     title: res.data.msg,
@@ -107,7 +112,7 @@ Page({
                     mask: false,
                 });
                 // return
-                setTimeout(() => {
+                that.data.timeout2 = setTimeout(() => {
                     wx.switchTab({
                         url: '../index',
                     })
@@ -151,7 +156,8 @@ Page({
      * 生命周期函数--监听页面隐藏
      */
     onHide: function() {
-
+        clearTimeout(this.data.timeout1)
+        clearTimeout(this.data.timeout2)
     },
 
     /**

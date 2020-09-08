@@ -47,7 +47,7 @@
                 }
                 .top-title {
                     font-family: PingFangSC-Regular;
-                    font-size: 25rpx;
+                    font-size: 28rpx;
                     color: #222222;
                     letter-spacing: 0;
                 }
@@ -60,7 +60,7 @@
             }
             .overage {
                 font-family: PingFangSC-Regular;
-                font-size: 20rpx;
+                font-size: 24rpx;
                 color: #BBBBBB;
                 letter-spacing: 0;
                 margin-top: 20rpx;
@@ -83,7 +83,7 @@
             margin: 20rpx 22rpx;
             .middle-label {
                 font-family: PingFangSC-Regular;
-                font-size: 25rpx;
+                font-size: 28rpx;
                 color: #A0A0A0;
                 letter-spacing: 0;
                 line-height: 40rpx;
@@ -91,7 +91,7 @@
             }
             .middle-content {
                 font-family: PingFangSC-Medium;
-                font-size: 25rpx;
+                font-size: 28rpx;
                 color: #4A4A4A;
                 letter-spacing: 0;
                 line-height: 40rpx;
@@ -103,7 +103,7 @@
         width: 716rpx;
         height: 680rpx;
         margin-left: 17rpx;
-        overflow: auto;
+        overflow: hidden;
         overflow-x: hidden;
         .list-content-box {
             width: 636rpx;
@@ -111,13 +111,13 @@
             position: relative;
             .list-label {
                 font-family: PingFangSC-Regular;
-                font-size: 20rpx;
+                font-size: 24rpx;
                 color: #BBBBBB;
                 letter-spacing: 0;
             }
             .list-content {
                 font-family: PingFangSC-Medium;
-                font-size: 25rpx;
+                font-size: 28rpx;
                 color: #4A4A4A;
                 letter-spacing: 0;
             }

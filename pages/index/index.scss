@@ -24,12 +24,12 @@
             margin: 28rpx 10rpx 28rpx 28rpx;
         }
         .comname {
-            font-size: 20rpx;
+            font-size: 24rpx;
             color: #FFFFFF;
             margin-right: 10rpx;
         }
         .username {
-            font-size: 20rpx;
+            font-size: 24rpx;
             color: #FFFFFF;
         }
         .center {
@@ -73,7 +73,7 @@
             padding: 26rpx 0;
             .tabel-item {
                 font-family: PingFangSC-Regular;
-                font-size: 22rpx;
+                font-size: 28rpx;
                 color: #222222;
                 letter-spacing: 0;
                 padding: 0 16rpx 0 22rpx;
@@ -144,15 +144,15 @@
                     line-height: 40rpx;
                     .list-item-title {
                         font-family: PingFangSC-Regular;
-                        font-size: 25rpx;
+                        font-size: 28rpx;
                         color: #A0A0A0;
                         letter-spacing: 0;
-                        width: 100rpx;
-                        margin-right: 25rpx;
+                        width: 114rpx;
+                        margin-right: 28rpx;
                     }
                     .list-item-content {
                         font-family: PingFangSC-Medium;
-                        font-size: 25rpx;
+                        font-size: 28rpx;
                         color: #4A4A4A;
                         letter-spacing: 0;
                     }
@@ -192,6 +192,15 @@
                         margin-right: 36rpx;
                     }
                 }
+            }
+            .nomore {
+                font-family: PingFangSC-Regular;
+                font-size: 24rpx;
+                letter-spacing: 0;
+                color: #AEAEAE;
+                margin-bottom: 20rpx;
+                width: 100%;
+                text-align: center;
             }
         }
     }
