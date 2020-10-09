@@ -189,9 +189,10 @@ Page({
                     duration: 1500,
                     mask: false,
                 });
-                that.isLoged(res.data.msg)
+                // that.isLoged(res.data.msg)
                 wx.hideLoading({})
             }
+            wx.hideLoading({})
         })
     },
     //接口部分(获取交易类型)
