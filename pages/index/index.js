@@ -55,6 +55,13 @@ Page({
                 })
             }, 2000)
         }
+        if (msg.indexOf('请先登录') != -1) {
+            this.data.timeout1 = setTimeout(function() {
+                wx.navigateTo({
+                    url: '../login/login',
+                })
+            }, 2000)
+        }
     },
     //格式化当天日期
     getNowFormatDate() {
