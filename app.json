@@ -1,43 +1,43 @@
 {
-    "pages": [
-
-        "pages/index/index",
-        "pages/index/indexdetail/indexdetail",
-        "pages/inoutdetail/inoutdetail",
-        "pages/login/login",
-        "pages/setting/setting",
-        "pages/setting/editpassword/editpassword"
-
-    ],
-    "window": {
-        "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "",
-        "navigationBarTextStyle": "black",
-        "navigationStyle": "custom"
-    },
-    "tabBar": {
-        "custom": true,
-        "color": "#BBBBBB",
-        "selectedColor": "#E3A33D",
-        "backgroundColor": "#FAFAFA",
-        "list": [{
-                "pagePath": "pages/index/index",
-                "text": "首页"
-            },
-            {
-                "pagePath": "pages/inoutdetail/inoutdetail",
-                "text": "收支明细"
-            },
-            {
-                "pagePath": "pages/setting/setting",
-                "text": "设置"
-            }
-        ]
-    },
-    "usingComponents": {
-        "van-tabbar": "@vant/weapp/tabbar/index",
-        "van-tabbar-item": "@vant/weapp/tabbar-item/index"
-    },
-    "sitemapLocation": "sitemap.json"
+  "pages": [
+    "pages/index/index",
+    "pages/index/indexdetail/indexdetail",
+    "pages/inoutdetail/inoutdetail",
+    "pages/login/login",
+    "pages/setting/setting",
+    "pages/setting/editpassword/editpassword",
+    "pages/inoutdetail/date-pick/datePick"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#BBBBBB",
+    "selectedColor": "#E3A33D",
+    "backgroundColor": "#FAFAFA",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/inoutdetail/inoutdetail",
+        "text": "收支明细"
+      },
+      {
+        "pagePath": "pages/setting/setting",
+        "text": "设置"
+      }
+    ]
+  },
+  "usingComponents": {
+    "van-tabbar": "@vant/weapp/tabbar/index",
+    "van-tabbar-item": "@vant/weapp/tabbar-item/index"
+  },
+  "sitemapLocation": "sitemap.json"
 }

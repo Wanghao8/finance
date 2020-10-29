@@ -51,10 +51,11 @@ Page({
                     wx.setStorageSync('orgName', res.data.data.orgName)
                     wx.setStorageSync('orgType', res.data.data.orgType)
                         // return
-                    setTimeout(function() {
+                    var timeout =  setTimeout(function() {
                         wx.switchTab({
                             url: '../../pages/index/index',
                         })
+                        clearTimeout(timeout)
                     }, 2000)
                 } else {
                     wx.showToast({

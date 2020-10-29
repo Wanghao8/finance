@@ -40,6 +40,25 @@
     .filter {
         width: 40rpx;
         height: 40rpx;
+        padding: 20rpx;
+    }
+    .split-line2{
+        width: 2px;
+        height: 34rpx;
+        background-color: #fff;
+        margin: 0 12rpx;
+    }
+    .calendar{
+        width: 40rpx;
+        height: 40rpx;
+        padding: 20rpx;
+    }
+    .date-choose{
+        font-family: PingFangSC-Regular;
+font-size: 32rpx;
+color: #FFFFFF;
+letter-spacing: 0;
+padding: 0 20rpx;
     }
     .top-select {
         background-color: #fff;
@@ -71,7 +90,7 @@
     .middle-box {
         background: rgba(228, 228, 228, 0.60);
         // height: 100rpx;
-        height: 50px;
+        height: 60px;
         width: 100%;
         .split-line {
             width: 2rpx;
@@ -80,6 +99,7 @@
         }
         .income-box {
             flex: 1;
+            padding-left: 40rpx;
             .income-num {
                 font-family: PingFangSC-Semibold;
                 font-size: 34rpx;
@@ -90,6 +110,7 @@
         }
         .outcome-box {
             flex: 1;
+            padding-left: 40rpx;
             .outcome-num {
                 font-family: PingFangSC-Semibold;
                 font-size: 34rpx;
@@ -153,6 +174,10 @@
                         font-size: 30rpx;
                         color: #4A4A4A;
                         letter-spacing: 0;
+                        max-width: 200px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
                     }
                     .list-item-time {
                         font-family: PingFangSC-Regular;
@@ -623,7 +648,7 @@
     background-color: #fff;
     overflow: hidden;
     .drawer-top-box {
-        height: 484rpx;
+        height: 384rpx;
         width: 100%;
         position: relative;
         .drawer-top {
@@ -650,23 +675,25 @@
                 padding-left: 10rpx;
             }
             .location-container {
-                width: 210rpx;
+                width: 190rpx;
                 margin: 8rpx 0 28rpx 0;
+                background-image: linear-gradient(180deg, rgba(252, 252, 252, 0.5) 0%, rgba(227, 227, 227, 0.5) 100%);
+                    border: 1px solid rgba(151, 151, 151, 0.5);
+                    border-radius: 8rpx;
                 .downarrow {
                     width: 14rpx;
                     height: 8rpx;
-                    margin: -48rpx;
+                    margin: 14rpx;
                 }
                 .location-item {
                     // opacity: 0.5;
                     width: 138rpx;
                     height: 70rpx;
+                    font-size: 24rpx;
                     line-height: 70rpx;
-                    background-image: linear-gradient(180deg, rgba(252, 252, 252, 0.5) 0%, rgba(227, 227, 227, 0.5) 100%);
-                    border: 1px solid rgba(151, 151, 151, 0.5);
-                    border-radius: 8rpx;
-                    border-radius: 8rpx;
-                    padding-left: 70rpx;
+                    
+                    // padding-left: 40rpx;
+                    text-align: center;
                 }
                 .location-box-select {
                     background: rgba(238, 238, 238, 0.5);
@@ -752,6 +779,7 @@
                 width: 208rpx;
                 height: 70rpx;
                 background: rgba(238, 238, 238, 0.5);
+                padding-left: 10rpx;
             }
             .to-line {
                 width: 22rpx;

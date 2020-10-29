@@ -86,6 +86,7 @@ Page({
                         // url: '../../pages/login/login?changePass=1',
                         url: '../../login/login?changePass=1',
                     })
+                    clearTimeout(that.data.timeout1)
                 }, 2000)
             } else {
                 wx.showToast({

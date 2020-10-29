@@ -1,0 +1,39 @@
+<view class="container" >
+    <van-nav-bar title="日期筛选" left-arrow bind:click-left="onClickLeft" />
+    <view class="screening" style="margin-top:{{height}}px;min-height:calc(100vh - {{height}}px)">
+        <view>
+            <view class="section__title">日期选择</view>
+            <view class="section">
+                <view class="section_son1">
+                    <picker mode="date" value="{{date}}" start="2015-09-01" end="2025-09-01" bindchange="startbindDateChange">
+                        <view class="picker">
+                            <text>{{date}}</text>
+                            <image class="riqiimg" src="../../../assets/images/riqi.png"></image>
+                        </view>
+                    </picker>
+                </view>
+                <view class="section_son2"></view>
+                <view class="section_son1">
+                    <picker mode="date" value="{{date}}" start="2015-09-01" end="2025-09-01" bindchange="endbindDateChange">
+                        <view class="picker">
+                            <text>{{date1}}</text>
+                            <image class="riqiimg" src="../../../assets/images/riqi.png"></image>
+                        </view>
+                    </picker>
+                </view>
+                <view class="section_son3" bindtap="finish">完成</view>
+            </view>
+            <view class="tishi">提示：查询时间不能大于12个月</view>
+            <view class="fengeline"></view>
+            <view class="chaxunbox">
+                <view class="{{selectbg == index?'bg':''}}" wx:for="{{chaxunData}}" wx:key="*this" data-index="{{index}}" bindtap="selectbg">
+                    {{item}}
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="botBtnbox">
+        <view class="view" bindtap="reset">重置</view>
+        <view class="view" bindtap="goPrev">确定</view>
+    </view>
+</view>

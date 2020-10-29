@@ -35,7 +35,9 @@
     color: #fff!important;
     font-size: 40rpx!important;
 }
-
+.van-action-sheet__cancel,.van-action-sheet__item{
+    color: #D8D8D8;
+}
 .container {
     background-color: #fff;
     .list-box {

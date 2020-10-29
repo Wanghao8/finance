@@ -44,6 +44,7 @@ Page({
         wx.showModal({
             title: '确定清除缓存？',
             confirmColor: '#E3A33D',
+            cancelColor:"#999999",
             success(res) {
                 if (res.confirm) {
                     try {

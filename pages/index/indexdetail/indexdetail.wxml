@@ -62,7 +62,7 @@
             <view class="list-content">{{tradeNo}}</view>
             <view class="split-line"></view>
             <view class="stamp-container" hidden="{{checkState!=1}}">
-                <view class="stamp" style="background:url('http://192.168.2.227:8004/wechat-finance/image/approved.png');background-size:340rpx">
+                <view class="stamp" style="background:url('http://static.zzkyt.cn/wechat-finance/image/approved.png');background-size:340rpx">
                     <view class="stamp-box flexc0c">
                         <view class="checked">已审核</view>
                         <view class="">
@@ -84,5 +84,5 @@
             </view>
         </view>
     </view>
-    <view bindtap="checkComfirm" class="button" hidden="{{checkState!=='0'}}">审核确认</view>
+    <view bindtap="checkComfirm" class="button" hidden="{{checkState!=='0'||sign==2}}">审核确认</view>
 </view>

@@ -128,7 +128,7 @@
 
 .container .bottom-info {
   font-family: PingFangHK-Regular;
-  font-size: 20rpx;
+  font-size: 24rpx;
   color: #4A4A4A;
   letter-spacing: 0;
   text-align: center;

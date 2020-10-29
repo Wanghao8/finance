@@ -48,11 +48,13 @@ Page({
     },
     // 是否登陆过，若在别的地方登陆，跳转登录页
     isLoged: function(msg) {
+        var that = this
         if (msg.indexOf('你') != -1) {
             this.data.timeout1 = setTimeout(function() {
                 wx.navigateTo({
                     url: '../login/login',
                 })
+                clearTimeout(that.data.timeout1)
             }, 2000)
         }
         if (msg.indexOf('请先登录') != -1) {
@@ -60,24 +62,9 @@ Page({
                 wx.navigateTo({
                     url: '../login/login',
                 })
+                clearTimeout(that.data.timeout1)
             }, 2000)
         }
-    },
-    //格式化当天日期
-    getNowFormatDate() {
-        var date = new Date();
-        var seperator1 = "-";
-        var year = date.getFullYear();
-        var month = date.getMonth() + 1;
-        var strDate = date.getDate();
-        if (month >= 1 && month <= 9) {
-            month = "0" + month;
-        }
-        if (strDate >= 0 && strDate <= 9) {
-            strDate = "0" + strDate;
-        }
-        var currentdate = year + seperator1 + month + seperator1 + strDate;
-        return currentdate;
     },
     //接口部分(获取余额)
     getOverage() {
@@ -117,13 +104,28 @@ Page({
         })
     },
     //格式化当天日期
+    // getNowFormatDate(params) {
+    //     let date
+    //     if (params == 'now') {
+    //         date = new Date();
+    //     } else {
+    //         date = new Date(new Date().getTime() - 2592000000)
+    //     }
+    //     var seperator1 = "-";
+    //     var year = date.getFullYear();
+    //     var month = date.getMonth() + 1;
+    //     var strDate = date.getDate();
+    //     if (month >= 1 && month <= 9) {
+    //         month = "0" + month;
+    //     }
+    //     if (strDate >= 0 && strDate <= 9) {
+    //         strDate = "0" + strDate;
+    //     }
+    //     var currentdate = year + seperator1 + month + seperator1 + strDate;
+    //     return currentdate;
+    // },
     getNowFormatDate(params) {
-        let date
-        if (params == 'now') {
-            date = new Date();
-        } else {
-            date = new Date(new Date().getTime() - 2592000000)
-        }
+        let date = new Date();
         var seperator1 = "-";
         var year = date.getFullYear();
         var month = date.getMonth() + 1;
@@ -135,13 +137,43 @@ Page({
             strDate = "0" + strDate;
         }
         var currentdate = year + seperator1 + month + seperator1 + strDate;
-        return currentdate;
+        var currentdate2 = year + seperator1 + month + seperator1 + '01';
+        if (params == 'now') {
+            return currentdate;
+        } else {
+            return currentdate2;
+        }
+    },
+
+    scrollToLower(){
+        if (!this.data.loading) {
+            this.setData({
+                loading: true,
+                pageNo: this.data.pageNo + 1
+            })
+            if (this.data.noMore) {
+                this.setData({
+                    loading: false,
+                })
+            } else {
+                this.getListData(true)
+            }
+        }
     },
     //接口部分(分页列表)
 
-    getListData() {
+    getListData(isPage) {
         wx.showLoading({
             title: '加载中',
+        })
+        if(!isPage){
+            this.setData({
+                pageNo: 1
+            })
+        }
+        this.setData({
+            loading: false,
+            loadingFailed:false
         })
         let that = this
         let start = that.getNowFormatDate('last')
@@ -149,19 +181,19 @@ Page({
         const data = {
             modeCode: 'i0GQ9ObadE8JmVQTTJqmfgkRbNWkrqD6', //功能码
             sessionId: wx.getStorageSync('sessionId'),
-            pageIndex: 1,
-            pageSize: 30,
+            pageIndex: that.data.pageNo,
+            pageSize: 10,
             startTime: start,
             endTime: end,
-            // startTime: that.data.today,
-            // endTime: that.data.today,
+            startTime: that.data.today,
+            endTime: that.data.today,
         }
         req.requestAll(data).then(res => {
             wx.hideLoading({})
             if (res.data.code == 1) {
                 let resdata = res.data.data
                 let list = resdata.list
-                list.forEach((item) => {
+                resdata.list.forEach((item) => {
                     item.eventTime.hour < 10 ? item.eventTime.hour = item.eventTime.hour.toString().padStart(2, 0) : item.eventTime.hour = item.eventTime.hour
                     item.eventTime.dayOfMonth < 10 ? item.eventTime.dayOfMonth = item.eventTime.dayOfMonth.toString().padStart(2, 0) : item.eventTime.dayOfMonth = item.eventTime.dayOfMonth
                     item.eventTime.minute < 10 ? item.eventTime.minute = item.eventTime.minute.toString().padStart(2, 0) : item.eventTime.minute = item.eventTime.minute
@@ -175,14 +207,41 @@ Page({
                         //     item.checkTime.second < 10 ? item.checkTime.second = item.checkTime.second.toString().padStart(2, 0) : item.checkTime.second = item.checkTime.second
                         // }
                 })
+                if (isPage) {
+                    //下一页的数据拼接在原有数据后面
+                    this.setData({
+                        list: this.data.list.concat(resdata.list)
+                    })
+                } else {
+                    //第一页数据直接赋值
+                    this.setData({
+                        list: resdata.list
+                    })
+                }
+                //如果返回的数据为空，那么就没有下一页了
+                if (resdata.list.length == 0) {
+                    this.setData({
+                        noMore: true,
+                        showNomore:true
+                    })
+                }
                 that.setData({
-                    list: list,
+                    // list: list,
                     numoflist: resdata.notCheckCount
                 })
+                if(that.data.list.length==0){
+                    that.setData({
+                        noMore:true,
+                        showNomore:false
+                    })
+                }
                 wx.hideLoading({})
             } else {
                 wx.hideLoading({})
                 console.log(res);
+                this.setData({
+                    loadingFailed: true
+                })
                 wx.showToast({
                     title: res.data.msg,
                     icon: 'none',
@@ -227,7 +286,8 @@ Page({
      */
     onLoad: function(options) {
         let that = this
-        this.getOverage()
+        // this.getOverage()
+        
         wx.getSystemInfo({
             success: function(res) {
                 console.log(res.statusBarHeight);
@@ -246,7 +306,7 @@ Page({
         let timestamp = new Date().getTime()
         let now = app.formatTime(timestamp)
         this.setData({
-            today: this.getNowFormatDate(),
+            today: this.getNowFormatDate('now'),
             now: now,
             orgName: wx.getStorageSync('orgName'),
             userName: wx.getStorageSync('userName'),
@@ -265,15 +325,21 @@ Page({
      */
     onShow: function() {
         let that = this
+        let pages = getCurrentPages();
+        let prevpage = pages[pages.length - 2];
+        // if(prevpage){
+        //     return
+        // }
         this.setData({
             orgName: wx.getStorageSync('orgName'),
             userName: wx.getStorageSync('userName'),
+            pageNo:1,//下拉加载的初始值设1
+            noMore:false,//没有更多
         })
 
         this.getOverage()
         this.getListData()
         app.is_login()
-
     },
 
     /**

@@ -62,7 +62,9 @@ var lineoption = {
         },
         lineStyle: {
             normal: {
-                color: '#D8A537 ',
+                color: '#D8A537',
+                // color: '#000',
+                width: 2
             },
         },
         // 渐变
@@ -129,65 +131,62 @@ var baroption = {
         },
     },
     series: [{
-            name: '入金',
-            type: 'bar',
-            // label: {
-            //     show: true,
-            //     position: 'top'
-            // },
-            barWidth: 8,
-            itemStyle: {
-                barBorderRadius: 5,
-                color: {
-                    x: 0,
-                    y: 0,
-                    x2: 0,
-                    y2: 1,
-                    colorStops: [{
-                        offset: 0.5,
-                        color: "#98C7F7" // 0% 处的颜色
-                    }, {
-                        offset: 1,
-                        color: "#2083E6" // 100% 处的颜色
-                    }]
+        name: '入金',
+        type: 'bar',
+        // label: {
+        //     show: true,
+        //     position: 'top'
+        // },
+        barWidth: 8,
+        itemStyle: {
+            barBorderRadius: 4,
+            color: {
+                x: 0,
+                y: 0,
+                x2: 0,
+                y2: 1,
+                colorStops: [{
+                    offset: 0,
+                    color: "#D36221" // 0% 处的颜色
                 },
+                {
+                    offset: 1,
+                    color: "#F7E7AC " // 100% 处的颜色
+                }
+                ]
             },
-            data: [],
-            // data: [200, 300, 150, 700, 400, ],
         },
-        {
-            name: '出金',
-            type: 'bar',
-            // label: {
-            //     show: true,
-            //     position: 'top'
-            // },
-            barWidth: 8,
-            itemStyle: {
-                barBorderRadius: 5,
-                color: {
-                    x: 0,
-                    y: 0,
-                    x2: 0,
-                    y2: 1,
-                    colorStops: [{
-                            offset: 1,
-                            color: "#D36221" // 0% 处的颜色
-                        },
-                        {
-                            offset: 0.5,
-                            color: "#F2AD3C " // 50% 处的颜色
-                        }, {
-                            offset: 1,
-                            color: "#F7E7AC " // 100% 处的颜色
-                        }
-                    ]
-                },
+        data: [],
+        // data: [200, 300, 150, 700, 400, ],
+    },
+    {
+        name: '出金',
+        type: 'bar',
+        // label: {
+        //     show: true,
+        //     position: 'top'
+        // },
+        barWidth: 8,
+        itemStyle: {
+            barBorderRadius: 5,
+            color: {
+                x: 0,
+                y: 0,
+                x2: 0,
+                y2: 1,
+                colorStops: [{
+                    offset: 0,
+                    color: "#98C7F7" // 0% 处的颜色
+                }, {
+                    offset: 1,
+                    color: "#2083E6" // 100% 处的颜色
+                }]
             },
-            barGap: '-5%',
-            // data: [450, 300, 200, 500, 550, ],
-            data: [],
         },
+        barGap: '-5%',
+        // data: [450, 300, 200, 500, 550, ],
+        data: [],
+    },
     ]
 }
 var pieoption = {
@@ -221,10 +220,10 @@ var pieoption = {
             show: true,
             position: 'top',
             fontStyle: 'normal',
-            fontSize: 8
+            fontSize: 12
         },
         labelLine: {
-            length: 1,
+            length: 10,
             length2: 10
         },
         type: 'pie',
@@ -241,7 +240,7 @@ Page({
     data: {
         //echarts部分
         ecline: {
-            onInit: function(canvas, width, height, dpr) {
+            onInit: function (canvas, width, height, dpr) {
                 chartLine = echarts.init(canvas, null, {
                     width: width,
                     height: height,
@@ -254,7 +253,7 @@ Page({
             }
         },
         ecbar: {
-            onInit: function(canvas, width, height, dpr) {
+            onInit: function (canvas, width, height, dpr) {
                 chartBar1 = echarts.init(canvas, null, {
                     width: width,
                     height: height,
@@ -267,7 +266,7 @@ Page({
             }
         },
         ecpie: {
-            onInit: function(canvas, width, height, dpr) {
+            onInit: function (canvas, width, height, dpr) {
                 chartPie = echarts.init(canvas, null, {
                     width: width,
                     height: height,
@@ -289,6 +288,7 @@ Page({
             set: '../../assets/images/settings.png',
             setactive: '../../assets/images/settings-2.png',
         },
+        timeSpan: '本月',
         show: false, //抽屉显示隐藏
         IO: 1, //收支详情跟分析切换
         paytype: 1, //转账方式
@@ -318,6 +318,7 @@ Page({
         timeout3: '',
         timeout4: '',
         timeout5: '',
+        pageNo: 1,
     },
     //前一年点击事件
     previous() {
@@ -337,7 +338,7 @@ Page({
     changeMonth() {
         let that = this
         chartBar1.off('click')
-        chartBar1.on('click', function(params) {
+        chartBar1.on('click', function (params) {
             let start, end, start1, end1
             if (params.name == that.data.thismonth) {
                 start = that.data.thisyear + '年' + params.name.padStart(2, 0) + '月' + '01日'
@@ -377,7 +378,7 @@ Page({
         let end = this.getNowFormatDate('now')
         let start2 = start + " 00:00:00"
         let end2 = end + " 00:00:00"
-        this.getLocationRank(1, start2, end2)
+        this.data.chooseStarttime ? this.getLocationRank(1, this.data.chooseStarttime, this.data.chooseEndtime) : this.getLocationRank(1, start2, end2)
     },
     //切换出金排名
     outcome() {
@@ -388,10 +389,10 @@ Page({
         let end = this.getNowFormatDate('now')
         let start2 = start + " 00:00:00"
         let end2 = end + " 00:00:00"
-        this.getLocationRank(2, start2, end2)
+        this.data.chooseStarttime ? this.getLocationRank(2, this.data.chooseStarttime, this.data.chooseEndtime) : this.getLocationRank(2, start2, end2)
     },
     //展开收起折叠
-    fold: function(e) {
+    fold: function (e) {
         switch (e.currentTarget.dataset.type) {
             case 'needfold':
                 this.setData({
@@ -422,39 +423,52 @@ Page({
                 this.setData({
                     radio: 0,
                     startMoney: 0,
-                    endMoney: 10000
+                    minMoney: 0,
+                    endMoney: 10000,
+                    maxMoney: 10000,
+
                 })
                 break;
             case '1':
                 this.setData({
                     radio: 1,
                     startMoney: 10000,
-                    endMoney: 30000
+                    minMoney: 10000,
+                    endMoney: 30000,
+                    maxMoney: 30000
                 })
                 break;
             case '2':
                 this.setData({
                     radio: 2,
                     startMoney: 30000,
-                    endMoney: 50000
+                    endMoney: 50000,
+                    minMoney: 30000,
+                    maxMoney: 50000,
                 })
                 break;
             case '3':
                 this.setData({
                     radio: 3,
                     startMoney: 50000,
-                    endMoney: 100000
+                    endMoney: 100000,
+                    minMoney: 50000,
+                    maxMoney: 100000,
                 })
                 break;
             case '4':
                 this.setData({
                     radio: 4,
                     startMoney: 100000,
+                    minMoney: 100000,
+                    maxMoney: '',
                 })
                 break;
             case '5':
                 this.setData({
-                    radio: 5
+                    radio: 5,
+                    minMoney: '',
+                    maxMoney: '',
                 })
                 break;
 
@@ -482,12 +496,14 @@ Page({
     },
     changeMin(e) {
         this.setData({
-            minMoney: e.detail.value
+            minMoney: e.detail.value,
+            radio: -1,
         })
     },
     changeMax(e) {
         this.setData({
-            maxMoney: e.detail.value
+            maxMoney: e.detail.value,
+            radio: -1,
         })
     },
     // 抽屉显示
@@ -518,9 +534,9 @@ Page({
 
         let start = that.getNowFormatDate('last')
         let end = that.getNowFormatDate('now')
-        this.getOverage(start, end)
-        this.getListData()
-            // setTimeout(() => { this.initDraw() }, 1000)
+        this.data.chooseStarttime ? this.getOverage(this.data.chooseStarttime, this.data.chooseEndtime) : this.getOverage(start, end)
+        this.getListData('month', false)
+        // setTimeout(() => { this.initDraw() }, 1000)
     },
     //初始化抽屉里的数据
     initDraw() {
@@ -604,6 +620,11 @@ Page({
             url: '../index/indexdetail/indexdetail?id=' + id + '&sign=' + sign,
         })
     },
+    toDate(e) {
+        wx.navigateTo({
+            url: './date-pick/datePick'
+        })
+    },
     // 收支/分析切换
     selectIO(e) {
         let that = this
@@ -614,7 +635,7 @@ Page({
             })
             let start = that.getNowFormatDate('last')
             let end = that.getNowFormatDate('now')
-            this.getOverage(start, end)
+            that.data.chooseStarttime ? that.getOverage(that.data.chooseStarttime, that.data.chooseEndtime) : that.getOverage(start, end)
         } else {
             this.setData({
                 IO: 2
@@ -640,13 +661,16 @@ Page({
         }
     },
     // 是否登陆过，若在别的地方登陆，跳转登录页
-    isLoged: function(msg) {
+    isLoged: function (msg) {
+        var that = this
         if (msg.indexOf('你') != -1) {
-            this.data.timeout2 = setTimeout(function() {
+            this.data.timeout2 = setTimeout(function () {
                 wx.navigateTo({
                     url: '../login/login',
                 })
+                clearTimeout(that.data.timeout2)
             }, 2000)
+            
         }
     },
     //初始化柱形图
@@ -669,12 +693,7 @@ Page({
     },
     //格式化当天日期
     getNowFormatDate(params) {
-        let date
-        if (params == 'now') {
-            date = new Date();
-        } else {
-            date = new Date(new Date().getTime() - 2592000000)
-        }
+        let date = new Date();
         var seperator1 = "-";
         var year = date.getFullYear();
         var month = date.getMonth() + 1;
@@ -686,46 +705,70 @@ Page({
             strDate = "0" + strDate;
         }
         var currentdate = year + seperator1 + month + seperator1 + strDate;
-        return currentdate;
+        var currentdate2 = year + seperator1 + month + seperator1 + '01';
+        if (params == 'now') {
+            return currentdate;
+        } else {
+            return currentdate2;
+        }
     },
     //获取列表筛选列表
-    getListData() {
+    getListData(date, isPage) {
         let that = this
         let type = []
+        if (!isPage) {
+            this.setData({
+                pageNo: 1
+            })
+        }
+        this.setData({
+            loading: false,
+            loadingFailed: false
+        })
         that.data.bankChecked ? type.push(1) : type = type
         that.data.outChecked ? type.push(2) : type = type
         that.data.WechatChecked ? type.push(3) : type = type
         that.data.aliChecked ? type.push(4) : type = type
         that.data.cardChecked ? type.push(5) : type = type
         type = type.join(',')
-        let start = that.getNowFormatDate('last')
-        let end = that.getNowFormatDate('now')
+        if (date == 'month') {
+            var start = that.getNowFormatDate('last')
+            var end = that.getNowFormatDate('now')
+        } else if (date) {
+            var start = date.split('/')[0]
+            var end = date.split('/')[1]
+            console.log(start, end)
+        } else {
+            var start = that.getNowFormatDate('last')
+            var end = that.getNowFormatDate('now')
+        }
+
         let data = {
-                modeCode: 'i0GQ9ObadE8JmVQTTJqmfgkRbNWkrqD6', //功能码
-                sessionId: wx.getStorageSync('sessionId'),
-                pageIndex: 1,
-                pageSize: 100,
-                startTime: start,
-                endTime: end,
-                // enterpriseName: that.data.companyname,
-                // startMoney: that.data.minMoney,
-                // endMoney: that.data.maxMoney,
-                // tradeType: type,
-                // tradeNo: that.data.tradeNo,
-                // orgId: that.data.location,
-            }
-            // that.data.minMoney != '' ? data.startMoney = that.data.minMoney : data.startMoney
-            // that.data.maxMoney != '' ? data.endMoney = that.data.maxMoney : data.endMoney
+            modeCode: 'i0GQ9ObadE8JmVQTTJqmfgkRbNWkrqD6', //功能码
+            sessionId: wx.getStorageSync('sessionId'),
+            pageIndex: that.data.pageNo,
+            pageSize: 10,
+            startTime: start,
+            endTime: end,
+            // enterpriseName: that.data.companyname,
+            // startMoney: that.data.minMoney,
+            // endMoney: that.data.maxMoney,
+            // tradeType: type,
+            // tradeNo: that.data.tradeNo,
+            // orgId: that.data.location,
+        }
+        // that.data.minMoney != '' ? data.startMoney = that.data.minMoney : data.startMoney
+        // that.data.maxMoney != '' ? data.endMoney = that.data.maxMoney : data.endMoney
         if (that.data.minMoney != '') {
             data.startMoney = that.data.minMoney
         } else if (that.data.startMoney) {
             data.startMoney = that.data.startMoney
-        } else {}
+        } else { }
         if (that.data.maxMoney != '') {
             data.endMoney = that.data.maxMoney
         } else if (that.data.endMoney) {
             data.endMoney = that.data.endMoney
-        } else {}
+        } else { }
         that.data.companyname != '' ? data.enterpriseName = that.data.companyname : that.data.enterpriseName
         that.data.dealId != '' ? data.tradeNo = that.data.dealId : that.data.tradeNo
         that.data.addIndex != 0 ? data.orgId = that.data.locationList[that.data.addIndex] : data.orgId
@@ -733,8 +776,7 @@ Page({
         req.requestAll(data).then(res => {
             if (res.data.code == 1) {
                 let resdata = res.data.data
-                let list = resdata.list
-                list.forEach((item) => {
+                resdata.list.forEach((item) => {
                     item.eventTime.hour < 10 ? item.eventTime.hour = item.eventTime.hour.toString().padStart(2, 0) : item.eventTime.hour = item.eventTime.hour
                     item.eventTime.dayOfMonth < 10 ? item.eventTime.dayOfMonth = item.eventTime.dayOfMonth.toString().padStart(2, 0) : item.eventTime.dayOfMonth = item.eventTime.dayOfMonth
                     item.eventTime.minute < 10 ? item.eventTime.minute = item.eventTime.minute.toString().padStart(2, 0) : item.eventTime.minute = item.eventTime.minute
@@ -748,21 +790,48 @@ Page({
                     item.tradeType == 3 ? item.type = '微信' : item.type
                     item.tradeType == 4 ? item.type = '支付宝' : item.type
                     item.tradeType == 5 ? item.type = '刷卡' : item.type
-                        // if (item.checkTime) {
-                        //     item.checkTime.hour < 10 ? item.checkTime.hour = item.checkTime.hour.toString().padStart(2, 0) : item.checkTime.hour = item.checkTime.hour
-                        //     item.checkTime.dayOfMonth < 10 ? item.checkTime.dayOfMonth = item.checkTime.dayOfMonth.toString().padStart(2, 0) : item.checkTime.dayOfMonth = item.checkTime.dayOfMonth
-                        //     item.checkTime.minute < 10 ? item.checkTime.minute = item.checkTime.minute.toString().padStart(2, 0) : item.checkTime.minute = item.checkTime.minute
-                        //     item.checkTime.monthValue < 10 ? item.checkTime.monthValue = item.checkTime.monthValue.toString().padStart(2, 0) : item.checkTime.monthValue = item.checkTime.monthValue
-                        //     item.checkTime.second < 10 ? item.checkTime.second = item.checkTime.second.toString().padStart(2, 0) : item.checkTime.second = item.checkTime.second
-                        // }
+                    // if (item.checkTime) {
+                    //     item.checkTime.hour < 10 ? item.checkTime.hour = item.checkTime.hour.toString().padStart(2, 0) : item.checkTime.hour = item.checkTime.hour
+                    //     item.checkTime.dayOfMonth < 10 ? item.checkTime.dayOfMonth = item.checkTime.dayOfMonth.toString().padStart(2, 0) : item.checkTime.dayOfMonth = item.checkTime.dayOfMonth
+                    //     item.checkTime.minute < 10 ? item.checkTime.minute = item.checkTime.minute.toString().padStart(2, 0) : item.checkTime.minute = item.checkTime.minute
+                    //     item.checkTime.monthValue < 10 ? item.checkTime.monthValue = item.checkTime.monthValue.toString().padStart(2, 0) : item.checkTime.monthValue = item.checkTime.monthValue
+                    //     item.checkTime.second < 10 ? item.checkTime.second = item.checkTime.second.toString().padStart(2, 0) : item.checkTime.second = item.checkTime.second
+                    // }
                 })
+                if (isPage) {
+                    //下一页的数据拼接在原有数据后面
+                    this.setData({
+                        list: this.data.list.concat(resdata.list)
+                    })
+                } else {
+                    //第一页数据直接赋值
+                    this.setData({
+                        list: resdata.list
+                    })
+                }
+                //如果返回的数据为空，那么就没有下一页了
+                if (resdata.list.length == 0) {
+                    this.setData({
+                        noMore: true,
+                        showNomore:true
+                    })
+                }
                 that.setData({
-                    list: list,
+                    // list: that.data.list.concat(res.result),
                     numoflist: resdata.notCheckCount,
                     tradeType: type
                 })
+                if(that.data.list.length==0){
+                    that.setData({
+                        noMore:true,
+                        showNomore:false
+                    })
+                }
             } else {
                 console.log(res);
+                this.setData({
+                    loadingFailed: true
+                })
                 wx.showToast({
                     title: res.data.msg,
                     icon: 'none',
@@ -839,8 +908,8 @@ Page({
                 var barout = []
                 resdata.forEach((item) => {
                     barx.push(item.month.toString())
-                    barin.push(item.income)
-                    barout.push(item.outcome)
+                    barin.push(item.income / 10000)
+                    barout.push(item.outcome / 10000)
                 })
                 that.setData({
                     barx: barx,
@@ -880,8 +949,8 @@ Page({
                 let lineList = resdata.dateList
                 lineList.forEach((item) => {
                     linex.push(item.dateStr.toString())
-                    linein.push(item.income)
-                    lineout.push(item.outcome)
+                    linein.push(item.income / 10000)
+                    lineout.push(item.outcome / 10000)
                 })
                 let pieList = resdata.tradeTypeList
                 pieList.forEach((item) => {
@@ -892,10 +961,10 @@ Page({
                     item.tradeType == 5 ? item.name = 'POS刷卡' : item.tradeType
                     item.value = item.money
                 })
-                let rank = resdata.rankList
-                    //这一步需要对数组排序
+                let rank = resdata.rankList.slice(0, 10)
+                //这一步需要对数组排序
                 function compare(property) {
-                    return function(a, b) {
+                    return function (a, b) {
                         var value1 = a[property];
                         var value2 = b[property];
                         return value2 - value1;
@@ -948,9 +1017,9 @@ Page({
         req.requestAll(data).then(res => {
             if (res.data.code == 1) {
                 let list = res.data.data
-                    //这一步需要对数组排序
+                //这一步需要对数组排序
                 function compare(property) {
-                    return function(a, b) {
+                    return function (a, b) {
                         var value1 = a[property];
                         var value2 = b[property];
                         return value2 - value1;
@@ -992,6 +1061,7 @@ Page({
                     locationList: addNameList,
                     locationId: addrList
                 })
+
             } else {
                 console.log(res);
                 wx.showToast({
@@ -1003,13 +1073,33 @@ Page({
             }
         })
     },
+    scrollToLower() {
+        if (!this.data.loading) {
+            this.setData({
+                loading: true,
+                pageNo: this.data.pageNo + 1
+            })
+            if (this.data.noMore) { 
+                this.setData({
+                    loading: false,
+                })
+            }
+            else {
+                if (this.data.message) {
+                    this.getListData(this.data.message, true)
+                } else {
+                    this.getListData('month', true)
+                }
+            }
+        }
+    },
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function(options) {
+    onLoad: function (options) {
         let that = this
         wx.getSystemInfo({
-            success: function(res) {
+            success: function (res) {
                 // console.log(res.model)
                 // console.log(res.statusBarHeight)
                 // console.log(res.screenHeight)
@@ -1039,19 +1129,21 @@ Page({
                 })
             }
         })
+        this.getListData('month')
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
-    onReady: function() {
+    onReady: function () {
 
     },
 
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow: function() {
+    onShow: function () {
+        this.getLocation()
         let that = this
         let date = new Date()
         this.setData({
@@ -1059,10 +1151,12 @@ Page({
             thismonth: date.getMonth() + 1,
             thisday: date.getDate(),
             IO: 1,
-            scrolltop: 0
+            scrolltop: 0,
+            pageNo:1,//下拉加载的初始值设1
+            noMore:false,//没有更多
         })
         let auth = wx.getStorageSync('authority')
-            // if (auth == 1) {
+        // if (auth == 1) {
         if (auth == 8) {
             that.setData({
                 cityRank: true
@@ -1072,28 +1166,36 @@ Page({
                 cityRank: false
             })
         }
-        this.getListData()
-        if (this.data.IO == 1) {
-            let start = that.getNowFormatDate('last')
-            let end = that.getNowFormatDate('now')
-            this.getOverage(start, end)
+
+        setTimeout(() => {
+            if (that.data.IO == 1) {
+                let start = that.getNowFormatDate('last')
+                let end = that.getNowFormatDate('now')
+                that.data.chooseStarttime ? that.getOverage(that.data.chooseStarttime, that.data.chooseEndtime) : that.getOverage(start, end)
+            } else {
+                let start = that.getNowFormatDate('now').slice(0, 8) + '01'
+                let end = that.getNowFormatDate('now')
+                that.getOverage(start, end)
+                that.data.timeout4 = setTimeout(() => {
+                    that.getYearData()
+                    that.getMonthData(9)
+                }, 200);
+            }
+        }, 500);
+
+        if (this.data.message) {
+            this.getListData(this.data.message)
         } else {
-            let start = that.getNowFormatDate('now').slice(0, 8) + '01'
-            let end = that.getNowFormatDate('now')
-            this.getOverage(start, end)
-            this.data.timeout4 = setTimeout(() => {
-                that.getYearData()
-                that.getMonthData(9)
-            }, 200);
+            this.getListData('month')
         }
-        this.getLocation()
+        this.initDraw()
 
     },
 
     /**
      * 生命周期函数--监听页面隐藏
      */
-    onHide: function() {
+    onHide: function () {
         clearTimeout(this.data.timeout1)
         clearTimeout(this.data.timeout2)
         clearTimeout(this.data.timeout3)
@@ -1103,28 +1205,28 @@ Page({
     /**
      * 生命周期函数--监听页面卸载
      */
-    onUnload: function() {
+    onUnload: function () {
 
     },
 
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
-    onPullDownRefresh: function() {
+    onPullDownRefresh: function () {
 
     },
 
     /**
      * 页面上拉触底事件的处理函数
      */
-    onReachBottom: function() {
+    onReachBottom: function () {
 
     },
 
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage: function() {
+    onShareAppMessage: function () {
 
     },
 

@@ -1,6 +1,11 @@
 <view class="container flexc0c" style="height:{{screenHeight}}px">
     <van-nav-bar title="收支明细">
-        <image hidden="{{IO!=1}}" class="filter" src="../../assets/images/screening.png" bindtap="filter" slot="left"></image>
+        <view hidden="{{IO!=1}}" class="flexr0c" slot="left">
+            <image class="filter" src="../../assets/images/screening.png" bindtap="filter"></image>
+            <view class="split-line2"></view>
+            <image class="calendar" src="../../assets/images/calendar.png"  bind:tap="toDate"></image>
+            <!-- <view class="date-choose" bind:tap="toDate">{{timeSpan}}</view> -->
+        </view>
     </van-nav-bar>
     <view class="top-select flexr0c">
         <view class="top-select-item-box flexrcc" bind:tap="selectIO" data-type="1">
@@ -13,20 +18,22 @@
     <!-- 收支明细部分 -->
     <view hidden="{{IO!=1}}" class="" style="width:100%;">
         <view class="middle-box flexr0c">
-            <view class="income-box flexrcc">
+            <view class="income-box ">
                 <view class="middle-label">收入</view>
                 <view class="income-num">+{{incomeMoney}}</view>
             </view>
             <view class="split-line"></view>
-            <view class="outcome-box flexrcc">
+            <view class="outcome-box ">
                 <view class="middle-label">支出</view>
                 <view class="outcome-num">-{{outcomeMoney}}</view>
             </view>
         </view>
-        <scroll-view class="" scroll-top="{{scrolltop}}" scroll-x="false" scroll-y="true" upper-threshold="50" lower-threshold="50" style="height:{{(screenHeight-hair-44-50-50-56)}}px;">
+        <scroll-view class="" scroll-top="{{scrolltop}}" scroll-x="false" scroll-y="true" bindscrolltolower="scrollToLower" upper-threshold="50" lower-threshold="50" style="height:{{(screenHeight-hair-44-60-50-56)}}px;">
             <view class="list-box">
                 <view class="list-item flexrbc" wx:for="{{list}}" wx:key="index" bind:tap="toDetail" data-id="{{item.id}}" data-sign="{{item.sign}}">
-                    <view class="check-type" hidden="{{item.checkState==1}}">未审核</view>
+                    <view class="check-type" hidden="{{item.sign==2||item.checkState==1}}">
+                        未审核
+                    </view>
                     <view class="list-item-left flexr">
                         <image class="paytype" src="../../assets/images/WeChat.png" hidden="{{item.tradeType!=4}}"></image>
                         <image class="paytype" src="../../assets/images/Alipay.png" hidden="{{item.tradeType!=3}}"></image>
@@ -38,23 +45,30 @@
                             <view class="list-item-time">
                                 {{item.eventTime.year}}-{{item.eventTime.monthValue}}-{{item.eventTime.dayOfMonth}} {{item.eventTime.hour}}:{{item.eventTime.minute}}:{{item.eventTime.second}}
                             </view>
-                            <view class="list-item-address">{{item.type}}|{{item.orgName}}</view>
+                            <view class="list-item-address">{{item.type}} | {{item.orgName}}</view>
                         </view>
                     </view>
                     <view class="list-item-right">
                         <view class="flexr0c">
                             <view class="{{item.sign==1?'list-item-num':'list-item-num2'}}">
-                                <text hidden="{{item.sign!=1}}">+</text>
-                                <text hidden="{{item.sign!=2}}">-</text>
-                                {{item.money}}
+                                <text hidden="{{item.sign!=1}}">+{{item.money}}</text>
+                                <text hidden="{{item.sign!=2}}">-{{item.money}}</text>
+                                
                             </view>
                             <image src="../../assets/images/rightarrow.png" />
                         </view>
-                        <view hidden="{{item.checkState==1}}" class="in-type">入账中</view>
+                        <view hidden="{{item.checkState==1||item.sign==2}}" class="in-type">
+                            入账中
+                        </view>
                     </view>
                 </view>
             </view>
-            <view hidden="{{list.length==0}}" class="nomore">没有更多了~</view>
+            <view style="text-align: center;margin: 10px;">
+                <view wx:if="{{loading}}">加载中...</view>
+                <view class="nomore" wx:if="{{noMore&&showNomore}}">没有更多了</view>
+                <view wx:if="{{loadingFailed}}">数据加载失败,请重试</view>
+            </view>
+            <!-- <view hidden="{{list.length==0}}" class="nomore">没有更多了~</view> -->
             <view hidden="{{list.length!=0}}" class="empty flexccc">
                 <image class="empty-img" src="../../assets/images/no-data.png" mode="aspectFit|aspectFill|widthFix"></image>
                 <view class="no-data">暂无数据</view>
@@ -182,7 +196,7 @@
                     <view class="rank-title">{{item.name?item.name:'(空)'}}</view>
                     <view class="flexr0c">
                         <view class="progress-bar {{brand=='an'?'pro-an':''}} {{brand=='iphone'?'pro-iphone':''}} {{brand=='iphonex'?'pro-iphonex':''}}">
-                            <view class="progress {{brand=='an'?'pro-an':''}} {{brand=='iphone'?'pro-iphone':''}} {{brand=='iphonex'?'pro-iphonex':''}}" style="width:{{item.money/rankshort[0].money*560}}rpx;color:#E3A33D;background:url('http://192.168.2.227:8004/wechat-finance/image/split.png');"></view>
+                            <view class="progress {{brand=='an'?'pro-an':''}} {{brand=='iphone'?'pro-iphone':''}} {{brand=='iphonex'?'pro-iphonex':''}}" style="width:{{item.money/rankshort[0].money*560}}rpx;color:#E3A33D;background:url('http://static.zzkyt.cn/wechat-finance/image/split.png');"></view>
                         </view>
                         <view class="progress-num">{{item.money}}元</view>
                     </view>
@@ -231,7 +245,7 @@
                 <view class="location-container" hidden="{{!cityRank}}">
                     <picker bindchange="bindPickerChange" value="{{addIndex}}" range="{{locationList}}">
                         <view class="flexr0c">
-                            <view class="location-item">{{locationList[addIndex].name}}</view>
+                            <view class="location-item">{{locationList[addIndex]}}</view>
                             <image class="downarrow" src="../../assets/images/downarrow.png"></image>
                         </view>
                         <!-- <view class="{{addIndex==0?'location-box':'location-box-select'}}">
@@ -252,9 +266,9 @@
                 <view data-index="5" class="{{radio==5?'btn-active':'btn'}}">不限制</view>
             </view>
             <view class="input-box flexrbc">
-                <input type="text" bindinput="changeMin" value="{{minMoney}}" name="" id=""></input>
+                <input type="number" bindinput="changeMin" value="{{minMoney}}" name="" id=""></input>
                 <view class="to-line"></view>
-                <input type="text" bindinput="changeMax" value="{{maxMoney}}"></input>
+                <input type="number" bindinput="changeMax" value="{{maxMoney}}"></input>
             </view>
         </view>
         <view class="paytype-box">

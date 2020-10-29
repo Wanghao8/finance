@@ -26,13 +26,13 @@
 }
 
 .container .top-box .comname {
-  font-size: 24rpx;
+  font-size: 28rpx;
   color: #FFFFFF;
   margin-right: 10rpx;
 }
 
 .container .top-box .username {
-  font-size: 24rpx;
+  font-size: 28rpx;
   color: #FFFFFF;
 }
 
@@ -50,7 +50,7 @@
 
 .container .top-box .center .top-subtitle {
   font-family: PingFangSC-Regular;
-  font-size: 20rpx;
+  font-size: 28rpx;
   color: #FFFFFF;
   letter-spacing: 0;
 }
@@ -65,14 +65,14 @@
 .container .top-box .center .top-time {
   opacity: 0.5;
   font-family: PingFangSC-Regular;
-  font-size: 20rpx;
+  font-size: 28rpx;
   color: #FFFFFF;
   letter-spacing: 0;
 }
 
 .container .count-tabel {
   width: 716rpx;
-  height: 55px;
+  height: 65px;
   background-color: #fff;
   box-shadow: 0 20rpx 20rpx 0 rgba(0, 0, 0, 0.05);
 }
@@ -96,6 +96,7 @@
   color: #E3A33D;
   letter-spacing: 0;
   font-weight: bold;
+  padding-left: 22rpx;
 }
 
 .container .count-tabel .count-tabel-item .out-num {
@@ -104,6 +105,7 @@
   color: #206DE7;
   letter-spacing: 0;
   font-weight: bold;
+  padding-left: 22rpx;
 }
 
 .container .count-tabel .split-line {
@@ -174,11 +176,34 @@
   margin-right: 28rpx;
 }
 
+.container .list-container .list-box .list-item-box .list-item-left .list-item-title1 {
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #A0A0A0;
+  letter-spacing: 0;
+  margin-right: 2em;
+}
+
+.container .list-container .list-box .list-item-box .list-item-left .list-item-title2 {
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #A0A0A0;
+  letter-spacing: 0;
+  margin-right: 28rpx;
+}
+
 .container .list-container .list-box .list-item-box .list-item-left .list-item-content {
   font-family: PingFangSC-Medium;
   font-size: 28rpx;
   color: #4A4A4A;
   letter-spacing: 0;
+}
+
+.container .list-container .list-box .list-item-box .list-item-left .company {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .container .list-container .list-box .list-item-box .list-item-left image {

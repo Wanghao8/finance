@@ -1,6 +1,6 @@
 <!-- index.wxml -->
 <view class="container" style="height:{{screenHeight}}px">
-    <view class="top-box" style="background:url('http://192.168.2.227:8004/wechat-finance/image/Home.png');background-size:750rpx {{166+hair}}px;height:{{166+hair}}px">
+    <view class="top-box" style="background:url('http://static.zzkyt.cn/wechat-finance/image/Home.png');background-size:750rpx {{176+hair}}px;height:{{176+hair}}px">
         <view class="top-avatar-box flexr0c" style="margin-top:{{hair}}px">
             <image src="../../assets/images/user.png" />
             <view class="comname">{{orgName}}</view>
@@ -14,27 +14,28 @@
         </view>
     </view>
     <view class="count-tabel flexr0c">
-        <view class="flexr0c count-tabel-item">
+        <view class=" count-tabel-item">
             <view class="tabel-item">今日收入</view>
             <view class="in-num">+{{incomeMoney}}</view>
         </view>
         <view class="split-line"></view>
-        <view class="flexr0c count-tabel-item">
+        <view class=" count-tabel-item">
             <view class="tabel-item">今日支出</view>
             <view class="out-num">-{{outcomeMoney}}</view>
         </view>
     </view>
-    <scroll-view class="list-container" scroll-x="false" scroll-y="true" upper-threshold="50" lower-threshold="50" style="height:{{(screenHeight-hair-166-55-50-9)}}px">
+    <scroll-view class="list-container" scroll-x="false" scroll-y="true" upper-threshold="50" lower-threshold="50"  bindscrolltolower="scrollToLower" style="height:{{(screenHeight-hair-176-65-50-9)}}px">
         <view class="list-box ">
             <view class="list-item-box flexrbc" bind:tap="toDetail" wx:for="{{list}}" wx:key="index" data-id="{{item.id}}" data-sign="{{item.sign}}">
-                <view class="check-type" hidden="{{item.checkState==1}}">未审核</view>
+                <view class="check-type" hidden="{{item.sign==2||item.checkState}}">未审核</view>
                 <view class="list-item-left">
                     <view class="flexr0c">
                         <view class="list-item-title">企业名称</view>
-                        <view class="list-item-content">{{item.enterpriseName}}</view>
+                        <view class="list-item-content company">{{item.enterpriseName}}</view>
                     </view>
                     <view class="flexr0c">
-                        <view class="list-item-title">地区</view>
+                        <view class="list-item-title1">地</view>
+                        <view class="list-item-title2">区</view>
                         <view class="list-item-content">{{item.orgName?item.orgName:'-'}}</view>
                     </view>
                     <view class="flexr0c">
@@ -64,18 +65,23 @@
                 <view class="list-item-right">
                     <view class="flexr0c">
                         <view class="{{item.sign==1?'list-item-num':'list-item-num2'}}">
-                            <text hidden="{{item.sign!=1}}">+</text>
-                            <text hidden="{{item.sign!=2}}">-</text>
-                            {{item.money}}
+                            <text hidden="{{item.sign!=1}}">+{{item.money}}</text>
+                            <text hidden="{{item.sign!=2}}">-{{item.money}}</text>
+                            
                         </view>
                         <image src="../../assets/images/rightarrow.png" />
                     </view>
-                    <view hidden="{{item.checkState==1}}" class="in-type">入账中</view>
+                    <view hidden="{{item.checkState==1||item.sign==2}}" class="in-type">入账中</view>
                 </view>
             </view>
-            <view hidden="{{list.length==0}}" class="nomore">
-                没有更多了~
+            <view style="text-align: center;margin: 10px;">
+                <view wx:if="{{loading}}">加载中...</view>
+                <view class="nomore" wx:if="{{noMore&&showNomore}}">没有更多了</view>
+                <view wx:if="{{loadingFailed}}">数据加载失败,请重试</view>
             </view>
+            <!-- <view hidden="{{list.length==0}}" class="nomore">
+                没有更多了~
+            </view> -->
         </view>
         <view hidden="{{list.length!=0}}" class="empty flexccc">
             <image class="empty-img" src="../../assets/images/no-data.png" mode="aspectFit|aspectFill|widthFix"></image>

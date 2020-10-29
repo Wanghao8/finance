@@ -24,11 +24,13 @@ Page({
     },
     // 是否登陆过，若在别的地方登陆，跳转登录页
     isLoged: function(msg) {
+        var that = this
         if (msg.indexOf('你') != -1) {
             this.data.timeout1 = setTimeout(function() {
                 wx.navigateTo({
                     url: '../login/login',
                 })
+                clearTimeout(that.data.timeout1)
             }, 2000)
         }
     },
@@ -116,6 +118,7 @@ Page({
                     wx.switchTab({
                         url: '../index',
                     })
+                    clearTimeout(that.data.timeout2)
                 }, 1500);
             } else {
                 console.log(res);

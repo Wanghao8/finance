@@ -39,6 +39,28 @@
 .container .filter {
   width: 40rpx;
   height: 40rpx;
+  padding: 20rpx;
+}
+
+.container .split-line2 {
+  width: 2px;
+  height: 34rpx;
+  background-color: #fff;
+  margin: 0 12rpx;
+}
+
+.container .calendar {
+  width: 40rpx;
+  height: 40rpx;
+  padding: 20rpx;
+}
+
+.container .date-choose {
+  font-family: PingFangSC-Regular;
+  font-size: 32rpx;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  padding: 0 20rpx;
 }
 
 .container .top-select {
@@ -71,7 +93,7 @@
 
 .container .middle-box {
   background: rgba(228, 228, 228, 0.6);
-  height: 50px;
+  height: 60px;
   width: 100%;
 }
 
@@ -83,6 +105,7 @@
 
 .container .middle-box .income-box {
   flex: 1;
+  padding-left: 40rpx;
 }
 
 .container .middle-box .income-box .income-num {
@@ -95,6 +118,7 @@
 
 .container .middle-box .outcome-box {
   flex: 1;
+  padding-left: 40rpx;
 }
 
 .container .middle-box .outcome-box .outcome-num {
@@ -167,6 +191,10 @@
   font-size: 30rpx;
   color: #4A4A4A;
   letter-spacing: 0;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .container .list-box .list-item .list-item-left .list-item-content-box .list-item-time, .container .list-box .list-item .list-item-left .list-item-content-box .list-item-address {
@@ -701,7 +729,7 @@
 }
 
 .drawer .drawer-top-box {
-  height: 484rpx;
+  height: 384rpx;
   width: 100%;
   position: relative;
 }
@@ -734,25 +762,25 @@
 }
 
 .drawer .drawer-top-box .drawer-top .location-container {
-  width: 210rpx;
+  width: 190rpx;
   margin: 8rpx 0 28rpx 0;
+  background-image: linear-gradient(180deg, rgba(252, 252, 252, 0.5) 0%, rgba(227, 227, 227, 0.5) 100%);
+  border: 1px solid rgba(151, 151, 151, 0.5);
+  border-radius: 8rpx;
 }
 
 .drawer .drawer-top-box .drawer-top .location-container .downarrow {
   width: 14rpx;
   height: 8rpx;
-  margin: -48rpx;
+  margin: 14rpx;
 }
 
 .drawer .drawer-top-box .drawer-top .location-container .location-item {
   width: 138rpx;
   height: 70rpx;
+  font-size: 24rpx;
   line-height: 70rpx;
-  background-image: linear-gradient(180deg, rgba(252, 252, 252, 0.5) 0%, rgba(227, 227, 227, 0.5) 100%);
-  border: 1px solid rgba(151, 151, 151, 0.5);
-  border-radius: 8rpx;
-  border-radius: 8rpx;
-  padding-left: 70rpx;
+  text-align: center;
 }
 
 .drawer .drawer-top-box .drawer-top .location-container .location-box-select {
@@ -847,6 +875,7 @@
   width: 208rpx;
   height: 70rpx;
   background: rgba(238, 238, 238, 0.5);
+  padding-left: 10rpx;
 }
 
 .drawer .money-box .input-box .to-line {
