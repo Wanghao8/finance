@@ -10,7 +10,7 @@
 } */
 
 
-/* flex布局. */
+/* flex布局 a. */
 
 .flexr {
     display: flex;
